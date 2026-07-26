@@ -256,11 +256,13 @@ input { font: inherit; }
 
 /* --- countdown / today strip --- */
 .status-strip {
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   margin-top: 22px; padding: 12px 16px;
   background: var(--paper); border: 1px solid var(--rule-2); border-radius: var(--r);
 }
-.status-strip .eyebrow { flex: none; }
+/* .masthead .eyebrow adds a 14px bottom margin; it must not apply in here */
+.status-strip .eyebrow { flex: none; margin-bottom: 0; }
+.status-strip .btn-sm { align-self: center; }
 .status-strip p { font-size: 13.5px; color: var(--ink-2); margin-right: auto; }
 .status-strip b { color: var(--ink); font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
