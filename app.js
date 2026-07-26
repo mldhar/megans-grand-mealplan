@@ -362,10 +362,20 @@ function renderRotation() {
     </button>`).join("");
 
   const sourced = DAYS.filter(d => d.source.url).length;
+
+  // summed from the five trip estimates rather than hard-coded, so the
+  // headline figure can never drift away from the actual lists
+  const bounds = GROCERIES.reduce((acc, t) => {
+    const n = (t.est.match(/\d+/g) || []).map(Number);
+    acc[0] += n[0] || 0;
+    acc[1] += n[1] ?? n[0] ?? 0;
+    return acc;
+  }, [0, 0]);
+
   $("#rot-foot").innerHTML = `
     <div><b>${GROCERIES.length}</b><span>shopping trips</span></div>
     <div><b>${sourced}</b><span>sourced recipes</span></div>
-    <div><b>~$400</b><span>for the month</span></div>`;
+    <div><b>$${bounds[0]} to $${bounds[1]}</b><span>for the month</span></div>`;
 }
 
 /* how far off is the plan? */
