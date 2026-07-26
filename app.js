@@ -323,6 +323,8 @@ function dishArt(d, wide = false) {
    ============================================================ */
 const MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const shortDate = (iso) => { const [, m, d] = iso.split("-"); return `${+d} ${MONTHS[+m]}`; };
+// card heads are tight; every night is in the one month, so the month is dropped there
+const dayOfMonth = (iso) => +iso.split("-")[2];
 
 function stars(rating) {
   if (rating == null) return "";
@@ -445,7 +447,7 @@ function cardHtml(d) {
           aria-label="Open day ${d.day}: ${esc(d.title)}">
     <span class="card-art">${dishArt(d)}</span>
     <span class="card-head">
-      <span class="card-no">DAY <b>${String(d.day).padStart(2, "0")}</b> · ${d.dow.slice(0, 3)} ${shortDate(d.date)}</span>
+      <span class="card-no">DAY <b>${String(d.day).padStart(2, "0")}</b> · ${d.dow.slice(0, 3)} ${dayOfMonth(d.date)}</span>
       <span class="tag-p">${glyph(d.protein, 11)}${esc(p.label)}</span>
     </span>
     <span class="card-body">
