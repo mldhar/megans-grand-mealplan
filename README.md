@@ -1,6 +1,6 @@
 # Megan's Grand August Mealplan
 
-A static site for a 30-day dinner plan — **Sat Aug 1 → Sun Aug 30, 2026**.
+A static site for a 30-day dinner plan, **Sat Aug 1 to Sun Aug 30, 2026**.
 
 Dairy-free, grain- and starch-free, no added sugar, no vegetable or seed oils.
 Five proteins on rotation: chicken (11 nights), ground beef (7), meatballs (4), steak (4), ground lamb (4).
@@ -23,7 +23,7 @@ python3 -m http.server 8765
 | `data.js` | All 30 days, 5 grocery lists, prep notes, dietary rules |
 | `app.js` | Rendering, filtering, the recipe modal, and the SVG dish illustrations |
 
-To change a recipe, edit the matching entry in `DAYS` in `data.js` — the calendar,
+To change a recipe, edit the matching entry in `DAYS` in `data.js`. The calendar,
 cards, modal and illustration all read from it.
 
 ## Features
@@ -31,7 +31,7 @@ cards, modal and illustration all read from it.
 - 30 recipe cards with a generated illustration per dish
 - Filter the month by protein
 - Full recipe modal: ingredients, method, source rating, and the swaps that keep it compliant
-- Deep links — `#day-14` opens that night's recipe directly
+- Deep links: `#day-14` opens that night's recipe directly
 - Grocery checklists that persist in `localStorage`
 - Light/dark themes and a print stylesheet
 

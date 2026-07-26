@@ -4,13 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Megan's Grand August Mealplan</title>
-<meta name="description" content="A 30-day dinner plan for August 2026 — dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef.">
+<meta name="description" content="A 30-day dinner plan for August 2026. Dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef.">
+<meta name="theme-color" content="#eef1f0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍖</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='3' fill='%230d181d'/><text x='16' y='23' font-family='monospace' font-size='17' font-weight='600' fill='%23eef1f0' text-anchor='middle'>30</text></svg>">
 </head>
 <body>
 
-<a class="skip" href="#weeks">Skip to the plan</a>
+<a class="skip" href="#plan">Skip to the plan</a>
 
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -18,99 +23,131 @@
       <span class="brand-mark">30</span>
       <span class="brand-txt"><b>Megan's Grand</b><small>August Mealplan</small></span>
     </a>
-    <nav class="nav">
-      <a class="nav-link" href="#glance">Overview</a>
-      <a class="nav-link" href="#weeks">The plan</a>
+    <nav class="nav" aria-label="Sections">
+      <a class="nav-link" href="#glance">Month</a>
+      <a class="nav-link" href="#plan">The plan</a>
       <a class="nav-link" href="#groceries">Groceries</a>
       <a class="nav-link" href="#prep">Prep</a>
       <a class="nav-link" href="#rules">Rules</a>
     </nav>
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.3 0-.6-.05-.9A7 7 0 0 1 12.9 3.05 8 8 0 0 0 12 3Z"/></svg>
+    <button id="theme-toggle" class="icon-btn" aria-label="Switch theme" title="Switch theme">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.3 0-.6-.05-.9A7 7 0 0 1 12.9 3.05 8 8 0 0 0 12 3Z"/></svg>
     </button>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- ================= HERO ================= -->
+  <!-- ===================== HERO ===================== -->
   <section class="hero">
-    <div class="wrap hero-in">
-      <p class="eyebrow">Saturday Aug 1 → Sunday Aug 30, 2026</p>
-      <h1>Megan's Grand<br>August Mealplan</h1>
-      <p class="subhead">Thirty dinners. No dairy, no starch, no sugar, no seed oils.</p>
-      <p class="lede">
-        Five proteins on rotation — chicken, pre-made meatballs, steak, ground lamb and ground beef — built
-        around highly-rated recipes from Budget Bytes and Downshiftology. Every week is planned so the fresh
-        produce you buy on Saturday is used up by Friday.
-      </p>
-      <div class="hero-stats">
-        <div><b>30</b><span>dinners</span></div>
-        <div><b>17</b><span>sourced recipes</span></div>
-        <div><b>5</b><span>shopping trips</span></div>
-        <div><b>~$400</b><span>estimated month</span></div>
+    <div class="wrap hero-grid">
+      <div class="masthead">
+        <span class="eyebrow">Sat 1 Aug to Sun 30 Aug 2026</span>
+        <h1>Megan's Grand August Mealplan</h1>
+        <p class="subhead">Thirty dinners. No dairy, no starch, no sugar, no seed oils.</p>
+        <p class="lede">
+          Five proteins on rotation, built on highly-rated recipes from Budget Bytes and
+          Downshiftology and rewritten where they needed it. Each week runs on one flavour
+          direction so the produce bought on Saturday is gone by Friday.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#plan">See the plan</a>
+          <a class="btn ghost" href="#groceries">Grocery lists</a>
+          <button class="btn ghost" id="print-all">Print grocery lists</button>
+        </div>
+        <div class="status-strip" id="status-strip" hidden>
+          <span class="eyebrow">Status</span>
+          <p id="status-text"></p>
+          <button class="btn-sm" id="status-btn" hidden>Open it</button>
+        </div>
       </div>
-      <div class="hero-cta">
-        <a class="btn" href="#weeks">See the plan</a>
-        <a class="btn ghost" href="#groceries">Grocery lists</a>
-        <button class="btn ghost" onclick="window.print()">Print</button>
-      </div>
+
+      <!-- the rotation board: the most characteristic thing about this plan -->
+      <aside class="rotation" aria-labelledby="rot-title">
+        <div class="rot-head">
+          <b id="rot-title">The rotation</b>
+          <span id="rot-total"></span>
+        </div>
+        <div class="rot-rows" id="rot-rows"></div>
+        <div class="rot-foot" id="rot-foot"></div>
+      </aside>
     </div>
   </section>
 
-  <!-- ================= GLANCE ================= -->
+  <!-- ===================== GLANCE ===================== -->
   <section id="glance" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>The month at a glance</h2>
-        <p>Colour-coded by protein. Click any day to open the full recipe.</p>
+        <span class="eyebrow">The month</span>
+        <h2>Thirty nights at a glance</h2>
+        <p>Each night is tagged by protein, by colour and by mark, so it reads either way. Click any night for the full recipe.</p>
       </div>
-      <div id="filters" class="filters"></div>
       <div id="glance-grid" class="glance-grid"></div>
     </div>
   </section>
 
-  <!-- ================= WEEKS ================= -->
-  <section id="weeks" class="sec alt">
+  <!-- ===================== PLAN ===================== -->
+  <section id="plan" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Week by week</h2>
-        <p>Each week has one flavour direction so the herbs and produce get used up before they turn.</p>
+        <span class="eyebrow">Week by week</span>
+        <h2>The plan</h2>
+        <p>Five shopping cycles, each with one flavour direction so nothing bought fresh gets thrown out.</p>
       </div>
+
+      <div class="controls" role="search">
+        <div class="search-wrap" id="search-wrap">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Zm5 12 4 4"/></svg>
+          <input id="search" type="search" placeholder="Search dishes, ingredients, methods…" aria-label="Search the plan">
+          <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
+        </div>
+        <div class="fbar" id="filters" role="group" aria-label="Filter by protein"></div>
+        <span class="result-count" id="result-count"></span>
+      </div>
+
+      <nav class="weeknav" id="weeknav" aria-label="Jump to week"></nav>
       <div id="weeks-list"></div>
+      <p class="no-results" id="no-results" hidden>Nothing matches that. Try a different word, or clear the filters.</p>
     </div>
   </section>
 
-  <!-- ================= GROCERIES ================= -->
+  <!-- ===================== GROCERIES ===================== -->
   <section id="groceries" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Grocery lists</h2>
-        <p>Five trips. Tick items as you shop — the boxes are saved in your browser.
-          <button id="reset-checks" class="btn-sm ghost">Reset all</button>
-        </p>
+        <span class="eyebrow">Shopping</span>
+        <h2>Five trips</h2>
+        <p>Tick items as you shop. The boxes are saved in this browser. Printing gives you the lists on their own, one trip per page, with nothing else from the site attached.</p>
+      </div>
+      <div class="grocery-top">
+        <span class="gtotal" id="gtotal"></span>
+        <span class="gmeter"><i id="gmeter-fill" style="width:0%"></i></span>
+        <button id="print-groceries" class="btn-sm">Print all lists</button>
+        <button id="reset-checks" class="btn-sm">Reset all</button>
       </div>
       <div id="grocery-list"></div>
     </div>
   </section>
 
-  <!-- ================= PREP ================= -->
-  <section id="prep" class="sec alt">
+  <!-- ===================== PREP ===================== -->
+  <section id="prep" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Prep ahead</h2>
-        <p>The handful of moves that make the rest of the week fast.</p>
+        <span class="eyebrow">Ahead of time</span>
+        <h2>Prep that pays off</h2>
+        <p>The few moves that make the rest of each week fast.</p>
       </div>
       <div id="prep-list" class="prep-grid"></div>
     </div>
   </section>
 
-  <!-- ================= RULES ================= -->
+  <!-- ===================== RULES ===================== -->
   <section id="rules" class="sec">
     <div class="wrap">
       <div class="sec-head">
+        <span class="eyebrow">Constraints</span>
         <h2>What's in, what's out</h2>
-        <p>Every recipe below has been checked against these and rewritten where it needed it.</p>
+        <p>Every recipe has been checked against these and rewritten where it needed it.</p>
       </div>
 
       <div class="rules-grid">
@@ -119,12 +156,12 @@
           <ul id="rules-out"></ul>
         </div>
         <div class="rule-card in">
-          <h3><span class="rx">✓</span> On the shopping list</h3>
+          <h3><span class="rx">✓</span> On the list</h3>
           <ul id="rules-in"></ul>
         </div>
         <div class="rule-card watch">
           <h3><span class="rx">!</span> Judgement calls</h3>
-          <p class="rule-intro">These sit on the line. Here's the call I made and why — override any of them.</p>
+          <p class="rule-intro">These sit on the line. Here's the call I made. Override any of them.</p>
           <ul id="rules-watch"></ul>
         </div>
       </div>
@@ -136,22 +173,21 @@
         <p>
           Recipes came from <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a>
           and <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>, filtered for
-          high ratings and short hands-on times. Ratings and review counts shown on each card were read off the
-          source page. Seventeen of the thirty nights link to a specific published recipe; the other thirteen are
-          written for this plan and are marked <em>Built for this plan</em> — they exist to use up what the sourced
-          recipes leave in the fridge.
+          high ratings and short hands-on times. The rating and review count on each night were read off the
+          source page. Seventeen of the thirty link to a specific published recipe; the other thirteen are written
+          for this plan, marked <em>Built for this plan</em>, and exist to use up what the sourced recipes leave behind.
         </p>
         <p class="caveat">
           <b>On Serious Eats:</b> you asked for it specifically, and I couldn't use it. Serious Eats blocks
-          automated access, so neither search nor page fetches returned anything — I had no way to read a recipe
-          or verify a rating there. Rather than cite pages I couldn't open, I sourced from two sites I could
-          actually read. Two nights do use techniques Serious Eats popularised — the reverse sear on Aug 22 and
-          hard-searing sliced steak in batches on Aug 19 — written from method, not copied from a page.
+          automated access, so neither search nor page fetches returned anything, so there was no way to read a
+          recipe or verify a rating there. Rather than cite pages I couldn't open, I sourced from two sites I
+          could actually read. Two nights use techniques Serious Eats popularised: the reverse sear on 22 Aug
+          and hard-searing sliced steak in batches on 19 Aug, both written from method rather than copied from a page.
         </p>
         <p class="caveat">
-          <b>Portions:</b> recipes are listed at their published yields, mostly 4–6 servings. The plan assumes
-          leftovers become lunch. Cooking for one or two? Halve the ground-meat nights and keep the sheet-pan
-          ones whole — they reheat best.
+          <b>Portions:</b> recipes are listed at their published yields, mostly 4 to 6 servings, and the plan assumes
+          leftovers become lunch. Cooking for one or two? Halve the ground-meat nights and keep the sheet-pan ones
+          whole, because those reheat best.
         </p>
       </div>
     </div>
@@ -160,20 +196,34 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p><b>Megan's Grand August Mealplan</b> · 30 dinners · dairy-free, grain-free, sugar-free, seed-oil-free</p>
+    <p>Megan's Grand August Mealplan. 30 dinners, dairy-free, grain-free, sugar-free, seed-oil-free</p>
     <p class="foot-links">
-      Recipe sources:
+      Sources:
       <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a> ·
       <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>
     </p>
   </div>
 </footer>
 
-<!-- ================= MODAL ================= -->
-<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="modal-panel" role="document">
-    <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
-    <div id="modal-body"></div>
+<!-- ===================== MODAL ===================== -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-inner">
+      <div class="modal-bar">
+        <span class="mb-no" id="mb-no"></span>
+        <button class="mbtn" id="m-prev" aria-label="Previous night" title="Previous night (←)">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="m14 6-6 6 6 6"/></svg>
+        </button>
+        <button class="mbtn" id="m-next" aria-label="Next night" title="Next night (→)">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="m10 6 6 6-6 6"/></svg>
+        </button>
+        <button class="mbtn close" id="modal-close" aria-label="Close" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
   </div>
 </div>
 
