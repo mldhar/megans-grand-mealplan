@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megan's Grand August Mealplan</title>
+<meta name="description" content="A 30-day dinner plan for August 2026 — dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍖</text></svg>">
+</head>
+<body>
+
+<a class="skip" href="#weeks">Skip to the plan</a>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top">
+      <span class="brand-mark">30</span>
+      <span class="brand-txt"><b>Megan's Grand</b><small>August Mealplan</small></span>
+    </a>
+    <nav class="nav">
+      <a class="nav-link" href="#glance">Overview</a>
+      <a class="nav-link" href="#weeks">The plan</a>
+      <a class="nav-link" href="#groceries">Groceries</a>
+      <a class="nav-link" href="#prep">Prep</a>
+      <a class="nav-link" href="#rules">Rules</a>
+    </nav>
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.3 0-.6-.05-.9A7 7 0 0 1 12.9 3.05 8 8 0 0 0 12 3Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <p class="eyebrow">Saturday Aug 1 → Sunday Aug 30, 2026</p>
+      <h1>Megan's Grand<br>August Mealplan</h1>
+      <p class="subhead">Thirty dinners. No dairy, no starch, no sugar, no seed oils.</p>
+      <p class="lede">
+        Five proteins on rotation — chicken, pre-made meatballs, steak, ground lamb and ground beef — built
+        around highly-rated recipes from Budget Bytes and Downshiftology. Every week is planned so the fresh
+        produce you buy on Saturday is used up by Friday.
+      </p>
+      <div class="hero-stats">
+        <div><b>30</b><span>dinners</span></div>
+        <div><b>17</b><span>sourced recipes</span></div>
+        <div><b>5</b><span>shopping trips</span></div>
+        <div><b>~$400</b><span>estimated month</span></div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#weeks">See the plan</a>
+        <a class="btn ghost" href="#groceries">Grocery lists</a>
+        <button class="btn ghost" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GLANCE ================= -->
+  <section id="glance" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>The month at a glance</h2>
+        <p>Colour-coded by protein. Click any day to open the full recipe.</p>
+      </div>
+      <div id="filters" class="filters"></div>
+      <div id="glance-grid" class="glance-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= WEEKS ================= -->
+  <section id="weeks" class="sec alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Week by week</h2>
+        <p>Each week has one flavour direction so the herbs and produce get used up before they turn.</p>
+      </div>
+      <div id="weeks-list"></div>
+    </div>
+  </section>
+
+  <!-- ================= GROCERIES ================= -->
+  <section id="groceries" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Grocery lists</h2>
+        <p>Five trips. Tick items as you shop — the boxes are saved in your browser.
+          <button id="reset-checks" class="btn-sm ghost">Reset all</button>
+        </p>
+      </div>
+      <div id="grocery-list"></div>
+    </div>
+  </section>
+
+  <!-- ================= PREP ================= -->
+  <section id="prep" class="sec alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Prep ahead</h2>
+        <p>The handful of moves that make the rest of the week fast.</p>
+      </div>
+      <div id="prep-list" class="prep-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section id="rules" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>What's in, what's out</h2>
+        <p>Every recipe below has been checked against these and rewritten where it needed it.</p>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card out">
+          <h3><span class="rx">✕</span> Excluded</h3>
+          <ul id="rules-out"></ul>
+        </div>
+        <div class="rule-card in">
+          <h3><span class="rx">✓</span> On the shopping list</h3>
+          <ul id="rules-in"></ul>
+        </div>
+        <div class="rule-card watch">
+          <h3><span class="rx">!</span> Judgement calls</h3>
+          <p class="rule-intro">These sit on the line. Here's the call I made and why — override any of them.</p>
+          <ul id="rules-watch"></ul>
+        </div>
+      </div>
+
+      <div id="meatball-note" class="meatball-note"></div>
+
+      <div class="method-note">
+        <h3>How the recipes were chosen</h3>
+        <p>
+          Recipes came from <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a>
+          and <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>, filtered for
+          high ratings and short hands-on times. Ratings and review counts shown on each card were read off the
+          source page. Seventeen of the thirty nights link to a specific published recipe; the other thirteen are
+          written for this plan and are marked <em>Built for this plan</em> — they exist to use up what the sourced
+          recipes leave in the fridge.
+        </p>
+        <p class="caveat">
+          <b>On Serious Eats:</b> you asked for it specifically, and I couldn't use it. Serious Eats blocks
+          automated access, so neither search nor page fetches returned anything — I had no way to read a recipe
+          or verify a rating there. Rather than cite pages I couldn't open, I sourced from two sites I could
+          actually read. Two nights do use techniques Serious Eats popularised — the reverse sear on Aug 22 and
+          hard-searing sliced steak in batches on Aug 19 — written from method, not copied from a page.
+        </p>
+        <p class="caveat">
+          <b>Portions:</b> recipes are listed at their published yields, mostly 4–6 servings. The plan assumes
+          leftovers become lunch. Cooking for one or two? Halve the ground-meat nights and keep the sheet-pan
+          ones whole — they reheat best.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Megan's Grand August Mealplan</b> · 30 dinners · dairy-free, grain-free, sugar-free, seed-oil-free</p>
+    <p class="foot-links">
+      Recipe sources:
+      <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a> ·
+      <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-panel" role="document">
+    <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
