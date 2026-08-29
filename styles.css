@@ -682,6 +682,79 @@ input { font: inherit; }
 .foot-links a { color: var(--ink-2); }
 
 /* ============================================================
+   MONTH SWITCH
+   A segmented control, hard-edged, sitting in the topbar. It is the
+   one control that changes the whole page, so it reads as a switch
+   rather than as another nav link.
+   ============================================================ */
+.mswitch {
+  display: flex; flex: none; padding: 2px;
+  border: 1px solid var(--rule-2); border-radius: var(--r);
+  background: var(--paper-2);
+}
+.mtab {
+  padding: 5px 13px; border: 0; border-radius: 2px;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--ink-3); background: transparent;
+  transition: color .15s, background .15s;
+}
+.mtab:hover { color: var(--ink); }
+.mtab.on { color: var(--enamel); background: var(--blue); }
+
+/* inline "jump to the other month" inside the status strip */
+.linkish {
+  font: inherit; color: var(--red); font-weight: 600;
+  background: none; padding: 0;
+  border: 0; border-bottom: 1px solid currentColor;
+}
+.linkish:hover { color: var(--ink); }
+
+.sec-count {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--ink-3); margin-left: 10px; vertical-align: middle;
+}
+
+/* ============================================================
+   PROTEIN PER PLATE
+   The figure the September plan was built around, so it gets a
+   meter rather than a number buried in a stat row.
+   ============================================================ */
+.stat.pro { color: var(--blue); font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat.pro svg { color: var(--blue); }
+
+.m-protein {
+  margin-top: 14px; padding: 13px 15px;
+  background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r);
+}
+.m-protein .eyebrow { display: block; margin-bottom: 10px; }
+.mp-bars { display: flex; flex-direction: column; gap: 7px; }
+.mp-bar { display: flex; align-items: center; gap: 11px; }
+.mp-name {
+  font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--ink-2); min-width: 7ch;
+}
+.mp-track { flex: 1; height: 8px; background: var(--paper-3); border-radius: 1px; overflow: hidden; }
+.mp-track i { display: block; height: 100%; background: var(--blue); border-radius: 1px; }
+.mp-bar b {
+  font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--ink);
+  font-variant-numeric: tabular-nums; min-width: 4ch; text-align: right;
+}
+.mp-note { margin-top: 9px; font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+
+/* the "in" tick, reused for the protein maths list */
+.pro-list { list-style: none; }
+.pro-list li { font-size: 13.5px; color: var(--ink-2); padding: 4px 0 4px 22px; position: relative; }
+.pro-list li::before {
+  content: "\2713"; position: absolute; left: 2px; color: var(--good); font-size: 11px; top: 5px;
+}
+
+.rot-foot.four { grid-template-columns: repeat(2, 1fr); }
+.rot-foot.four div:nth-child(3) { border-left: 0; }
+.rot-foot.four div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1020px) {
@@ -700,6 +773,10 @@ input { font: inherit; }
 }
 @media (max-width: 560px) {
   .wrap { padding: 0 16px; }
+  .brand-txt { display: none; }
+  .mtab { padding: 5px 10px; }
+  .rot-foot.four { grid-template-columns: 1fr; }
+  .rot-foot.four div:nth-child(n+2) { border-left: 0; border-top: 1px solid var(--rule); }
   .hero { padding: 38px 0 34px; }
   .glance-grid { grid-template-columns: repeat(4, 1fr); }
   .cards { grid-template-columns: 1fr; }
@@ -722,6 +799,7 @@ input { font: inherit; }
    ============================================================ */
 @media print {
   @page { margin: 14mm; }
+  .mswitch { display: none !important; }
 
   /* everything that is not the grocery list is hidden */
   body > *:not(main), main > section:not(#groceries),

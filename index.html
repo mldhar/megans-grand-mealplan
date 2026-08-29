@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Megan's Grand August Mealplan</title>
-<meta name="description" content="A 30-day dinner plan for August 2026. Dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef.">
+<title>Megan's Grand Mealplan</title>
+<meta name="description" content="Two 30-day dinner plans, August and September 2026. Dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef, portioned for 70g+ of protein a plate.">
 <meta name="theme-color" content="#eef1f0">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,8 +21,9 @@
   <div class="wrap topbar-in">
     <a class="brand" href="#top">
       <span class="brand-mark">30</span>
-      <span class="brand-txt"><b>Megan's Grand</b><small>August Mealplan</small></span>
+      <span class="brand-txt"><b>Megan's Grand</b><small>Mealplan</small></span>
     </a>
+    <div class="mswitch" id="mswitch" role="group" aria-label="Choose a month"></div>
     <nav class="nav" aria-label="Sections">
       <a class="nav-link" href="#glance">Month</a>
       <a class="nav-link" href="#plan">The plan</a>
@@ -42,15 +43,10 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="masthead">
-        <span class="eyebrow">Sat 1 Aug to Sun 30 Aug 2026</span>
-        <h1>Megan's Grand August Mealplan</h1>
-        <p class="subhead">Thirty dinners. No dairy, no starch, no sugar, no seed oils.</p>
-        <p class="lede">
-          Five proteins on rotation, built on highly-rated recipes from Budget Bytes and
-          Downshiftology and rewritten where they needed it. Each week runs on one flavour
-          direction so the produce bought on Saturday is gone by Friday. Budget below is the
-          sum of the five shopping lists, at supermarket prices for 4 to 6 servings a night.
-        </p>
+        <span class="eyebrow" id="hero-eyebrow"></span>
+        <h1 id="hero-title"></h1>
+        <p class="subhead" id="hero-subhead"></p>
+        <p class="lede" id="hero-lede"></p>
         <div class="hero-cta">
           <a class="btn" href="#plan">See the plan</a>
           <a class="btn ghost" href="#groceries">Grocery lists</a>
@@ -79,7 +75,7 @@
   <section id="glance" class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">The month</span>
+        <span class="eyebrow" id="glance-eyebrow"></span>
         <h2>Thirty nights at a glance</h2>
         <p>Each night is tagged by protein, by colour and by mark, so it reads either way. Click any night for the full recipe.</p>
       </div>
@@ -92,7 +88,7 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Week by week</span>
-        <h2>The plan</h2>
+        <h2>The plan <small class="sec-count" id="plan-count"></small></h2>
         <p>Five shopping cycles, each with one flavour direction so nothing bought fresh gets thrown out.</p>
       </div>
 
@@ -167,37 +163,18 @@
         </div>
       </div>
 
+      <div id="protein-note" class="meatball-note"></div>
+
       <div id="meatball-note" class="meatball-note"></div>
 
-      <div class="method-note">
-        <h3>How the recipes were chosen</h3>
-        <p>
-          Recipes came from <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a>
-          and <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>, filtered for
-          high ratings and short hands-on times. The rating and review count on each night were read off the
-          source page. Seventeen of the thirty link to a specific published recipe; the other thirteen are written
-          for this plan, marked <em>Built for this plan</em>, and exist to use up what the sourced recipes leave behind.
-        </p>
-        <p class="caveat">
-          <b>On Serious Eats:</b> you asked for it specifically, and I couldn't use it. Serious Eats blocks
-          automated access, so neither search nor page fetches returned anything, so there was no way to read a
-          recipe or verify a rating there. Rather than cite pages I couldn't open, I sourced from two sites I
-          could actually read. Two nights use techniques Serious Eats popularised: the reverse sear on 22 Aug
-          and hard-searing sliced steak in batches on 19 Aug, both written from method rather than copied from a page.
-        </p>
-        <p class="caveat">
-          <b>Portions:</b> recipes are listed at their published yields, mostly 4 to 6 servings, and the plan assumes
-          leftovers become lunch. Cooking for one or two? Halve the ground-meat nights and keep the sheet-pan ones
-          whole, because those reheat best.
-        </p>
-      </div>
+      <div id="method-note" class="method-note"></div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <p>Megan's Grand August Mealplan. 30 dinners, dairy-free, grain-free, sugar-free, seed-oil-free</p>
+    <p>Megan's Grand Mealplan. Two months, 60 dinners, dairy-free, grain-free, sugar-free, seed-oil-free</p>
     <p class="foot-links">
       Sources:
       <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a> ·

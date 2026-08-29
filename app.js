@@ -1,5 +1,5 @@
 /* ============================================================
-   Megan's Grand August Mealplan
+   Megan's Grand Mealplan
    Rendering, interaction, and the generated dish illustrations.
    ============================================================ */
 
@@ -341,8 +341,29 @@ function toMins(s) {
 
 const ICON = {
   clock: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  serves: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4v7a4 4 0 0 0 8 0V4M8 11v9M17 4c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Zm0 9v7"/></svg>'
+  serves: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4v7a4 4 0 0 0 8 0V4M8 11v9M17 4c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Zm0 9v7"/></svg>',
+  protein: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20v-6M10 20V8M16 20v-9M2 20h20"/></svg>'
 };
+
+/* Protein per plate, drawn as two bars against a 90g ceiling so the two
+   figures are comparable at a glance rather than just two numbers. */
+const PRO_CEIL = 90;
+function proteinBars(pg) {
+  if (!pg) return "";
+  return `
+    <div class="m-protein">
+      <span class="eyebrow">Protein per plate</span>
+      <div class="mp-bars">
+        ${[["Vishut", pg.him], ["Megan", pg.her]].map(([name, g]) => `
+          <div class="mp-bar">
+            <span class="mp-name">${esc(name)}</span>
+            <span class="mp-track"><i style="width:${Math.min(100, g / PRO_CEIL * 100).toFixed(0)}%"></i></span>
+            <b>${g}g</b>
+          </div>`).join("")}
+      </div>
+      <p class="mp-note">Calculated from raw weight, so it runs a little conservative. Leftovers are on top of these.</p>
+    </div>`;
+}
 
 /* ============================================================
    HERO: the rotation board
@@ -364,6 +385,7 @@ function renderRotation() {
     </button>`).join("");
 
   const sourced = DAYS.filter(d => d.source.url).length;
+  const withPro = DAYS.filter(d => d.protein_g);
 
   // summed from the five trip estimates rather than hard-coded, so the
   // headline figure can never drift away from the actual lists
@@ -374,35 +396,95 @@ function renderRotation() {
     return acc;
   }, [0, 0]);
 
-  $("#rot-foot").innerHTML = `
-    <div><b>${GROCERIES.length}</b><span>shopping trips</span></div>
-    <div><b>${sourced}</b><span>sourced recipes</span></div>
-    <div><b>$${bounds[0]} to $${bounds[1]}</b><span>for the month</span></div>`;
+  const cells = [
+    `<div><b>${GROCERIES.length}</b><span>shopping trips</span></div>`,
+    `<div><b>${sourced}</b><span>sourced recipes</span></div>`,
+    `<div><b>$${bounds[0]} to $${bounds[1]}</b><span>for the month</span></div>`
+  ];
+  if (withPro.length === DAYS.length) {
+    const floor = Math.min(...withPro.map(d => d.protein_g.him));
+    cells.push(`<div><b>${floor}g+</b><span>protein, his plate</span></div>`);
+  }
+  const foot = $("#rot-foot");
+  foot.innerHTML = cells.join("");
+  foot.classList.toggle("four", cells.length === 4);
 }
 
 /* how far off is the plan? */
+const atDay = (iso) => new Date(iso + "T00:00:00");
+
 function renderStatus() {
-  const first = new Date("2026-08-01T00:00:00");
-  const last = new Date("2026-08-30T00:00:00");
+  const first = atDay(MONTH.first), last = atDay(MONTH.last);
   const now = new Date(); now.setHours(0, 0, 0, 0);
   const strip = $("#status-strip"), text = $("#status-text"), btn = $("#status-btn");
+  const live = PLAN_MONTHS.find(m => now >= atDay(m.first) && now <= atDay(m.last));
 
   if (now < first) {
     const days = Math.round((first - now) / 86400000);
-    text.innerHTML = `The plan starts in <b>${days}</b> day${days === 1 ? "" : "s"}. First shop is <b>Fri 31 Jul</b>.`;
+    text.innerHTML = `${esc(MONTH.title)} starts in <b>${days}</b> day${days === 1 ? "" : "s"}. First shop is <b>${esc(MONTH.weeks[0].shop.replace(/^Shop /, ""))}</b>.`;
     btn.hidden = true;
   } else if (now > last) {
-    text.innerHTML = `August 2026 is done. Everything below still works as a reference.`;
+    text.innerHTML = `${esc(MONTH.title)} is done. Everything below still works as a reference.`;
     btn.hidden = true;
   } else {
     const n = Math.round((now - first) / 86400000) + 1;
     const d = DAYS.find(x => x.day === n);
-    if (!d) return;
-    text.innerHTML = `Tonight is <b>day ${n}</b>: ${esc(d.title)}.`;
-    btn.hidden = false;
-    btn.onclick = () => openDay(n);
+    text.innerHTML = d ? `Tonight is <b>day ${n}</b>: ${esc(d.title)}.` : `${esc(MONTH.title)} is running.`;
+    btn.hidden = !d;
+    if (d) btn.onclick = () => openDay(n);
+  }
+
+  // browsing a month that is not the one you are actually cooking from
+  if (live && live.key !== MONTH.key) {
+    text.innerHTML += ` Tonight's dinner is over in <button type="button" class="linkish" data-month="${live.key}">${esc(live.title)}</button>.`;
   }
   strip.hidden = false;
+}
+
+/* ---------- month switch ---------- */
+function renderMonthSwitch() {
+  $("#mswitch").innerHTML = PLAN_MONTHS.map(m =>
+    `<button type="button" class="mtab${m.key === MONTH.key ? " on" : ""}" data-month="${m.key}"
+             aria-pressed="${m.key === MONTH.key}" title="${esc(m.title)}">${esc(m.short)}</button>`).join("");
+}
+
+function renderMasthead() {
+  $("#hero-eyebrow").textContent = MONTH.span;
+  $("#hero-title").textContent = `Megan's Grand ${MONTH.label} Mealplan`;
+  $("#hero-subhead").textContent = MONTH.subhead;
+  $("#hero-lede").textContent = MONTH.lede;
+  $("#glance-eyebrow").textContent = MONTH.title;
+  $("#plan-count").textContent = `${DAYS.length} nights`;
+  document.title = `Megan's Grand Mealplan · ${MONTH.title}`;
+}
+
+/* everything that depends on which month is selected */
+function renderMonth() {
+  buildIndex();
+  renderMonthSwitch();
+  renderMasthead();
+  renderRotation();
+  renderStatus();
+  renderFilters();
+  renderGlance();
+  renderWeekNav();
+  renderWeeks();
+  renderMethod();
+  renderGroceries();
+  renderPrep();
+  applyFilters();
+}
+
+function switchMonth(key) {
+  if (!PLAN_MONTHS.some(m => m.key === key) || key === MONTH.key) return;
+  closeModal();
+  selectMonth(key);
+  try { localStorage.setItem("mealplan26:month", key); } catch (_) {}
+  filterProtein = "all";
+  filterQuick = false;
+  $("#search").value = "";
+  renderMonth();
+  if (location.hash) history.replaceState(null, "", location.pathname);
 }
 
 /* ============================================================
@@ -456,6 +538,7 @@ function cardHtml(d) {
       <span class="card-foot">
         <span class="stat">${ICON.clock}${esc(d.time)}</span>
         <span class="stat">${ICON.serves}${d.serves}</span>
+        ${d.protein_g ? `<span class="stat pro" title="Protein per plate: Vishut ${d.protein_g.him}g, Megan ${d.protein_g.her}g">${ICON.protein}${d.protein_g.him}/${d.protein_g.her}g</span>` : ""}
         ${d.source.rating != null ? `<span class="stat rate">★ ${d.source.rating}</span>` : ""}
       </span>
     </span>
@@ -467,6 +550,7 @@ function cardHtml(d) {
    ============================================================ */
 const searchIndex = new Map();
 function buildIndex() {
+  searchIndex.clear();
   DAYS.forEach(d => {
     searchIndex.set(d.day, [
       d.title, d.blurb, d.dow, d.source.name, (d.tags || []).join(" "),
@@ -536,10 +620,11 @@ function openDay(n, push = true) {
   if (!d) return;
   if (!$("#modal").classList.contains("open")) lastFocus = document.activeElement;
   currentDay = n;
-  if (push && location.hash !== `#day-${n}`) history.replaceState(null, "", `#day-${n}`);
+  const hash = `#${MONTH.key}-${n}`;
+  if (push && location.hash !== hash) history.replaceState(null, "", hash);
 
   const p = PROTEINS[d.protein];
-  $("#mb-no").innerHTML = `DAY <b>${String(d.day).padStart(2, "0")}</b> / 30 · ${esc(d.dow)} ${shortDate(d.date)}`;
+  $("#mb-no").innerHTML = `DAY <b>${String(d.day).padStart(2, "0")}</b> / ${DAYS.length} · ${esc(d.dow)} ${shortDate(d.date)}`;
   $("#m-prev").disabled = n <= 1;
   $("#m-next").disabled = n >= DAYS.length;
 
@@ -559,6 +644,7 @@ function openDay(n, push = true) {
         <div><b>${esc(d.cost)}</b><span>cost</span></div>
       </div>
       ${d.tags?.length ? `<div class="m-tags">${d.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>` : ""}
+      ${proteinBars(d.protein_g)}
     </div>
 
     <div class="m-cols">
@@ -596,7 +682,7 @@ function closeModal() {
   dlg.classList.remove("open");
   dlg.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
-  if (/^#day-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname);
+  if (/^#[a-z]{3}-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname);
   currentDay = null;
   if (lastFocus) lastFocus.focus();
 }
@@ -610,6 +696,16 @@ function renderRules() {
   $("#rules-in").innerHTML = RULES.in.map(li).join("");
   $("#rules-watch").innerHTML = RULES.watch.map(li).join("");
 
+  $("#protein-note").innerHTML = `
+    <h3>${esc(PROTEIN_NOTE.title)}</h3>
+    <p>${esc(PROTEIN_NOTE.body)}</p>
+    <h5>The numbers behind it</h5>
+    <ul class="pro-list">${PROTEIN_NOTE.how.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+    <h5>What the figures do not tell you</h5>
+    <p>${esc(PROTEIN_NOTE.caveat)}</p>
+    <h5>Turning it up or down</h5>
+    <p>${esc(PROTEIN_NOTE.adjust)}</p>`;
+
   $("#meatball-note").innerHTML = `
     <h3>${esc(MEATBALL_NOTE.title)}</h3>
     <p>${esc(MEATBALL_NOTE.body)}</p>
@@ -619,6 +715,12 @@ function renderRules() {
     <p>${esc(MEATBALL_NOTE.where)}</p>
     <h5>If nothing qualifies</h5>
     <p>${esc(MEATBALL_NOTE.fallback)}</p>`;
+}
+
+function renderMethod() {
+  $("#method-note").innerHTML = (MONTH.method || []).map(sec => `
+    <h3>${esc(sec.h)}</h3>
+    ${sec.p.map(t => `<p>${esc(t)}</p>`).join("")}`).join("");
 }
 
 function renderPrep() {
@@ -656,7 +758,7 @@ function renderGroceries() {
           <div class="gsec">
             <h5>${esc(sec.name)}</h5>
             <ul>${sec.items.map((it, ii) => {
-              const key = `${t.trip}.${si}.${ii}`;
+              const key = `${MONTH.key}.${t.trip}.${si}.${ii}`;
               return `<li><label class="gitem${checked[key] ? " done" : ""}">
                 <input type="checkbox" data-key="${key}"${checked[key] ? " checked" : ""}>
                 <span class="box" aria-hidden="true"></span><span class="txt">${esc(it)}</span></label></li>`;
@@ -725,22 +827,25 @@ function initNav() {
    BOOT
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
-  buildIndex();
-  renderRotation();
-  renderStatus();
-  renderFilters();
-  renderGlance();
-  renderWeekNav();
-  renderWeeks();
+  /* Which month opens first, in order: a #sep-12 style link, then whatever
+     you last looked at, then the month today actually falls in. */
+  const deep = /^#([a-z]{3})-(\d+)$/.exec(location.hash);
+  let start = null;
+  if (deep && PLAN_MONTHS.some(m => m.key === deep[1])) start = deep[1];
+  if (!start) {
+    try {
+      const saved = localStorage.getItem("mealplan26:month");
+      if (saved && PLAN_MONTHS.some(m => m.key === saved)) start = saved;
+    } catch (_) {}
+  }
+  selectMonth(start || monthForToday());
+
   renderRules();
-  renderGroceries();
-  renderPrep();
+  renderMonth();
   initTheme();
   initNav();
-  applyFilters();
 
-  const m = /^#day-(\d+)$/.exec(location.hash);
-  if (m) openDay(+m[1], false);
+  if (deep) openDay(+deep[2], false);
 
   document.addEventListener("click", e => {
     // tick an ingredient or a step off while cooking
@@ -750,6 +855,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.closest("[data-close]") || e.target.closest("#modal-close")) return closeModal();
     if (e.target.closest("#m-prev")) return openDay(currentDay - 1);
     if (e.target.closest("#m-next")) return openDay(currentDay + 1);
+
+    const mt = e.target.closest("[data-month]");
+    if (mt) {
+      switchMonth(mt.dataset.month);
+      if (mt.classList.contains("mtab")) $("#glance").scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
 
     const cell = e.target.closest(".glance-cell");
     if (cell) return openDay(+cell.dataset.day);
@@ -789,6 +901,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!open && e.key === "/" && document.activeElement !== $("#search")) {
       e.preventDefault(); $("#search").focus();
     }
+    if (!open && (e.key === "[" || e.key === "]") && document.activeElement !== $("#search")) {
+      const i = PLAN_MONTHS.findIndex(m => m.key === MONTH.key);
+      const next = PLAN_MONTHS[e.key === "[" ? i - 1 : i + 1];
+      if (next) switchMonth(next.key);
+    }
   });
 
   $("#grocery-list").addEventListener("change", e => {
@@ -797,12 +914,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (box.checked) checked[box.dataset.key] = true; else delete checked[box.dataset.key];
     box.closest(".gitem").classList.toggle("done", box.checked);
     saveChecks();
-    updateProgress(+box.dataset.key.split(".")[0]);
+    updateProgress(+box.dataset.key.split(".")[1]);
     updateTotal();
   });
 
   $("#reset-checks").addEventListener("click", () => {
-    checked = {}; saveChecks();
+    // only clears the month on screen, so August's ticks survive a September reset
+    Object.keys(checked).forEach(k => { if (k.startsWith(MONTH.key + ".")) delete checked[k]; });
+    saveChecks();
     $$("#grocery-list input[type=checkbox]").forEach(b => { b.checked = false; b.closest(".gitem").classList.remove("done"); });
     GROCERIES.forEach(t => updateProgress(t.trip));
     updateTotal();
