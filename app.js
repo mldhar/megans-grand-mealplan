@@ -494,6 +494,17 @@ function renderMonthSwitch() {
 
 const NIGHT_WORD = { 28: "Twenty-eight", 29: "Twenty-nine", 30: "Thirty", 31: "Thirty-one" };
 
+/* Totals across every month. Computed once so the scope line and the footer can never
+   drift out of date the way the hand-written ones did. */
+const PLAN_TOTAL = PLAN_MONTHS.reduce((a, m) => {
+  a.nights += m.days.length;
+  a.sourced += m.days.filter(d => d.source.url).length;
+  return a;
+}, { nights: 0, sourced: 0, months: PLAN_MONTHS.length });
+
+const MONTH_WORD = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+const planSpan = () => `${PLAN_MONTHS[0].short} to ${PLAN_MONTHS[PLAN_MONTHS.length - 1].short} ${PLAN_MONTHS[0].first.slice(0, 4)}`;
+
 function renderMasthead() {
   $("#hero-eyebrow").textContent = MONTH.span;
   $("#hero-title").textContent = `Megan's Grand ${MONTH.label} Mealplan`;
@@ -503,6 +514,14 @@ function renderMasthead() {
   $("#plan-count").textContent = `${DAYS.length} nights`;
   $("#glance-h2").textContent = `${NIGHT_WORD[DAYS.length] || DAYS.length} nights at a glance`;
   $("#brand-mark").textContent = DAYS.length;
+
+  // what a first-time visitor needs: how big this is, and where they have landed in it
+  const i = PLAN_MONTHS.findIndex(m => m.key === MONTH.key);
+  $("#hero-scope").textContent =
+    `Month ${i + 1} of ${PLAN_MONTHS.length} · ${PLAN_TOTAL.nights} dinners in all`;
+  $("#foot-line").textContent =
+    `Megan's Grand Mealplan. ${MONTH_WORD[PLAN_TOTAL.months] || PLAN_TOTAL.months} months, ` +
+    `${PLAN_TOTAL.nights} dinners, ${planSpan()}. Dairy-free, grain-free, sugar-free, seed-oil-free.`;
   document.title = `Megan's Grand Mealplan · ${MONTH.title}`;
 }
 
@@ -774,7 +793,7 @@ function renderMethod() {
 function renderPrep() {
   $("#prep-list").innerHTML = PREP.map(p => `
     <div class="prep-card">
-      <h4><span class="prep-w">Week ${p.w}</span>${esc(p.day)}</h4>
+      <h3><span class="prep-w">Week ${p.w}</span>${esc(p.day)}</h3>
       <ul>${p.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
     </div>`).join("");
 }
@@ -845,6 +864,43 @@ function copyTrip(trip) {
     b.textContent = "Copied"; b.classList.add("ok");
     setTimeout(() => { b.textContent = old; b.classList.remove("ok"); }, 1600);
   }).catch(() => {});
+}
+
+/* ---------- sharing ---------- */
+/* Native share sheet on a phone, clipboard everywhere else. Always shares the
+   plan's front door rather than whatever #day- hash happens to be open. */
+async function sharePlan(btn) {
+  const url = location.origin + location.pathname;
+  const data = {
+    title: "Megan's Grand Mealplan",
+    text: `${PLAN_TOTAL.nights} dinners across ${(MONTH_WORD[PLAN_TOTAL.months] || "").toLowerCase()} months. No dairy, no starch, no added sugar, no seed oils.`,
+    url
+  };
+  if (navigator.share) {
+    try { await navigator.share(data); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }   // user dismissed the sheet
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    flashShared(btn, "Link copied");
+  } catch (_) {
+    flashShared(btn, "Copy failed");
+  }
+}
+
+function flashShared(btn, msg) {
+  if (!btn) return;
+  const live = $("#share-status");
+  if (live) live.textContent = msg;
+  if (btn.dataset.label !== undefined) {
+    const old = btn.textContent;
+    btn.textContent = msg;
+    btn.classList.add("ok");
+    setTimeout(() => { btn.textContent = old; btn.classList.remove("ok"); }, 1800);
+  } else {
+    btn.classList.add("ok");
+    setTimeout(() => btn.classList.remove("ok"), 1800);
+  }
 }
 
 /* ---------- theme + nav ---------- */
@@ -930,6 +986,9 @@ document.addEventListener("DOMContentLoaded", () => {
       else filterProtein = fb.dataset.filter;
       return applyFilters();
     }
+
+    const sh = e.target.closest("#share-btn, #foot-share");
+    if (sh) return sharePlan(sh);
 
     const cp = e.target.closest("[data-copy]");
     if (cp) return copyTrip(+cp.dataset.copy);

@@ -4,18 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Megan's Grand Mealplan</title>
-<meta name="description" content="Two 30-day dinner plans, August and September 2026. Dairy-free, grain and starch-free, no added sugar, no seed oils. Chicken, meatballs, steak, ground lamb and ground beef, portioned for 70g+ of protein a plate.">
-<meta name="theme-color" content="#eef1f0">
+<meta name="description" content="152 dinners across five months, August to December 2026. No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, shopping lists, prep notes.">
+<link rel="canonical" href="https://mldhar.github.io/megans-grand-mealplan/">
+<meta name="author" content="Megan Dhar">
+
+<!-- theme-color per scheme, so the browser chrome matches the page on both -->
+<meta name="theme-color" content="#eef1f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1518" media="(prefers-color-scheme: dark)">
+
+<!-- link previews: iMessage, WhatsApp, Slack, Discord, Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Megan's Grand Mealplan">
+<meta property="og:url" content="https://mldhar.github.io/megans-grand-mealplan/">
+<meta property="og:title" content="Megan's Grand Mealplan">
+<meta property="og:description" content="152 dinners across five months, August to December 2026. No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, every night portioned for 70g+ of protein a plate, with shopping lists you can tick off and print.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mldhar.github.io/megans-grand-mealplan/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Megan's Grand Mealplan. Five months of dinners, already decided. 152 dinners, 5 months, 65 sourced recipes, 70g or more of protein a plate.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Megan's Grand Mealplan">
+<meta name="twitter:description" content="152 dinners across five months, August to December 2026. No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, every night portioned for 70g+ of protein a plate, with shopping lists you can tick off and print.">
+<meta name="twitter:image" content="https://mldhar.github.io/megans-grand-mealplan/og-image.png">
+<meta name="twitter:image:alt" content="Five months of dinners, already decided.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='3' fill='%230d181d'/><text x='16' y='23' font-family='monospace' font-size='17' font-weight='600' fill='%23eef1f0' text-anchor='middle'>30</text></svg>">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body>
 
 <a class="skip" href="#plan">Skip to the plan</a>
+<span id="share-status" class="sr-only" role="status" aria-live="polite"></span>
 
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -31,6 +57,9 @@
       <a class="nav-link" href="#prep">Prep</a>
       <a class="nav-link" href="#rules">Rules</a>
     </nav>
+    <button id="share-btn" class="icon-btn" aria-label="Share this plan" title="Share this plan">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m8 7 4-4 4 4"/></svg>
+    </button>
     <button id="theme-toggle" class="icon-btn" aria-label="Switch theme" title="Switch theme">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.3 0-.6-.05-.9A7 7 0 0 1 12.9 3.05 8 8 0 0 0 12 3Z"/></svg>
     </button>
@@ -43,7 +72,10 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="masthead">
-        <span class="eyebrow" id="hero-eyebrow"></span>
+        <p class="hero-meta">
+          <span class="eyebrow" id="hero-eyebrow"></span>
+          <span class="hero-scope" id="hero-scope"></span>
+        </p>
         <h1 id="hero-title"></h1>
         <p class="subhead" id="hero-subhead"></p>
         <p class="lede" id="hero-lede"></p>
@@ -174,11 +206,13 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>Megan's Grand Mealplan. Two months, 60 dinners, dairy-free, grain-free, sugar-free, seed-oil-free</p>
+    <p id="foot-line"></p>
     <p class="foot-links">
-      Sources:
-      <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a> ·
-      <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>
+      Recipes sourced from
+      <a href="https://www.budgetbytes.com/" target="_blank" rel="noopener">Budget Bytes</a> and
+      <a href="https://downshiftology.com/" target="_blank" rel="noopener">Downshiftology</a>,
+      rewritten where the rules needed it.
+      <button class="foot-share" id="foot-share" data-label="1">Copy link to this plan</button>
     </p>
   </div>
 </footer>
@@ -207,5 +241,17 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Megan's Grand Mealplan",
+  "url": "https://mldhar.github.io/megans-grand-mealplan/",
+  "description": "152 dinners across five months, August to December 2026. No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, shopping lists, prep notes.",
+  "inLanguage": "en",
+  "image": "https://mldhar.github.io/megans-grand-mealplan/og-image.png"
+}
+</script>
+
 </body>
 </html>

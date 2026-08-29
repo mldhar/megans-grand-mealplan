@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* The site's own dark theme, so the card is the product rather than an ad for it. */
+  :root {
+    --ink:      #0d181d;
+    --ground:   #0e1518;
+    --panel:    #161f23;
+    --panel-2:  #1c262b;
+    --rule:     #26333a;
+    --text:     #e7eeef;
+    --text-2:   #a2b3b8;
+    --text-3:   #74868c;
+    --blue:     #58a6c8;
+    --red:      #e0674f;
+    --p-chicken:   #e8b545;
+    --p-beef:      #e0834e;
+    --p-meatballs: #4aab98;
+    --p-steak:     #d95a6b;
+    --p-lamb:      #9b8ad4;
+    --display: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: var(--ground); color: var(--text);
+    font-family: var(--body);
+    display: grid; grid-template-rows: auto 1fr auto;
+    /* a faint enamel sheen, the one decorative gesture */
+    background-image: radial-gradient(120% 80% at 78% 8%, rgba(88,166,200,.13), transparent 60%);
+  }
+
+  .bar { display: flex; align-items: center; gap: 14px; padding: 40px 56px 0; }
+  .mark {
+    width: 52px; height: 52px; flex: none; display: grid; place-items: center;
+    background: var(--text); color: var(--ground); border-radius: 4px;
+    font-family: var(--mono); font-size: 18px; font-weight: 600; letter-spacing: -.05em;
+  }
+  .wordmark b {
+    display: block; font-family: var(--display); font-size: 23px; font-weight: 700;
+    letter-spacing: -.015em; line-height: 1.1;
+  }
+  .wordmark small {
+    display: block; font-family: var(--mono); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .2em; color: var(--text-3); margin-top: 3px;
+  }
+  .span {
+    margin-left: auto; font-family: var(--mono); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .14em; color: var(--blue);
+  }
+
+  .middle { padding: 0 56px; display: flex; align-items: center; gap: 48px; }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: 78px; line-height: .97; letter-spacing: -.032em;
+    text-wrap: balance; max-width: 15ch;
+  }
+  h1 em { font-style: normal; color: var(--red); }
+  .sub {
+    margin-top: 20px; font-size: 21px; line-height: 1.45; color: var(--text-2);
+    max-width: 34ch;
+  }
+
+  /* the rotation board is the most characteristic thing on the site, so it comes along */
+  .rotation {
+    flex: none; width: 330px; border: 1px solid var(--rule); border-radius: 5px;
+    background: var(--panel); overflow: hidden;
+  }
+  .rot-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 13px 16px; border-bottom: 1px solid var(--rule); background: var(--panel-2);
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .14em;
+  }
+  .rot-head span { color: var(--text-3); letter-spacing: .1em; }
+  .rot-row { display: flex; align-items: center; gap: 11px; padding: 11px 16px; }
+  .rot-row + .rot-row { border-top: 1px solid var(--rule); }
+  .rot-row svg { width: 17px; height: 17px; flex: none; }
+  .rot-name { font-size: 14px; font-weight: 500; }
+  .rot-meter { margin-left: auto; display: flex; align-items: center; gap: 9px; }
+  .rot-bar { width: 74px; height: 7px; background: #243036; border-radius: 1px; overflow: hidden; }
+  .rot-bar i { display: block; height: 100%; border-radius: 1px; }
+  .rot-n {
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right;
+  }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--rule); margin: 0 56px 40px; margin-top: 34px;
+  }
+  .stats div { padding: 18px 0 0; }
+  .stats div + div { border-left: 1px solid var(--rule); padding-left: 22px; }
+  .stats b {
+    display: block; font-family: var(--mono); font-size: 30px; font-weight: 600;
+    letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  }
+  .stats span {
+    display: block; margin-top: 5px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .13em; color: var(--text-3);
+  }
+</style>
+</head>
+<body>
+
+  <div class="bar">
+    <span class="mark">152</span>
+    <span class="wordmark"><b>Megan's Grand</b><small>Mealplan</small></span>
+    <span class="span">Aug to Dec 2026</span>
+  </div>
+
+  <div class="middle">
+    <div>
+      <h1>Five months of dinners, <em>already decided.</em></h1>
+      <p class="sub">No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, every night portioned from the protein up.</p>
+    </div>
+
+    <aside class="rotation">
+      <div class="rot-head">The rotation <span>152 nights</span></div>
+      <div class="rot-row">
+        <svg viewBox="0 0 24 24" fill="var(--p-chicken)"><circle cx="16" cy="8" r="5.7"/><rect x="4.6" y="12.4" width="10" height="3.7" rx="1.85" transform="rotate(45 9.6 14.2)"/><circle cx="5.4" cy="18.6" r="2.7"/></svg>
+        <span class="rot-name">Chicken</span>
+        <span class="rot-meter"><span class="rot-bar"><i style="width:100%;background:var(--p-chicken)"></i></span><span class="rot-n">50</span></span>
+      </div>
+      <div class="rot-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--p-beef)" stroke-width="2.3" stroke-linecap="round"><path d="M3 7.5c1.8-2 3.6-2 5.4 0s3.6 2 5.4 0 3.6-2 5.4 0"/><path d="M3 12.4c1.8-2 3.6-2 5.4 0s3.6 2 5.4 0 3.6-2 5.4 0"/><path d="M3 17.3c1.8-2 3.6-2 5.4 0s3.6 2 5.4 0 3.6-2 5.4 0"/></svg>
+        <span class="rot-name">Beef</span>
+        <span class="rot-meter"><span class="rot-bar"><i style="width:70%;background:var(--p-beef)"></i></span><span class="rot-n">35</span></span>
+      </div>
+      <div class="rot-row">
+        <svg viewBox="0 0 24 24" fill="var(--p-meatballs)"><circle cx="8.2" cy="8.6" r="4.4"/><circle cx="16.6" cy="10.8" r="4.4"/><circle cx="11.2" cy="17" r="4.4"/></svg>
+        <span class="rot-name">Meatballs</span>
+        <span class="rot-meter"><span class="rot-bar"><i style="width:44%;background:var(--p-meatballs)"></i></span><span class="rot-n">22</span></span>
+      </div>
+      <div class="rot-row">
+        <svg viewBox="0 0 24 24" fill="var(--p-steak)"><path d="M3.6 10.4C4.4 5.8 8.8 3 13.8 3.2c4.6.2 7.6 2.8 7.1 6.8-.5 4-2.8 8.2-7 9.6-4.2 1.4-8.2-.2-9.5-3.7-.7-1.9-1-3.7-.8-5.5z"/></svg>
+        <span class="rot-name">Steak</span>
+        <span class="rot-meter"><span class="rot-bar"><i style="width:50%;background:var(--p-steak)"></i></span><span class="rot-n">25</span></span>
+      </div>
+      <div class="rot-row">
+        <svg viewBox="0 0 24 24" fill="var(--p-lamb)"><path d="M12 21.4V7.6" fill="none" stroke="var(--p-lamb)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="4.6" r="2.3"/><ellipse cx="7.9" cy="11.6" rx="3.7" ry="2.1" transform="rotate(-33 7.9 11.6)"/><ellipse cx="16.1" cy="9.6" rx="3.7" ry="2.1" transform="rotate(33 16.1 9.6)"/><ellipse cx="8.3" cy="16.6" rx="3.3" ry="1.9" transform="rotate(-33 8.3 16.6)"/><ellipse cx="15.7" cy="14.8" rx="3.3" ry="1.9" transform="rotate(33 15.7 14.8)"/></svg>
+        <span class="rot-name">Lamb</span>
+        <span class="rot-meter"><span class="rot-bar"><i style="width:40%;background:var(--p-lamb)"></i></span><span class="rot-n">20</span></span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="stats">
+    <div><b>152</b><span>dinners</span></div>
+    <div><b>5</b><span>months</span></div>
+    <div><b>65</b><span>sourced recipes</span></div>
+    <div><b>70g+</b><span>protein a plate</span></div>
+  </div>
+
+</body>
+</html>

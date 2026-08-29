@@ -80,7 +80,10 @@ python3 -m http.server 8765
 | `index.html` | Page structure |
 | `styles.css` | Design system, light/dark themes, print stylesheet |
 | `data.js` | Both months: days, grocery lists, prep notes, shared dietary rules |
-| `app.js` | Rendering, month switching, filtering, the recipe modal, and the SVG dish illustrations |
+| `app.js` | Rendering, month switching, filtering, the recipe modal, sharing, and the SVG dish illustrations |
+| `og-image.png` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
+| `icon.svg`, `apple-touch-icon.png` | Favicon and home-screen icon |
+| `tools/` | Sources for the images above, rendered with headless Chrome, not loaded by the site |
 
 ### Editing
 
@@ -114,6 +117,22 @@ night, both are simply omitted.
   resetting one month leaves the other three alone
 - Keyboard: `/` focuses search, `←` `→` move between nights, `[` `]` switch month
 - Light/dark themes and a print stylesheet that prints only the shopping lists
+- Share button: the native share sheet on a phone, copy-to-clipboard everywhere else
+- Link previews on iMessage, WhatsApp, Slack, Discord and Facebook via Open Graph tags
+
+### Regenerating the images
+
+Both images are committed, so you only need this if the numbers change:
+
+```bash
+python3 -m http.server 8000
+# then, with headless Chrome:
+chrome --headless --window-size=1200,630 --screenshot=og-image.png http://localhost:8000/tools/og-card.html
+chrome --headless --window-size=180,180  --screenshot=apple-touch-icon.png http://localhost:8000/tools/icon-render.html
+```
+
+The icon's five bars are the five proteins, with heights proportional to how many
+nights each one actually gets across all 152.
 
 ## Illustrations
 
