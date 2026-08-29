@@ -991,8 +991,9 @@ const SEP_DAYS = [
   time: "55 min", active: "15 min", serves: 4, cost: "~$3.60/serving",
   protein_g: { him: 74, her: 48 },
   art: { protein: "kofta", veg: ["zucchini", "squash", "tomato", "onion"] },
-  tags: ["oven", "sheet pan", "batch"],
+  tags: ["repeat", "oven", "sheet pan"],
   swaps: [
+    "Second appearance: Aug 6 used this recipe at its published size. This is the doubled version.",
     "4 cups cooked rice → gone. Double the roasted vegetables instead, which is what this recipe already does best.",
     "2 Tbsp cooking oil → avocado oil, which takes 425°F without breaking down.",
     "The published recipe uses 1 lb of beef for four. This uses 2 lb, and the spice quantities below are doubled to match."
@@ -2120,8 +2121,9 @@ const OCT_DAYS = [
   time: "1 hr 20 min", active: "20 min", serves: 5, cost: "~$2.90/serving",
   protein_g: { him: 76, her: 49 },
   art: { protein: "chicken-thigh", veg: ["turnip", "radish", "onion", "mushroom"] },
-  tags: ["oven", "one pan", "hands-off"],
+  tags: ["repeat", "oven", "one pan"],
   swaps: [
+    "Second appearance: Aug 23 used this with the potatoes left in, before the turnip swap existed.",
     "24 oz baby potatoes → 1½ lb turnips and 1 lb radishes, both quartered. Roasted an hour at 425°F they go sweet and lose the peppery bite entirely. This is the swap you will make five more times this autumn.",
     "Doubled from the published four thighs to eight, with the herb rub scaled to match.",
     "Carrots stay, in the supporting amount the Rules allow. Do not add more thinking it needs bulk."
@@ -3326,8 +3328,9 @@ const NOV_DAYS = [
   time: "45 min", active: "10 min", serves: 5, cost: "~$2.40/serving",
   protein_g: { him: 73, her: 47 },
   art: { protein: "chicken-thigh", veg: ["lemon", "brussels", "onion", "kale"] },
-  tags: ["oven", "10 min hands-on", "cheapest night"],
+  tags: ["repeat", "oven", "cheapest night"],
   swaps: [
+    "Second appearance: Aug 7 used this at its published five thighs. This is doubled and moved onto a sheet pan.",
     "4 Tbsp butter → 4 Tbsp olive oil plus an extra garlic clove. You lose the milk-solid browning and keep everything else.",
     "Doubled from the published five thighs to ten, and moved from an 8×8 dish to a sheet pan so they are not crowded.",
     "Sprouts added on the same pan turn this from a chicken dish into a dinner."
@@ -4297,6 +4300,1159 @@ const NOV_PREP = [
 ];
 
 /* ============================================================
+   DECEMBER 2026: 31-DAY MEAL PLAN
+   Christmas Eve, Christmas Day and New Year's Eve are all in
+   here. Six nights are deliberate repeats of the best-rated
+   things from the previous four months.
+   ============================================================ */
+
+const DEC_WEEKS = [
+  { n: 1, theme: "Clearing the freezer",  dates: "Dec 1 to 5",   shop: "Mon Nov 30",
+    note: "Five nights. Tuesday comes straight out of the freezer, and Thursday and Saturday both put more back in, because the second half of December has no room for batch cooking." },
+  { n: 2, theme: "Soup and stew",         dates: "Dec 6 to 12",  shop: "Sat Dec 5",
+    note: "The two big braises bracket the week and the middle is bowls. Sunday's lamb stew and Saturday's beef stew each cover two dinners, so seven nights of shopping buys nine." },
+  { n: 3, theme: "One pot, lid on",       dates: "Dec 13 to 19", shop: "Sat Dec 12",
+    note: "Everything in a single vessel, lid on, left alone. Sunday's barbacoa runs eight hours untouched and carries three nights, which is what makes the run-up to Christmas week survivable." },
+  { n: 4, theme: "Christmas week",        dates: "Dec 20 to 26", shop: "Sat Dec 19",
+    note: "Christmas Eve is a rack of lamb and Christmas Day is a prime rib, both compliant and both expensive. The four nights before them are deliberately small, and Boxing Day is entirely leftovers." },
+  { n: 5, theme: "Into the new year",     dates: "Dec 27 to 31", shop: "Sat Dec 26",
+    note: "Five quiet nights after a loud week, ending on filet mignon for New Year's Eve. Sunday's bird carries Tuesday, and Wednesday empties the freezer one last time." }
+];
+
+const DEC_DAYS = [
+
+/* ========== WEEK 1: CLEARING THE FREEZER ========== */
+{
+  day: 1, date: "2026-12-01", dow: "Tuesday", week: 1, protein: "beef",
+  title: "Braised Beef from the Freezer",
+  blurb: "The portion you froze on Nov 14, in its sauce. Twenty-five minutes, most of it waiting, and the first night of the month asks nothing of you.",
+  source: ORIGINAL,
+  time: "25 min", active: "10 min", serves: 4, cost: "~$3.30/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "steak", veg: ["fennel", "mushroom", "kale", "onion"], sauce: "brown" },
+  tags: ["from the freezer", "10 min hands-on", "no cooking really"],
+  swaps: [
+    "Move it to the fridge on Monday. From frozen it needs 40 minutes in a low oven with the lid on rather than 20 in a pan.",
+    "Freeze braises in their sauce, never drained. Dry frozen beef reheats to string.",
+    "If the freezer is empty, 2½ lb of chuck steak braised for 90 minutes at 325°F gets you there, just not tonight."
+  ],
+  ingredients: [
+    { g: "From the freezer", i: ["1 portion braised beef and fennel from Nov 14, in its sauce", "½ cup beef broth to loosen"] },
+    { g: "Fresh", i: ["10 oz cremini mushrooms, halved", "2 Tbsp olive oil", "2 large bunches kale, torn", "4 garlic cloves, sliced", "1 Tbsp red wine vinegar"] },
+    { g: "To finish", i: ["½ bunch parsley", "1 lemon", "Flaky salt", "Extra olive oil"] }
+  ],
+  steps: [
+    "Monday: move the beef from the freezer to the fridge.",
+    "Tip it into a wide pan with the broth and warm it over medium-low, lid on, for 15 minutes.",
+    "Meanwhile brown the mushrooms in the olive oil in a second pan, one layer, 4 minutes untouched.",
+    "Garlic for 30 seconds, then the kale by the handful until it collapses. Vinegar in to deglaze.",
+    "Taste the beef. Frozen braises always want more salt and a splash of vinegar than you expect.",
+    "Beef over the greens and mushrooms, parsley, lemon, flaky salt, olive oil."
+  ],
+  leftovers: "One chili portion and one braise portion left in the freezer. Both are spoken for later this month."
+},
+{
+  day: 2, date: "2026-12-02", dow: "Wednesday", week: 1, protein: "chicken",
+  title: "Crispy Baked Chicken Thighs",
+  blurb: "4.94 stars from 393 ratings, the highest review count in five months, and compliant exactly as published. Five minutes of work and forty in the oven.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/crispy-baked-chicken-thighs/", 4.94, 393),
+  time: "50 min", active: "10 min", serves: 5, cost: "~$2.60/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "chicken-thigh", veg: ["brussels", "turnip", "onion", "lemon"] },
+  tags: ["oven", "10 min hands-on", "nothing to swap"],
+  swaps: [
+    "Nothing. Olive oil, garlic powder, onion powder, paprika, oregano, thyme, salt, pepper. It reads like it was written for this plan.",
+    "Ten thighs rather than the published eight, on two pans rather than one, because crowded skin does not crisp.",
+    "The optional broiler step at the end is not optional. Three minutes and it is a different dish."
+  ],
+  ingredients: [
+    { g: "Chicken", i: ["10 bone-in, skin-on chicken thighs (~5 lb)", "3 Tbsp extra-virgin olive oil", "2½ tsp garlic powder", "2½ tsp onion powder", "2 tsp paprika", "1¼ tsp dried oregano", "1¼ tsp dried thyme", "1¼ tsp kosher salt", "¾ tsp freshly ground black pepper"] },
+    { g: "On the pans", i: ["1½ lb brussels sprouts, halved", "1 lb turnips, in wedges", "2 red onions, in wedges", "3 Tbsp olive oil", "Salt"] },
+    { g: "To finish", i: ["2 lemons", "½ bunch parsley", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 425°F. Pat the thighs completely dry, which is most of the crisping.",
+    "Rub them with the olive oil, then mix all the dry seasonings and coat both sides.",
+    "Toss the sprouts, turnips and onions with olive oil and salt and divide between two sheet pans, sprouts cut side down.",
+    "Set five thighs skin-side up on each pan, spaced well apart.",
+    "Bake 35 to 40 minutes, until the thighs read 170°F and the vegetables have dark edges.",
+    "Broil 3 minutes for the skin. Lemon, parsley and flaky salt over both pans."
+  ],
+  leftovers: "Ten thighs is four more than tonight needs, and cold crisp-skinned thigh is better than most things you can pack for lunch."
+},
+{
+  day: 3, date: "2026-12-03", dow: "Thursday", week: 1, protein: "meatballs",
+  title: "Batch Meatballs, Three Bags",
+  blurb: "The restock night. Make 54 beef meatballs, eat 18, and put three bags of twelve into the freezer for the back half of the month when there is no time to cook.",
+  source: ORIGINAL,
+  time: "50 min", active: "30 min", serves: 5, cost: "~$3.20/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "meatball", veg: ["tomato", "kale", "onion", "olive"], sauce: "red" },
+  tags: ["batch cook", "freezes well", "oven"],
+  swaps: [
+    "Three bags of twelve, not one bag of thirty-six. You want to pull exactly one dinner out.",
+    "Almond flour is the binder: a nut, not a grain. Crushed pork rinds work and so does nothing at all.",
+    "Freeze them cooked and cooled, flat on a tray first so they do not fuse into a brick, then bag them.",
+    "Dec 16, Dec 22 and Dec 30 are all built on these bags."
+  ],
+  ingredients: [
+    { g: "Meatballs (makes 54)", i: ["3½ lb ground beef (85/15)", "3 large eggs", "¾ cup almond flour", "1 large onion, finely grated", "8 garlic cloves, minced", "½ cup chopped parsley", "1 Tbsp dried oregano", "2 tsp fennel seed, crushed", "1 tsp red pepper flakes", "1 Tbsp kosher salt", "1½ tsp black pepper"] },
+    { g: "Tonight's sauce", i: ["3 Tbsp olive oil", "5 garlic cloves, sliced", "1 (28 oz) can crushed tomatoes, no sugar added", "½ cup pitted kalamata olives", "1 Tbsp dried oregano", "Salt & pepper"] },
+    { g: "To serve", i: ["2 large bunches kale, torn", "1 lemon", "Torn basil", "Extra olive oil"] }
+  ],
+  steps: [
+    "Heat oven to 400°F and line three sheet pans with parchment.",
+    "Mix everything for the meatballs by hand until just combined. Roll 54 balls of about 1½ Tbsp each across the three pans.",
+    "Bake 22 to 25 minutes, rotating the pans once, until browned and firm.",
+    "Meanwhile make the sauce: garlic in the olive oil for 30 seconds, then the tomatoes, oregano, salt and pepper. Simmer 10 minutes, then the olives.",
+    "Fold 18 meatballs into the sauce, pile the kale on top, lid on, and kill the heat. Two minutes and it will have wilted.",
+    "Cool the other 36 completely on a tray, then bag them flat in three lots of twelve."
+  ],
+  leftovers: "Three bags of twelve in the freezer. Dec 16, Dec 22 and Dec 30 each take one."
+},
+{
+  day: 4, date: "2026-12-04", dow: "Friday", week: 1, protein: "steak",
+  title: "Steak Fajitas",
+  blurb: "5 stars from 31 ratings. The marinade is compliant as written and only the tortillas and sour cream come out.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/steak-fajitas/", 5.0, 31),
+  time: "50 min + marinate", active: "20 min", serves: 4, cost: "~$4.70/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak-strips", veg: ["pepper", "onion", "avocado", "lime"] },
+  tags: ["marinate ahead", "skillet", "20 min hands-on"],
+  swaps: [
+    "Tortillas, sour cream and pico → butter lettuce leaves, sliced avocado and a bowl. The marinade and the char are the dish.",
+    "1 to 4 hours in the marinade, no longer. This is a lime-juice marinade and past four hours the surface goes mealy.",
+    "Doubled from the published pound of steak to 2 lb, marinade scaled to match.",
+    "Cook the peppers and the steak in separate batches. Together they steam and you get no colour on either."
+  ],
+  ingredients: [
+    { g: "Marinade", i: ["⅔ cup lime juice (about 6 limes)", "½ cup extra-virgin olive oil", "8 garlic cloves, minced", "2 tsp ground cumin", "2 tsp kosher salt", "1 tsp chili powder", "1 tsp freshly ground black pepper", "Pinch cayenne"] },
+    { g: "Pan", i: ["2 lb flank or skirt steak", "2 onions, thinly sliced", "5 bell peppers, thinly sliced", "2 Tbsp extra-virgin olive oil"] },
+    { g: "To serve", i: ["1 head butter lettuce", "2 avocados", "2 limes", "1 bunch cilantro", "Hot sauce, no sugar added"] }
+  ],
+  steps: [
+    "Morning: whisk the marinade, keep ¼ cup back for the vegetables, and bag the rest with the steak. Two to four hours in the fridge.",
+    "Take the steak out 30 minutes ahead and pat the surface dry.",
+    "Get a heavy skillet very hot. Cook the peppers and onions in the reserved marinade and olive oil, 8 minutes, until they blister. Out into a bowl.",
+    "Same pan, hotter. Sear the steak 4 to 5 minutes a side, in two pieces if it does not lie flat.",
+    "Rest on a board 8 minutes, then slice thin against the grain.",
+    "Everything back in the pan for 30 seconds to combine. Lettuce leaves, avocado, lime, cilantro and hot sauce at the table."
+  ],
+  leftovers: "Cook the full 2 lb. Cold fajita steak over greens is Saturday's lunch."
+},
+{
+  day: 5, date: "2026-12-05", dow: "Saturday", week: 1, protein: "beef",
+  title: "Texas Chili, No Beans",
+  blurb: "You made this on Oct 10 and it was the best thing in the freezer for two months. Making it again is the point: this is the second restock night.",
+  source: S("Budget Bytes", "https://www.budgetbytes.com/texas-chili/", 5.0, 4),
+  time: "1 hr 15 min", active: "20 min", serves: 6, cost: "~$3.20/serving",
+  protein_g: { him: 75, her: 48 },
+  art: { protein: "beef-crumble", veg: ["pepper", "onion", "tomato", "avocado"], sauce: "red" },
+  tags: ["repeat", "batch cook", "freezes well"],
+  swaps: [
+    "Same as October: the teaspoon of brown sugar comes out and nothing else changes.",
+    "Tripled from the published pound of beef, as before.",
+    "Freeze three portions this time, not two. Dec 20 to 26 has no room for cooking and Dec 28 takes one."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["2¾ lb ground beef (85/15)", "1½ tsp kosher salt", "1½ tsp black pepper", "2 Tbsp avocado oil"] },
+    { g: "Base", i: ["2 medium onions, diced", "2 jalapeños, deseeded and diced", "8 garlic cloves, minced", "5 Tbsp tomato paste, no sugar added", "5 chipotle peppers in adobo, chopped", "2 (14.5 oz) cans petite diced tomatoes, no sugar added", "5 cups beef broth"] },
+    { g: "Spices", i: ["1½ Tbsp chili powder", "1½ Tbsp paprika", "1½ tsp ground cumin", "1½ tsp dried oregano", "¾ tsp unsweetened cocoa powder", "¾ tsp ground cinnamon"] },
+    { g: "On top", i: ["2 avocados", "½ red onion, finely diced", "1 bunch cilantro", "3 limes", "Hot sauce, no sugar added"] }
+  ],
+  steps: [
+    "Brown the beef hard in the avocado oil in a large pot, in two batches, seasoning as you go. Do not drain the fat.",
+    "Onions and jalapeños for 5 minutes, then the garlic for 1.",
+    "Tomato paste in and cooked for 4 full minutes until it darkens and sticks.",
+    "All the spices for 1 minute, then the chipotles, the tomatoes with their juice, and the broth.",
+    "Simmer uncovered 45 minutes to 1 hour, until a spoon stands up in it.",
+    "Bowls, then avocado, red onion, cilantro, lime and hot sauce."
+  ],
+  leftovers: "Three portions into the freezer tonight, labelled. Dec 28 takes one and the other two carry you into January."
+},
+
+/* ========== WEEK 2: SOUP AND STEW ========== */
+{
+  day: 6, date: "2026-12-06", dow: "Sunday", week: 2, protein: "lamb",
+  title: "Irish Lamb Stew",
+  blurb: "4.96 stars from 25 ratings, and the second time it appears. Lamb shoulder is still the cheapest lamb in the shop and this is still the best thing to do with it in December.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/irish-lamb-stew/", 4.96, 25),
+  time: "2 hr 30 min", active: "25 min", serves: 6, cost: "~$4.20/serving",
+  protein_g: { him: 77, her: 50 },
+  art: { protein: "steak", veg: ["turnip", "onion", "kale", "mushroom"], sauce: "brown" },
+  tags: ["repeat", "braise", "batch cook"],
+  swaps: [
+    "Same two swaps as November: turnips for the Yukon Golds, and no cornstarch, just the lid off for the last half hour.",
+    "Read the bacon for a sugar cure, as before.",
+    "You have made this once. It will take you twenty minutes of active time this go rather than twenty-five, and the browning is still the part that matters."
+  ],
+  ingredients: [
+    { g: "Lamb", i: ["3 lb lamb shoulder, in 2-inch cubes", "2 tsp kosher salt", "1 tsp coarse black pepper", "4 slices bacon, in 1-inch pieces (check: no sugar cure)"] },
+    { g: "Braise", i: ["2 onions, in chunks", "5 garlic cloves, minced", "3 Tbsp red wine vinegar", "5 cups low-sodium chicken broth", "2 tsp dried thyme", "3 bay leaves"] },
+    { g: "Added late", i: ["2 lb turnips, peeled and cubed", "6 carrots, in 1-inch pieces", "10 oz cremini mushrooms, halved", "2 bunches kale, torn"] },
+    { g: "To finish", i: ["Fresh thyme or parsley", "Flaky salt", "Extra olive oil"] }
+  ],
+  steps: [
+    "Season the lamb. Crisp the bacon in a Dutch oven, lift it out, leave the fat.",
+    "Brown the lamb in the bacon fat, three batches, 3 minutes a side.",
+    "Onions and garlic for 5 minutes, then the vinegar to lift the bottom of the pot.",
+    "Lamb and bacon back in with the broth, thyme and bay. Lid on, gentle simmer, 1 hour.",
+    "Turnips, carrots and mushrooms in. Lid off for 30 to 40 minutes to reduce.",
+    "Kale for the last 4 minutes. Bay out, then thyme, flaky salt and olive oil in the bowls."
+  ],
+  leftovers: "Six servings. Two lunches and Tuesday's base, and it is better tomorrow than tonight."
+},
+{
+  day: 7, date: "2026-12-07", dow: "Monday", week: 2, protein: "chicken",
+  title: "Ultimate Chicken Soup",
+  blurb: "4.97 stars from 382 ratings and the most-reviewed recipe on the whole site. Thirty minutes, and in December you will want it more than you did in October.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/chicken-soup/", 4.97, 382),
+  time: "30 min", active: "15 min", serves: 4, cost: "~$3.10/serving",
+  protein_g: { him: 73, her: 47 },
+  art: { protein: "chicken-breast", veg: ["turnip", "leek", "kale", "mushroom"] },
+  tags: ["repeat", "30 min", "one pot"],
+  swaps: [
+    "Parsnips out, turnips in, as in October.",
+    "Four breasts rather than the published two.",
+    "Homemade broth is the whole difference. If you have any left from a roast, this is what it is for."
+  ],
+  ingredients: [
+    { g: "Base", i: ["2 Tbsp extra-virgin olive oil", "4 medium carrots, peeled and sliced", "2 turnips, peeled and cubed", "3 celery ribs, sliced", "½ medium onion, diced", "1 leek, halved, sliced and rinsed", "4 garlic cloves, minced", "1 tsp kosher salt", "½ tsp freshly ground black pepper"] },
+    { g: "Simmer", i: ["4 boneless skinless chicken breasts (~1¾ lb)", "2 sprigs fresh thyme", "2 sprigs fresh tarragon", "1 bay leaf", "6 cups chicken broth"] },
+    { g: "To finish", i: ["1 bunch kale, torn", "¼ cup chopped parsley", "1 lemon", "Extra olive oil"] }
+  ],
+  steps: [
+    "Warm the olive oil in a large pot. Carrots, turnips, celery, onion and leek with the salt and pepper for 6 minutes.",
+    "Garlic for 1 minute, then the broth, thyme, tarragon and bay.",
+    "Lower the whole breasts in and poach at a bare simmer 15 to 18 minutes, to 165°F.",
+    "Lift them out and shred with two forks.",
+    "Kale in for 2 minutes, chicken back in for 1.",
+    "Herb stems and bay out. Parsley, lemon and a hard drizzle of olive oil in each bowl."
+  ],
+  leftovers: "Keeps four days. Do not freeze it with the kale in."
+},
+{
+  day: 8, date: "2026-12-08", dow: "Tuesday", week: 2, protein: "meatballs",
+  title: "Albóndigas Soup",
+  blurb: "5 stars from 7 votes. Mexican meatball soup where the rice binder becomes almond flour and the potatoes become turnips, and the mint in the meatballs stays because it is the whole point.",
+  source: S("Budget Bytes", "https://www.budgetbytes.com/mexican-meatball-soup-albondigas-soup/", 5.0, 7),
+  time: "50 min", active: "20 min", serves: 5, cost: "~$3.10/serving",
+  protein_g: { him: 73, her: 47 },
+  art: { protein: "meatball", veg: ["zucchini", "turnip", "tomato", "onion"], sauce: "red" },
+  tags: ["one pot", "soup", "20 min hands-on"],
+  swaps: [
+    "½ cup uncooked white rice in the meatballs → ⅓ cup almond flour. The rice was binding and swelling; the almond flour only binds, so the meatballs come out denser and that is fine.",
+    "2 Yukon gold potatoes → 2 turnips, same dice, same timing.",
+    "Doubled from the published pound of beef to 2¼ lb.",
+    "A tablespoon of chopped mint in the meatballs is traditional and is what separates albóndigas from any other meatball soup. Do not skip it."
+  ],
+  ingredients: [
+    { g: "Meatballs", i: ["2¼ lb ground beef (85/15)", "⅓ cup almond flour", "2 large eggs", "¼ cup finely minced onion", "5 garlic cloves, minced", "½ cup chopped cilantro", "1 Tbsp chopped fresh mint", "2 tsp kosher salt", "1 tsp black pepper", "1 tsp ground cumin"] },
+    { g: "Soup", i: ["1 Tbsp avocado oil", "1 medium onion, diced", "4 garlic cloves, minced", "3 Tbsp tomato paste, no sugar added", "7 cups beef broth", "1½ cups tomato sauce, no sugar added", "3 carrots, peeled and sliced", "2 turnips, peeled and diced", "2 tsp ground cumin", "1 tsp dried oregano", "Salt & pepper"] },
+    { g: "Added late", i: ["3 zucchini, in half-moons", "1 Tbsp lime juice", "¼ cup chopped cilantro"] }
+  ],
+  steps: [
+    "Mix the meatball ingredients by hand and roll into about 30 balls. Chill them 10 minutes so they hold.",
+    "Warm the avocado oil in a large pot. Onion for 5 minutes, garlic for 1, tomato paste for 2.",
+    "Broth, tomato sauce, carrots, turnips, cumin and oregano in. Bring to a simmer.",
+    "Lower the meatballs in gently and simmer, uncovered, 20 minutes. Do not stir for the first 10 or they break.",
+    "Zucchini in for the last 8 minutes.",
+    "Lime juice and cilantro stirred through off the heat. Season hard; soup takes more salt than you think."
+  ],
+  leftovers: "The zucchini goes soft by day two. Everything else is better. Fish the zucchini out if you are keeping it."
+},
+{
+  day: 9, date: "2026-12-09", dow: "Wednesday", week: 2, protein: "steak",
+  title: "Fast Steak, Winter Greens",
+  blurb: "Twenty minutes in the middle of a week of bowls. Steak seared hard, and two bunches of kale wilted in the fat left behind.",
+  source: ORIGINAL,
+  time: "20 min", active: "20 min", serves: 4, cost: "~$4.80/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak-strips", veg: ["kale", "mushroom", "onion", "radish"], sauce: "brown" },
+  tags: ["20 min", "skillet", "one pan"],
+  swaps: [
+    "Kale, chard, cavolo nero or shredded sprouts. Anything that holds up in fat.",
+    "Two batches of steak. Two pounds in one pan steams.",
+    "Butter in the pan sauce → olive oil off the heat, as everywhere."
+  ],
+  ingredients: [
+    { g: "Steak", i: ["2 lb sirloin or flank steak", "1½ tsp kosher salt", "1 tsp coarse black pepper", "2 Tbsp avocado oil"] },
+    { g: "Pan", i: ["10 oz cremini mushrooms, sliced", "1 bunch radishes, thinly sliced", "1 red onion, sliced", "5 garlic cloves, sliced", "2 large bunches kale, stems sliced, leaves torn", "½ tsp red pepper flakes"] },
+    { g: "Finish", i: ["¾ cup beef broth", "1 Tbsp red wine vinegar", "1 tsp Dijon mustard", "2 Tbsp olive oil", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Steak out 30 minutes ahead, patted dry, seasoned hard.",
+    "Heavy skillet, very hot, avocado oil. Sear in two batches, 3 to 4 minutes a side. Board to rest.",
+    "Mushrooms and radishes into the fat, one layer, 4 minutes untouched.",
+    "Onion, kale stems, garlic and pepper flakes for 3 minutes, then the kale leaves by the handful.",
+    "Broth, vinegar and Dijon in, scraping the pan, and boiled 2 minutes. Off the heat, swirl in the olive oil.",
+    "Slice against the grain, lay it over the greens, lemon and flaky salt."
+  ],
+  leftovers: null
+},
+{
+  day: 10, date: "2026-12-10", dow: "Thursday", week: 2, protein: "chicken",
+  title: "Green Chile Chicken Stew",
+  blurb: "4.99 stars from 179 ratings as a white chicken chili. The beans and the corn are what made it white, so this is honestly a different dish: a green chile chicken stew, and a very good one.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/white-chicken-chili/", 4.99, 179),
+  time: "45 min", active: "20 min", serves: 5, cost: "~$3.30/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "chicken-breast", veg: ["pepper", "onion", "cauliflower", "avocado"], sauce: "green" },
+  tags: ["one pot", "the biggest swap", "freezes well"],
+  swaps: [
+    "2 cans white beans + 1 cup corn → 1 small cauliflower, riced, plus 8 oz mushrooms. This is the largest swap in five months and it is worth being straight about: without the beans it is not white chicken chili any more. What the riced cauliflower gives you is body and something to chew, and the green chile, cumin and lime carry the flavour they always did.",
+    "Scaled to 2½ lb of chicken, poached and shredded, rather than 4 cups of pre-shredded.",
+    "Cheese and sour cream → avocado and a squeeze of lime.",
+    "For a thicker stew, blitz a cup of it with a stick blender and stir it back in."
+  ],
+  ingredients: [
+    { g: "Chicken", i: ["2½ lb boneless skinless chicken breasts or thighs", "1 tsp kosher salt", "1 bay leaf"] },
+    { g: "Base", i: ["2 Tbsp olive oil", "1 onion, diced", "1 bell pepper, diced", "1 jalapeño, seeds removed, finely diced", "4 garlic cloves, minced", "2 tsp ground cumin", "1 tsp ground coriander", "½ tsp chili powder", "½ tsp dried oregano", "1 tsp kosher salt", "8 oz green chiles"] },
+    { g: "In place of the beans", i: ["1 small head cauliflower, riced", "8 oz cremini mushrooms, chopped small"] },
+    { g: "Liquid & finish", i: ["5 cups chicken broth", "¼ cup chopped cilantro", "1 Tbsp lime juice", "2 avocados", "1 jalapeño, sliced", "2 limes"] }
+  ],
+  steps: [
+    "Poach the chicken in salted water with the bay leaf, 18 minutes, then shred it with two forks. Keep a cup of the liquid.",
+    "Warm the olive oil in a large pot. Onion, bell pepper and jalapeño for 6 minutes, then the garlic for 1.",
+    "All the dry spices and the salt for 1 minute, then the green chiles.",
+    "Mushrooms in for 5 minutes until they have given up their water, then the riced cauliflower for 3.",
+    "Broth and the reserved poaching liquid in. Simmer 15 minutes.",
+    "Shredded chicken back in for 5 minutes, then the cilantro and lime juice off the heat. Avocado, jalapeño and lime on top."
+  ],
+  leftovers: "Freezes well, unlike the bean version which goes grainy. One portion to the freezer tonight."
+},
+{
+  day: 11, date: "2026-12-11", dow: "Friday", week: 2, protein: "lamb",
+  title: "Lamb & Cabbage Bake",
+  blurb: "Ground lamb and a whole cabbage baked together until the cabbage collapses into the fat. Fifteen minutes of work and forty in the oven you can ignore.",
+  source: ORIGINAL,
+  time: "55 min", active: "15 min", serves: 4, cost: "~$4.30/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "lamb-crumble", veg: ["cabbage", "onion", "tomato", "mushroom"], sauce: "red" },
+  tags: ["oven", "one dish", "cheap"],
+  swaps: [
+    "A whole cabbage looks like far too much and reduces to about a third. It is the right amount.",
+    "Do not drain the lamb fat. The cabbage is meant to cook in it and that is the entire dish.",
+    "Ground beef works and is cheaper, and it is a flatter, less interesting version."
+  ],
+  ingredients: [
+    { g: "Lamb", i: ["2¼ lb ground lamb", "2 Tbsp olive oil", "1 large onion, sliced", "8 oz cremini mushrooms, chopped", "6 garlic cloves, minced", "1 Tbsp dried oregano", "2 tsp ground cumin", "1 tsp fennel seed, crushed", "½ tsp red pepper flakes", "2 tsp kosher salt"] },
+    { g: "Cabbage", i: ["1 large head green cabbage, shredded", "1 (28 oz) can crushed tomatoes, no sugar added", "1 Tbsp red wine vinegar", "Salt & pepper"] },
+    { g: "To finish", i: ["3 Tbsp almond flour, toasted", "½ bunch parsley", "1 lemon", "Extra olive oil"] }
+  ],
+  steps: [
+    "Heat oven to 400°F. Brown the lamb hard in the olive oil in a wide oven-safe pan. Leave the fat.",
+    "Onion and mushrooms for 6 minutes, then the garlic, oregano, cumin, fennel and pepper flakes for 1.",
+    "Cabbage in by the handful, letting each lot wilt before the next. It takes 6 minutes and looks impossible for the first four.",
+    "Crushed tomatoes, vinegar and salt. Stir together and level the top.",
+    "Bake 30 to 35 minutes, until the edges bubble and the top dries into a crust.",
+    "Toasted almond flour, parsley, lemon and olive oil over."
+  ],
+  leftovers: "Keeps four days and is very good cold with an egg on it."
+},
+{
+  day: 12, date: "2026-12-12", dow: "Saturday", week: 2, protein: "beef",
+  title: "Classic Beef Stew",
+  blurb: "4.99 stars from 150 ratings, back for the second time. Same two swaps, same three batches of browning, and it is still the best braise in five months.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/beef-stew/", 4.99, 150),
+  time: "2 hr 15 min", active: "25 min", serves: 7, cost: "~$3.60/serving",
+  protein_g: { him: 77, her: 50 },
+  art: { protein: "steak", veg: ["turnip", "mushroom", "onion", "greenbean"], sauce: "brown" },
+  tags: ["repeat", "braise", "batch cook"],
+  swaps: [
+    "Turnips for the baby potatoes, and no arrowroot: lid off for the last 25 minutes instead.",
+    "Scaled to 3 lb of chuck, cubed yourself rather than bought as stew meat.",
+    "Second time round, brown it in three batches anyway. It is the only step that cannot be hurried and it is the whole flavour."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["3 lb beef chuck, in 1-inch cubes", "2 tsp kosher salt", "1 tsp freshly ground black pepper", "3 Tbsp extra-virgin olive oil"] },
+    { g: "Braise", i: ["1 large yellow onion, in chunks", "6 garlic cloves, minced", "3 Tbsp red wine vinegar", "2 Tbsp tomato paste, no sugar added", "1½ cups dry red wine", "5 cups low-sodium beef broth", "1 tsp dried thyme", "3 bay leaves"] },
+    { g: "Added late", i: ["1½ lb turnips, peeled and cubed", "4 medium carrots, in diagonal slices", "3 celery ribs, chopped", "12 oz cremini mushrooms, halved", "½ lb green beans, trimmed"] },
+    { g: "To finish", i: ["Fresh thyme", "Chopped parsley", "Flaky salt"] }
+  ],
+  steps: [
+    "Pat the beef dry and season hard. Brown in the olive oil in a Dutch oven over high heat, three batches, 15 minutes total.",
+    "Onion for 4 minutes, garlic for 1, then the vinegar to scrape the bottom clean.",
+    "Tomato paste for 2 minutes, then the wine boiled 3.",
+    "Beef back in with the broth, thyme and bay. Lid on, gentle simmer, 1 hour 15 minutes.",
+    "Turnips, carrots, celery and mushrooms in. Lid OFF for 25 to 35 minutes.",
+    "Green beans for the final 5. Bay out, taste for salt, thyme and parsley over."
+  ],
+  leftovers: "Makes 40% more than tonight needs. Two lunches, and one portion to the freezer for January."
+},
+
+/* ========== WEEK 3: ONE POT, LID ON ========== */
+{
+  day: 13, date: "2026-12-13", dow: "Sunday", week: 3, protein: "beef",
+  title: "Barbacoa",
+  blurb: "4.95 stars from 191 ratings, back for the second time and still compliant exactly as published. Ten minutes of prep and eight hours in which you decorate a tree.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/barbacoa/", 4.95, 191),
+  time: "8 hr 10 min", active: "10 min", serves: 8, cost: "~$3.40/serving",
+  protein_g: { him: 78, her: 50 },
+  art: { protein: "beef-crumble", veg: ["lime", "onion", "avocado", "cabbage"], sauce: "red" },
+  tags: ["repeat", "slow cooker", "three dinners"],
+  swaps: [
+    "Still nothing. It was compliant in October and it is compliant now.",
+    "Sear the chuck first. Still not in the recipe, still worth the 8 minutes.",
+    "Four pounds carries Monday and Wednesday as well. That is the reason it is here in the week before Christmas week."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["4 lb beef chuck roast, in 3-inch chunks", "2 tsp kosher salt", "1 tsp ground black pepper", "1 Tbsp avocado oil"] },
+    { g: "Braise", i: ["1 yellow onion, diced", "4 chipotles in adobo, finely diced", "5 garlic cloves, minced", "¼ cup fresh lime juice", "2 Tbsp apple cider vinegar", "1 Tbsp ground cumin", "½ Tbsp dried oregano", "¼ tsp ground cloves", "¾ cup beef stock", "3 bay leaves"] },
+    { g: "To serve", i: ["1 head green cabbage, shredded", "2 avocados", "1 red onion, finely diced", "1 bunch cilantro", "4 limes", "Hot sauce, no sugar added"] }
+  ],
+  steps: [
+    "Season the chuck and sear it hard in the avocado oil, 3 minutes a side.",
+    "Everything except the cabbage and garnishes into the slow cooker, stirred once.",
+    "Low for 8 to 9 hours, or high for 4 to 5. Lid stays on.",
+    "Lift the beef out and shred with two forks. Bay leaves out.",
+    "Skim the fat, then pour as much liquid back over the beef as it holds.",
+    "Piled on the shredded cabbage with avocado, red onion, cilantro, lime and hot sauce."
+  ],
+  leftovers: "Monday and Wednesday both draw on this. It crisps beautifully in a hot dry pan, which is Monday's whole plan."
+},
+{
+  day: 14, date: "2026-12-14", dow: "Monday", week: 3, protein: "beef",
+  title: "Crisped Barbacoa Bowls",
+  blurb: "Sunday's beef pressed into a hot dry pan until the edges go crunchy. Twelve minutes, and it is better than it was yesterday.",
+  source: ORIGINAL,
+  time: "20 min", active: "15 min", serves: 4, cost: "~$2.70/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "beef-crumble", veg: ["cabbage", "pepper", "avocado", "lime"] },
+  tags: ["leftovers", "15 min", "one pan"],
+  swaps: [
+    "A dry pan, hot, and the beef left alone for four minutes. Oil makes it fry rather than crisp, and stirring makes it steam.",
+    "Two eggs on top if Sunday's beef ran short.",
+    "The cabbage goes in raw underneath, not cooked. It is meant to stay crunchy against the hot beef."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["1½ lb shredded barbacoa from Sunday, drained of most of its liquid"] },
+    { g: "Pan", i: ["2 bell peppers, sliced", "1 red onion, sliced", "1 Tbsp avocado oil", "4 garlic cloves, sliced", "1 tsp ground cumin"] },
+    { g: "The bowl", i: ["½ head green cabbage, shredded", "6 oz mixed greens", "2 avocados", "1 bunch cilantro", "3 limes", "Olive oil, salt", "Hot sauce, no sugar added"] }
+  ],
+  steps: [
+    "Get a large skillet hot and dry. Spread the beef across it in one layer and leave it alone 4 minutes until the underside crisps.",
+    "Turn it in large pieces, not stirred, and give it 3 more minutes. Out into a bowl.",
+    "Avocado oil in, then the peppers and onion for 4 minutes, garlic and cumin for 1.",
+    "Dress the cabbage and greens with olive oil, lime and salt.",
+    "Beef and peppers piled over the top.",
+    "Avocado, cilantro, a hard squeeze of lime and hot sauce."
+  ],
+  leftovers: null
+},
+{
+  day: 15, date: "2026-12-15", dow: "Tuesday", week: 3, protein: "lamb",
+  title: "Lamb & Root Braise",
+  blurb: "Lamb shoulder, turnips and fennel with the lid on for two hours. The last long braise before Christmas week takes over.",
+  source: ORIGINAL,
+  time: "2 hr 30 min", active: "20 min", serves: 5, cost: "~$4.50/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak", veg: ["turnip", "fennel", "onion", "kale"], sauce: "brown" },
+  tags: ["braise", "hands-off", "one pot"],
+  swaps: [
+    "Lamb shoulder or lamb neck. Neck is cheaper still and gives a better sauce because of the collagen.",
+    "Fennel and turnip both go sweet over two hours. Neither tastes of what it tastes of raw.",
+    "No thickener. Lid off for the last twenty-five minutes."
+  ],
+  ingredients: [
+    { g: "Lamb", i: ["3 lb lamb shoulder, in 2-inch cubes", "2 tsp kosher salt", "1 tsp coarse black pepper", "3 Tbsp avocado oil"] },
+    { g: "Braise", i: ["2 yellow onions, sliced thick", "3 fennel bulbs, in wedges, fronds reserved", "8 garlic cloves, sliced", "2 Tbsp tomato paste, no sugar added", "1 cup dry white or red wine", "4 cups chicken broth", "1 Tbsp fennel seed, crushed", "2 sprigs rosemary", "3 bay leaves", "Strip of lemon zest"] },
+    { g: "Added late", i: ["1½ lb turnips, in wedges", "2 bunches kale, torn"] },
+    { g: "To finish", i: ["The fennel fronds", "½ bunch parsley", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 325°F. Season the lamb hard and brown it in the avocado oil in a Dutch oven, in three batches.",
+    "Onions and fennel into the pot for 8 minutes, then the garlic for 1.",
+    "Tomato paste for 2 minutes, then the wine boiled hard for 3.",
+    "Broth, fennel seed, rosemary, bay and lemon zest. Lamb back in. Lid on, into the oven for 1 hour 30 minutes.",
+    "Turnips in, lid off, another 25 to 35 minutes to reduce.",
+    "Kale stirred in for the last 4 minutes. Zest, rosemary and bay out, then fronds, parsley, lemon and flaky salt."
+  ],
+  leftovers: "There is a lunch and a half here, and like every braise it is better tomorrow."
+},
+{
+  day: 16, date: "2026-12-16", dow: "Wednesday", week: 3, protein: "meatballs",
+  title: "Freezer Meatballs, Tomato & Kale",
+  blurb: "Bag one of three from Dec 3. Twelve meatballs, a tin of tomatoes, and dinner in twenty minutes on a Wednesday in December.",
+  source: ORIGINAL,
+  time: "25 min", active: "10 min", serves: 4, cost: "~$3.10/serving",
+  protein_g: { him: 72, her: 46 },
+  art: { protein: "meatball", veg: ["tomato", "kale", "onion", "olive"], sauce: "red" },
+  tags: ["from the freezer", "10 min hands-on", "one pan"],
+  swaps: [
+    "Fridge on Tuesday night. From frozen, lid on and 25 minutes in the sauce rather than 8.",
+    "Twelve meatballs is short on its own. Two eggs poached in the sauce at the end close the gap and Sunday's barbacoa is also still in the fridge.",
+    "Kale stirred in raw at the end, off the heat."
+  ],
+  ingredients: [
+    { g: "From the freezer", i: ["12 beef meatballs from the Dec 3 batch (bag one of three)"] },
+    { g: "Sauce", i: ["3 Tbsp olive oil", "1 onion, diced", "5 garlic cloves, sliced", "1 (28 oz) can crushed tomatoes, no sugar added", "½ cup pitted kalamata olives", "1 Tbsp dried oregano", "½ tsp red pepper flakes", "Salt & pepper"] },
+    { g: "To finish", i: ["2 large bunches kale, torn", "4 large eggs", "1 lemon", "Torn basil", "Extra olive oil"] }
+  ],
+  steps: [
+    "Tuesday night: move bag one from the freezer to the fridge.",
+    "Onion in the olive oil for 5 minutes, then the garlic and pepper flakes for 30 seconds.",
+    "Crushed tomatoes and oregano in. Season, simmer 8 minutes.",
+    "Meatballs in, spooned over, and simmered 8 minutes until hot through. Olives stirred in.",
+    "Crack the eggs into four wells, lid on, 3 minutes until the whites set.",
+    "Kale piled on top, lid back on, heat off. Two minutes, then lemon, basil and olive oil."
+  ],
+  leftovers: "Two bags left. Dec 22 and Dec 30."
+},
+{
+  day: 17, date: "2026-12-17", dow: "Thursday", week: 3, protein: "chicken",
+  title: "One Pot Chicken & Cabbage",
+  blurb: "Thighs browned then buried in a whole cabbage and left in the oven. One pot, ten minutes of work, and the cabbage ends up better than the chicken.",
+  source: ORIGINAL,
+  time: "1 hr 10 min", active: "15 min", serves: 5, cost: "~$2.70/serving",
+  protein_g: { him: 75, her: 48 },
+  art: { protein: "chicken-thigh", veg: ["cabbage", "onion", "mushroom", "lemon"], sauce: "brown" },
+  tags: ["one pot", "oven", "cheap"],
+  swaps: [
+    "Skin above the liquid, always. The broth should come halfway up the thighs and no further.",
+    "Caraway seed is the thing that makes cabbage taste deliberate rather than accidental. A teaspoon is enough.",
+    "A whole cabbage looks absurd and cooks down to about a third."
+  ],
+  ingredients: [
+    { g: "Chicken", i: ["8 bone-in, skin-on chicken thighs (~4 lb)", "2 tsp kosher salt", "1 tsp coarse black pepper", "2 Tbsp avocado oil"] },
+    { g: "Pot", i: ["1 large head green cabbage, in thick wedges", "2 yellow onions, sliced thick", "10 oz cremini mushrooms, halved", "6 garlic cloves, sliced", "1 tsp caraway seed", "1 Tbsp dried thyme", "1½ cups chicken broth", "1 Tbsp Dijon mustard", "2 bay leaves"] },
+    { g: "To finish", i: ["1 Tbsp red wine vinegar", "2 Tbsp olive oil", "½ bunch parsley", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 375°F. Pat the thighs dry, season hard, and brown them skin-side down in the avocado oil in a wide oven-safe pot, 6 minutes. Out onto a plate.",
+    "Mushrooms into the fat, one layer, 4 minutes. Onions for 4 more, garlic and caraway for 1.",
+    "Cabbage wedges laid on top, broth, Dijon, thyme and bay poured around them.",
+    "Thighs back on top, skin-side up and clear of the liquid.",
+    "Uncovered into the oven for 45 to 50 minutes, until the thighs read 175°F and the skin is brown.",
+    "Vinegar and olive oil stirred into the pot juices, then parsley, lemon and flaky salt."
+  ],
+  leftovers: "Two thighs and a wedge of cabbage. The cabbage reheats better than almost anything else this month."
+},
+{
+  day: 18, date: "2026-12-18", dow: "Friday", week: 3, protein: "steak",
+  title: "Steak & Onion Braise",
+  blurb: "Four onions cooked down to almost nothing under chuck steak, ninety minutes in a low oven. The cheap cut and the cheap vegetable, and it eats like neither.",
+  source: ORIGINAL,
+  time: "1 hr 50 min", active: "20 min", serves: 5, cost: "~$3.50/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak", veg: ["onion", "mushroom", "turnip", "kale"], sauce: "brown" },
+  tags: ["braise", "hands-off", "cheap cut"],
+  swaps: [
+    "Chuck, blade or bottom round. Sirloin would be a waste here; the whole point is a cut that needs time.",
+    "Four onions is right. They lose three-quarters of their volume and become the sauce.",
+    "Give the onions the full fifteen minutes before the liquid goes in. That is where the sweetness comes from and there is no shortcut."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["2½ lb chuck or blade steak, in large pieces", "2 tsp kosher salt", "1 tsp coarse black pepper", "2 Tbsp avocado oil"] },
+    { g: "Braise", i: ["4 large yellow onions, sliced thick", "8 garlic cloves, sliced", "2 Tbsp tomato paste, no sugar added", "1 cup dry red wine", "3 cups beef broth", "1 Tbsp Dijon mustard", "1 Tbsp red wine vinegar", "2 tsp dried thyme", "3 bay leaves"] },
+    { g: "Added late", i: ["1 lb turnips, in cubes", "10 oz cremini mushrooms, halved", "2 bunches kale, torn"] },
+    { g: "To finish", i: ["2 Tbsp chopped parsley", "1 Tbsp olive oil", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 325°F. Season the beef hard and brown it in the avocado oil in a Dutch oven, two batches. Out onto a plate.",
+    "All four onions into the pot with a good pinch of salt. Fifteen minutes over medium, stirring occasionally, until deep golden and collapsed.",
+    "Garlic for 1 minute, tomato paste for 2, then the wine boiled hard for 3.",
+    "Broth, Dijon, vinegar, thyme and bay. Beef back in with its juices. Lid on, oven, 1 hour 15 minutes.",
+    "Turnips and mushrooms in, lid off, 25 minutes more.",
+    "Kale for the last 4. Bay out, then parsley, olive oil and flaky salt."
+  ],
+  leftovers: "Better on day two. This is the one to freeze a portion of if there is room, because January will want it."
+},
+{
+  day: 19, date: "2026-12-19", dow: "Saturday", week: 3, protein: "chicken",
+  title: "Greek Lemon Chicken",
+  blurb: "4.98 stars from 341 ratings, back from the first of September. The night before Christmas week starts, and it is the same fifteen minutes of work it was then.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/greek-lemon-chicken/", 4.98, 341),
+  time: "55 min + marinate", active: "15 min", serves: 4, cost: "~$3.20/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "chicken-thigh", veg: ["lemon", "greenbean", "onion", "tomato"] },
+  tags: ["repeat", "marinate ahead", "oven"],
+  swaps: [
+    "Still compliant as published, and still worth splitting the marinade: oil, garlic and herbs overnight, lemon and Dijon an hour before.",
+    "Eight thighs, as in September.",
+    "Make the shopping list for Christmas week while this is in the oven. It is the biggest trip of five months."
+  ],
+  ingredients: [
+    { g: "Overnight marinade", i: ["⅓ cup extra-virgin olive oil", "4 garlic cloves, minced", "1 Tbsp dried oregano", "2 tsp dried thyme", "2 tsp kosher salt", "1 tsp freshly ground black pepper"] },
+    { g: "Stir in one hour before", i: ["¼ cup lemon juice", "2 tsp Dijon mustard"] },
+    { g: "Chicken & pan", i: ["8 bone-in, skin-on chicken thighs (~3 lb)", "1 lb green beans, trimmed", "1 red onion, in wedges", "1 pint cherry tomatoes", "1 lemon, in thick rounds"] }
+  ],
+  steps: [
+    "Friday night: whisk the oil, garlic, oregano, thyme, salt and pepper over the thighs in a bag and refrigerate.",
+    "An hour before dinner: lemon juice and Dijon into the bag, out onto the counter.",
+    "Heat oven to 350°F. Green beans, onion, tomatoes and lemon rounds in a large roasting dish.",
+    "Thighs skin-side up on top, all the marinade poured over.",
+    "Roast 40 to 45 minutes to 175°F at the bone.",
+    "Rest 5 minutes, pan juices spooned back over everything."
+  ],
+  leftovers: "Two thighs into a container tonight. Sunday is a cooking day and you will want the lunch already made."
+},
+
+/* ========== WEEK 4: CHRISTMAS WEEK ========== */
+{
+  day: 20, date: "2026-12-20", dow: "Sunday", week: 4, protein: "beef",
+  title: "Sunday Pot Roast",
+  blurb: "The last unhurried Sunday of the year. Four pounds of chuck in the oven for three and a half hours while you do everything else Christmas needs.",
+  source: ORIGINAL,
+  time: "4 hr", active: "20 min", serves: 8, cost: "~$3.60/serving",
+  protein_g: { him: 78, her: 50 },
+  art: { protein: "steak", veg: ["turnip", "mushroom", "onion", "kale"], sauce: "brown" },
+  tags: ["braise", "hands-off", "two dinners"],
+  swaps: [
+    "Chuck, and do not trim it. The fat is what makes four hours work.",
+    "Turnips and mushrooms instead of potatoes, added for the last forty minutes only.",
+    "Reduce the strained liquid hard rather than thickening it. It goes glossy on its own.",
+    "This is deliberately oversized. Tuesday and Wednesday are both busy and both draw on it."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["4 lb beef chuck roast", "2½ tsp kosher salt", "1½ tsp coarse black pepper", "3 Tbsp avocado oil"] },
+    { g: "Braise", i: ["2 yellow onions, in large chunks", "8 garlic cloves, sliced", "4 carrots, in chunks", "3 celery stalks, in chunks", "3 Tbsp tomato paste, no sugar added", "1½ cups dry red wine", "4 cups beef broth", "2 sprigs rosemary", "2 sprigs thyme", "3 bay leaves"] },
+    { g: "Added late", i: ["1½ lb turnips, in wedges", "1 lb cremini mushrooms, halved", "2 bunches kale, torn"] },
+    { g: "To finish", i: ["Chopped parsley", "Flaky salt", "Extra olive oil"] }
+  ],
+  steps: [
+    "Heat oven to 300°F. Pat the chuck dry, season hard, and sear it in the avocado oil, 4 minutes a side, until every surface is brown.",
+    "Onion, carrot and celery into the pot for 6 minutes, then the garlic for 1, then the tomato paste for 2.",
+    "Wine boiled hard 4 minutes, then the broth, rosemary, thyme and bay. Beef back in.",
+    "Lid on, into the oven for 3 hours.",
+    "Turnips and mushrooms in, lid off, 40 minutes more, until a fork goes in with no resistance.",
+    "Kale for the last 5. Beef onto a board, herbs out, liquid skimmed and reduced 10 minutes, then the beef shredded back in."
+  ],
+  leftovers: "Half of this is Tuesday. Christmas week has no space for a second braise, which is why this one is twice the size."
+},
+{
+  day: 21, date: "2026-12-21", dow: "Monday", week: 4, protein: "chicken",
+  title: "Best Baked Chicken Breast",
+  blurb: "4.99 stars from 224 ratings, back from September. Twenty-five minutes end to end and five of them yours, which is all Monday of Christmas week can spare.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/baked-chicken-breasts/", 4.99, 224),
+  time: "30 min", active: "10 min", serves: 4, cost: "~$3.40/serving",
+  protein_g: { him: 77, her: 50 },
+  art: { protein: "chicken-breast", veg: ["brussels", "lemon", "tomato", "greens"] },
+  tags: ["repeat", "30 min", "10 min hands-on"],
+  swaps: [
+    "Still compliant as written: olive oil, salt, paprika, garlic powder, thyme, pepper.",
+    "Six breasts, pounded to an even thickness. The bake time goes by size, not count.",
+    "Sprouts on the same pan turn it into dinner rather than a component."
+  ],
+  ingredients: [
+    { g: "Chicken", i: ["6 boneless skinless chicken breasts (~2¼ lb)", "2 Tbsp olive oil or avocado oil", "2 tsp kosher salt", "2 tsp paprika", "1 tsp garlic powder", "1 tsp dried thyme", "½ tsp freshly ground black pepper"] },
+    { g: "On the pan", i: ["1½ lb brussels sprouts, halved", "1 pint cherry tomatoes", "3 Tbsp olive oil", "Salt & pepper"] },
+    { g: "To finish", i: ["5 oz arugula", "2 lemons", "Olive oil, flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 425°F. Pound the thick end of each breast to an even thickness.",
+    "Rub with the oil, then the salt, paprika, garlic powder, thyme and pepper.",
+    "Toss the sprouts and tomatoes with oil, salt and pepper and spread them on a sheet pan, sprouts cut side down.",
+    "Chicken in a baking dish alongside. Bake 20 to 25 minutes, flipping the chicken halfway, to 165°F.",
+    "Rest the chicken 5 minutes.",
+    "Over the arugula with lemon, olive oil and flaky salt."
+  ],
+  leftovers: "Two breasts held back. Slice them cold for a lunch, never warm."
+},
+{
+  day: 22, date: "2026-12-22", dow: "Tuesday", week: 4, protein: "meatballs",
+  title: "Freezer Meatballs & Pot Roast",
+  blurb: "Bag two of three, plus what is left of Sunday's pot roast. Fifteen minutes, no shopping, and the fridge gets emptier before the big shop.",
+  source: ORIGINAL,
+  time: "20 min", active: "15 min", serves: 4, cost: "~$2.60/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "meatball", veg: ["cabbage", "mushroom", "kale", "onion"], sauce: "brown" },
+  tags: ["from the freezer", "leftovers", "15 min"],
+  swaps: [
+    "Fridge on Monday night.",
+    "This is a clear-out, not a recipe. Whatever is left of Sunday's braise goes in with the meatballs.",
+    "If Sunday's roast is already gone, add four more meatballs and two eggs."
+  ],
+  ingredients: [
+    { g: "From the freezer & fridge", i: ["12 beef meatballs from the Dec 3 batch (bag two of three)", "Whatever is left of Sunday's pot roast, in its liquid"] },
+    { g: "Pan", i: ["2 Tbsp olive oil", "1 onion, sliced", "10 oz cremini mushrooms, sliced", "½ head green cabbage, shredded", "2 bunches kale, torn", "5 garlic cloves, sliced", "1 cup beef broth", "1 Tbsp red wine vinegar"] },
+    { g: "To finish", i: ["½ bunch parsley", "1 lemon", "Flaky salt", "Extra olive oil"] }
+  ],
+  steps: [
+    "Monday night: bag two out of the freezer and into the fridge.",
+    "Mushrooms into the olive oil in a wide pan, one layer, 4 minutes untouched.",
+    "Onion for 3 minutes, garlic for 30 seconds.",
+    "Cabbage in, heat high, left 3 minutes so it catches, then the kale by the handful.",
+    "Broth, vinegar, the meatballs and the pot roast in. Lid on, 6 minutes, until everything is hot through.",
+    "Parsley, lemon, flaky salt and olive oil."
+  ],
+  leftovers: "One bag of meatballs left. Dec 30."
+},
+{
+  day: 23, date: "2026-12-23", dow: "Wednesday", week: 4, protein: "chicken",
+  title: "The Quiet Night",
+  blurb: "One tray, ten minutes, eaten early. Tomorrow and Friday both need the oven, the fridge and your attention, so tonight needs none of them.",
+  source: ORIGINAL,
+  time: "40 min", active: "10 min", serves: 4, cost: "~$2.80/serving",
+  protein_g: { him: 73, her: 47 },
+  art: { protein: "chicken-thigh", veg: ["brussels", "onion", "mushroom", "lemon"] },
+  tags: ["10 min hands-on", "sheet pan", "stay out of the way"],
+  swaps: [
+    "Eat early and get the kitchen back. This is the last night before two big ones.",
+    "Do tomorrow's prep while this roasts: trim the lamb racks, make the Dijon herb crust, steam and mash the cauliflower for both nights.",
+    "Take the prime rib out of the fridge tonight and salt it, uncovered on a rack. It wants a full 24 hours."
+  ],
+  ingredients: [
+    { g: "Tray", i: ["8 boneless skinless chicken thighs (~2 lb)", "1 lb brussels sprouts, halved", "10 oz cremini mushrooms, halved", "2 red onions, in wedges", "5 Tbsp olive oil", "5 garlic cloves, minced", "1 Tbsp dried thyme", "2 tsp kosher salt", "1 tsp coarse black pepper", "1 lemon, sliced"] },
+    { g: "To finish", i: ["1 lemon", "½ bunch parsley", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 425°F.",
+    "Toss everything on a large sheet pan, sprouts cut side down, lemon slices tucked in.",
+    "Roast 30 to 35 minutes, until the chicken reads 175°F and the sprouts are dark.",
+    "Lemon and parsley over.",
+    "While it roasts: salt the prime rib and leave it uncovered on a rack in the fridge. Trim the lamb racks and mix the Dijon herb crust.",
+    "Steam and mash the cauliflower for tomorrow and Friday in one go."
+  ],
+  leftovers: "Eat it all or pack it. There will be no fridge space from tomorrow."
+},
+{
+  day: 24, date: "2026-12-24", dow: "Thursday", week: 4, protein: "lamb",
+  title: "Christmas Eve: Rack of Lamb",
+  blurb: "5 stars from 6 ratings and compliant exactly as published: Dijon, garlic, rosemary, thyme, parsley, lemon zest. Thirty-five minutes total, which is the least work any celebration night has ever asked.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/rack-of-lamb-dijon-herb/", 5.0, 6),
+  time: "35 min", active: "15 min", serves: 2, cost: "~$28/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak", veg: ["cauliflower", "greenbean", "mushroom", "lemon"], sauce: "green" },
+  tags: ["Christmas Eve", "35 min", "the splurge"],
+  swaps: [
+    "The honest headline: two frenched racks run about $55 to $70 and feed two with nothing left over. That is roughly $28 a serving, the most expensive night in five months. A 4 lb bone-in leg of lamb is about a third of that per serving, feeds six to eight, takes the same Dijon herb crust and roasts at 325°F for about 1 hour 45 minutes to 130°F. If anyone is coming, buy the leg.",
+    "The crust is compliant untouched. No breadcrumbs in it, which is unusual for a herb crust and is why this one works here.",
+    "Pull at 125°F. It carries on to 130°F while it rests and racks are small enough to overshoot fast.",
+    "Cauliflower mash and green beans, both made yesterday, so tonight is genuinely thirty-five minutes."
+  ],
+  ingredients: [
+    { g: "Lamb", i: ["2 racks of lamb, frenched, 8 ribs each (~2¾ lb)", "2 Tbsp extra-virgin olive oil", "2 tsp kosher salt", "1 tsp ground black pepper"] },
+    { g: "Dijon herb crust", i: ["¼ cup Dijon mustard (check: no sugar)", "4 garlic cloves, minced", "2 Tbsp finely chopped fresh rosemary", "2 Tbsp finely chopped fresh thyme", "2 Tbsp finely chopped fresh parsley", "1 lemon, zested"] },
+    { g: "Alongside", i: ["Cauliflower mash from yesterday, reheated with a splash of broth", "1 lb green beans, blanched 4 minutes", "10 oz cremini mushrooms, roasted", "3 Tbsp olive oil", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Take the racks out an hour ahead. Heat oven to 425°F.",
+    "Pat them dry, rub with the olive oil, and season all over with the salt and pepper.",
+    "Mix the Dijon, garlic, rosemary, thyme, parsley and lemon zest and paint it over the fat side of each rack.",
+    "Roast fat side up, 18 to 22 minutes, until the centre reads 125°F for medium-rare.",
+    "Rest 10 minutes tented in foil. Do not skip this on a cut this small.",
+    "Reheat the mash, blanch the beans, and carve the racks into individual chops at the table."
+  ],
+  leftovers: "Two racks feed two with nothing left. If you bought the leg instead, tomorrow's lunch is sorted and Saturday's is too."
+},
+{
+  day: 25, date: "2026-12-25", dow: "Friday", week: 4, protein: "steak",
+  title: "Christmas Day: Prime Rib",
+  blurb: "4.98 stars from 312 ratings. Six pounds, salted the day before, twenty minutes hot then an hour and a bit low. The butter becomes a garlic herb oil and nothing else changes.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/best-prime-rib/", 4.98, 312),
+  time: "1 hr 45 min + overnight salt", active: "25 min", serves: 8, cost: "~$14/serving",
+  protein_g: { him: 79, her: 51 },
+  art: { protein: "steak", veg: ["cauliflower", "brussels", "mushroom", "greenbean"], sauce: "brown" },
+  tags: ["Christmas Day", "the big night", "feeds eight"],
+  swaps: [
+    "½ cup softened butter → ½ cup extra-virgin olive oil with the same garlic, thyme, rosemary and salt, worked into a paste and pressed on twice. It will not set into a crust the way butter does; it browns instead, which is nearly as good.",
+    "1 Tbsp cornstarch in the au jus → out. Reduce the strained liquid hard for 10 minutes instead and finish it with olive oil off the heat.",
+    "About $14 a serving at eight servings, which is less per head than Christmas Eve. A 5 lb boneless ribeye roast is cheaper and simpler to carve; a 4 lb sirloin roast is cheaper again and the method is unchanged.",
+    "Pull at 120°F for rare, 125°F for medium-rare. It climbs 5 to 8 degrees while it rests, and a roast this size is unforgiving if you wait for it to look done."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["6 lb bone-in prime rib, bones cut off and tied back on", "1 Tbsp kosher salt, the day before", "1 tsp black pepper", "1 medium yellow onion, quartered"] },
+    { g: "Garlic herb paste", i: ["½ cup extra-virgin olive oil", "6 garlic cloves, minced", "1 Tbsp finely chopped fresh thyme", "1 Tbsp finely chopped fresh rosemary", "2 tsp flaky salt"] },
+    { g: "Red wine au jus", i: ["¼ cup drippings from the pan", "2 cups beef broth", "1½ cups red wine", "1 Tbsp red wine vinegar", "2 Tbsp olive oil, off the heat"] },
+    { g: "The plate", i: ["Cauliflower mash from Wednesday", "2 lb brussels sprouts, halved", "1 lb cremini mushrooms", "1½ lb green beans", "5 Tbsp olive oil", "2 lemons", "Flaky salt"] }
+  ],
+  steps: [
+    "Wednesday night: salt the roast all over and leave it uncovered on a rack in the fridge for a full 24 hours.",
+    "Christmas morning: take it out 3 hours before it goes in. Heat oven to 450°F. Work the olive oil, garlic, thyme, rosemary and flaky salt into a paste and press half of it all over.",
+    "Onion quarters in the pan, roast on a rack above them at 450°F for 20 minutes to set the crust.",
+    "Drop to 325°F, press on the rest of the paste, and roast about 13 to 15 minutes per pound, until it reads 120 to 125°F. Start checking an hour in.",
+    "Rest 30 minutes, tented. It will climb another 5 to 8 degrees and the juices need to settle.",
+    "Au jus: pour off all but ¼ cup of the drippings, add the broth, wine and vinegar, boil hard 10 to 12 minutes, strain, and swirl in the olive oil off the heat. Roast the sprouts and mushrooms at 425°F while it rests and blanch the beans."
+  ],
+  leftovers: "Six pounds feeds eight and there are two of you. Boxing Day is entirely this, cold, and it is the better meal."
+},
+{
+  day: 26, date: "2026-12-26", dow: "Saturday", week: 4, protein: "beef",
+  title: "Boxing Day: Cold Prime Rib",
+  blurb: "Yesterday's beef sliced thin and cold over hot roasted vegetables, with a horseradish sauce made from actual horseradish. Ten minutes of work on the day you least want to cook.",
+  source: ORIGINAL,
+  time: "35 min", active: "10 min", serves: 4, cost: "~$3.90/serving",
+  protein_g: { him: 76, her: 49 },
+  art: { protein: "steak-strips", veg: ["brussels", "mushroom", "greens", "radish"], sauce: "green" },
+  tags: ["leftovers", "10 min hands-on", "no reheating"],
+  swaps: [
+    "Do not reheat prime rib. It was pulled at 125°F and any heat takes it past that. Cold and thin over hot vegetables is the entire idea.",
+    "Prepared horseradish is usually just horseradish, vinegar and salt, but a few brands add sugar and cream. Read it, or grate fresh horseradish into vinegar yourself.",
+    "The traditional sauce is horseradish in sour cream. Here it is horseradish in olive oil and lemon, which is sharper and works better with cold beef anyway."
+  ],
+  ingredients: [
+    { g: "Beef", i: ["1½ lb leftover prime rib, sliced very thin, straight from the fridge"] },
+    { g: "Roasted", i: ["1½ lb brussels sprouts, halved", "10 oz cremini mushrooms, halved", "1 bunch radishes, halved", "2 red onions, in wedges", "4 Tbsp olive oil", "Salt & coarse pepper"] },
+    { g: "Horseradish sauce", i: ["3 Tbsp prepared horseradish (check: no sugar)", "5 Tbsp extra-virgin olive oil", "1 Tbsp lemon juice", "1 tsp Dijon mustard", "Salt & pepper"] },
+    { g: "To finish", i: ["5 oz arugula", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 425°F. Toss the sprouts, mushrooms, radishes and onions with olive oil, salt and pepper.",
+    "Roast 25 to 30 minutes, sprouts cut side down, until everything has dark edges.",
+    "Whisk the horseradish sauce while they roast.",
+    "Slice the beef as thinly as you can manage, cold.",
+    "Arugula on the plates, hot vegetables tipped straight over so it half wilts.",
+    "Cold beef laid over the top, horseradish sauce spooned across, lemon and flaky salt."
+  ],
+  leftovers: "Still more beef in the fridge. It keeps four days and it does not want an oven at any point."
+},
+
+/* ========== WEEK 5: INTO THE NEW YEAR ========== */
+{
+  day: 27, date: "2026-12-27", dow: "Sunday", week: 5, protein: "chicken",
+  title: "Roast Chicken, Quiet Sunday",
+  blurb: "After a week of roasts, the smallest possible roast. One bird, ten minutes of work, and the carcass makes the broth Tuesday's soup runs on.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/easy-roast-chicken/", 4.98, 181),
+  time: "1 hr 35 min", active: "10 min", serves: 6, cost: "~$2.60/serving",
+  protein_g: { him: 77, her: 50 },
+  art: { protein: "chicken-thigh", veg: ["turnip", "onion", "kale", "lemon"] },
+  tags: ["repeat", "hands-off", "makes the broth"],
+  swaps: [
+    "Still three ingredients: oil, Italian seasoning, salt and pepper. It was compliant in September and it is compliant now.",
+    "Salt it in the morning, uncovered in the fridge. The one improvement that is not in the recipe.",
+    "Roots underneath, not around. Under is where the fat goes."
+  ],
+  ingredients: [
+    { g: "Chicken", i: ["1 whole chicken, 5 lb", "1 Tbsp extra-virgin olive oil", "1 tsp Italian seasoning", "Kosher salt & freshly ground black pepper"] },
+    { g: "Underneath", i: ["2 yellow onions, in thick rounds", "1½ lb turnips, in wedges", "3 carrots, in chunks", "1 lemon, halved", "3 Tbsp olive oil"] },
+    { g: "To finish", i: ["2 large bunches kale, torn", "1 lemon", "½ bunch parsley", "Flaky salt"] }
+  ],
+  steps: [
+    "Morning: pat dry, salt generously, leave uncovered in the fridge.",
+    "Heat oven to 425°F, rack in the lower third. Bird out 45 minutes ahead.",
+    "Onion rounds in the roasting pan as a rack, turnips and carrots around them, tossed in oil.",
+    "Rub the bird with the oil, Italian seasoning, salt and pepper. Lemon in the cavity. Breast-up on the onions.",
+    "Roast 70 to 90 minutes to 165°F in the thigh. Add the kale around the edges for the last 8 minutes.",
+    "Rest 15 minutes before carving. Lemon, parsley and flaky salt."
+  ],
+  leftovers: "Strip the carcass warm and simmer the bones tonight. Tuesday's soup is built on that broth."
+},
+{
+  day: 28, date: "2026-12-28", dow: "Monday", week: 5, protein: "beef",
+  title: "Chili from the Freezer",
+  blurb: "One of the three portions you froze on Dec 5. Fifteen minutes, and the last week of the year does not need you cooking.",
+  source: ORIGINAL,
+  time: "25 min", active: "10 min", serves: 4, cost: "~$3.10/serving",
+  protein_g: { him: 74, her: 48 },
+  art: { protein: "beef-crumble", veg: ["pepper", "onion", "avocado", "cabbage"], sauce: "red" },
+  tags: ["from the freezer", "10 min hands-on", "no cooking really"],
+  swaps: [
+    "Fridge on Sunday.",
+    "Frozen chili always wants more salt and more lime than you remember. Taste it before you serve it.",
+    "Two portions still in the freezer after this. They are January's problem, solved."
+  ],
+  ingredients: [
+    { g: "From the freezer", i: ["2 portions Texas chili from Dec 5", "½ cup beef broth to loosen"] },
+    { g: "On top", i: ["2 avocados", "½ red onion, finely diced", "1 bunch cilantro", "3 limes", "Hot sauce, no sugar added"] },
+    { g: "Alongside", i: ["1 head green cabbage, shredded", "2 bell peppers, sliced", "Olive oil, lime, salt"] }
+  ],
+  steps: [
+    "Sunday: move two portions from the freezer to the fridge.",
+    "Into a pot with the broth, over medium-low, 15 minutes, stirring occasionally.",
+    "Taste and correct the salt and acid. It will need both.",
+    "Dress the cabbage and peppers with olive oil, lime and salt.",
+    "Bowls, then avocado, red onion and cilantro.",
+    "Lime and hot sauce at the table."
+  ],
+  leftovers: "Two chili portions left for January."
+},
+{
+  day: 29, date: "2026-12-29", dow: "Tuesday", week: 5, protein: "chicken",
+  title: "Chicken Soup from Sunday's Bird",
+  blurb: "Sunday's carcass, Sunday's meat, and twenty minutes. The cheapest night of the whole five months at about $1.90 a serving.",
+  source: ORIGINAL,
+  time: "30 min", active: "15 min", serves: 4, cost: "~$1.90/serving",
+  protein_g: { him: 71, her: 46 },
+  art: { protein: "chicken-breast", veg: ["turnip", "leek", "kale", "egg"] },
+  tags: ["leftovers", "15 min hands-on", "cheapest night"],
+  swaps: [
+    "Homemade broth is the whole thing. Boxed makes this fine rather than good.",
+    "A pound of picked chicken is about 90g of protein, which is short for two. Four eggs poached in the broth close the gap.",
+    "Kale at the very end, two minutes."
+  ],
+  ingredients: [
+    { g: "Broth", i: ["8 cups broth from Sunday's carcass", "2 bay leaves", "1 Tbsp dried thyme"] },
+    { g: "In it", i: ["1 lb picked chicken from Sunday", "2 Tbsp olive oil", "2 leeks, sliced and rinsed", "2 turnips, in small cubes", "3 carrots, sliced", "3 celery ribs, sliced", "5 garlic cloves, sliced"] },
+    { g: "To finish", i: ["2 large bunches kale, torn", "4 large eggs", "1 lemon", "½ bunch parsley", "Red pepper flakes", "Extra olive oil"] }
+  ],
+  steps: [
+    "Olive oil in a large pot. Leeks, turnips, carrots and celery for 6 minutes, garlic for 1.",
+    "Broth, bay and thyme in. Simmer 12 minutes until the turnips are tender.",
+    "Picked chicken in for 3 minutes to warm through.",
+    "Kale in for 2.",
+    "Eggs cracked into four wells, lid on, 3 minutes.",
+    "Bay out. Lemon, parsley, pepper flakes and olive oil in each bowl."
+  ],
+  leftovers: "Keeps four days. Do not freeze it with the kale in."
+},
+{
+  day: 30, date: "2026-12-30", dow: "Wednesday", week: 5, protein: "meatballs",
+  title: "Last Bag of Meatballs",
+  blurb: "Bag three of three from Dec 3. The freezer is now empty of meatballs and the year has one night left.",
+  source: ORIGINAL,
+  time: "25 min", active: "15 min", serves: 4, cost: "~$3.20/serving",
+  protein_g: { him: 72, her: 46 },
+  art: { protein: "meatball", veg: ["cabbage", "kale", "onion", "mushroom"] },
+  tags: ["from the freezer", "15 min", "one pan"],
+  swaps: [
+    "Fridge on Tuesday night.",
+    "Twelve meatballs plus four eggs gets two people to the target. Do not skip the eggs.",
+    "Cabbage hard-seared, not steamed: hot pan, single layer, left alone three minutes."
+  ],
+  ingredients: [
+    { g: "From the freezer", i: ["12 beef meatballs from the Dec 3 batch (bag three of three)"] },
+    { g: "Pan", i: ["3 Tbsp avocado oil", "½ large head green cabbage, shredded", "1 onion, sliced", "10 oz cremini mushrooms, sliced", "5 garlic cloves, sliced", "2 large bunches kale, torn", "1 tsp red pepper flakes"] },
+    { g: "Finish", i: ["¾ cup broth", "1 Tbsp red wine vinegar", "4 large eggs", "1 Tbsp olive oil", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Tuesday night: bag three out of the freezer.",
+    "Get a large pan hot with 2 Tbsp of the avocado oil. Brown the meatballs 4 minutes, then out into a bowl.",
+    "Mushrooms in one layer, 4 minutes untouched. Onion for 3, garlic and pepper flakes for 30 seconds.",
+    "Cabbage in, spread flat, left 3 minutes, then tossed and given 2 more. Kale by the handful after that.",
+    "Broth and vinegar in, meatballs back, lid on 4 minutes.",
+    "Push aside, olive oil in, fry the eggs in the gap. Lemon and flaky salt over."
+  ],
+  leftovers: "Freezer check: two chili portions and nothing else. That is exactly the right amount to start January with."
+},
+{
+  day: 31, date: "2026-12-31", dow: "Thursday", week: 5, protein: "steak",
+  title: "New Year's Eve: Filet Mignon",
+  blurb: "4.99 stars from 90 ratings. Two minutes a side, one minute basting, then the pan goes in the oven. Twenty minutes for the last dinner of the year and five months of plan.",
+  source: S("Downshiftology", "https://downshiftology.com/recipes/filet-mignon/", 4.99, 90),
+  time: "25 min", active: "20 min", serves: 4, cost: "~$9.50/serving",
+  protein_g: { him: 79, her: 51 },
+  art: { protein: "steak", veg: ["mushroom", "asparagus", "greens", "radish"], sauce: "brown" },
+  tags: ["New Year's Eve", "25 min", "the last one"],
+  swaps: [
+    "2 Tbsp butter for basting → 2 Tbsp olive oil plus a tablespoon of beef tallow if you have it. Basting with oil works; it just will not foam, so go by colour rather than by sound.",
+    "Herb compound butter or béarnaise to serve → a mustard-shallot pan sauce, below. Béarnaise is butter and egg yolk and there is no version of it that fits.",
+    "Four 8 oz steaks rather than the published two, which is the difference between dinner and dinner plus lunch.",
+    "About $9.50 a serving, which after Christmas Eve and Christmas Day will feel like nothing."
+  ],
+  ingredients: [
+    { g: "Steak", i: ["4 filet mignon steaks, 8 oz each", "2 tsp kosher salt", "1 tsp freshly ground black pepper", "2 Tbsp avocado oil"] },
+    { g: "Basting", i: ["2 Tbsp extra-virgin olive oil", "1 Tbsp beef tallow (optional)", "4 sprigs fresh rosemary", "4 garlic cloves, peeled and smashed"] },
+    { g: "Pan sauce", i: ["3 shallots, finely sliced", "¾ cup beef broth", "1 Tbsp Dijon mustard", "1 tsp red wine vinegar", "2 Tbsp olive oil, off the heat", "1 Tbsp chopped thyme"] },
+    { g: "The plate", i: ["1 lb asparagus", "10 oz cremini mushrooms", "1 bunch radishes, thinly sliced", "5 oz arugula", "3 Tbsp olive oil", "1 lemon", "Flaky salt"] }
+  ],
+  steps: [
+    "Heat oven to 400°F. Steaks out 30 to 40 minutes ahead, patted dry, seasoned generously on every side including the edges.",
+    "Get an oven-safe cast iron pan very hot with the avocado oil. Sear two at a time, exactly 2 minutes a side, then 1 minute on the edges.",
+    "Flip to the final side, add the olive oil, tallow, rosemary and garlic, and baste for 1 minute, spooning constantly.",
+    "Pan straight into the oven, 4 to 10 minutes depending on how you want them. Pull at 125°F for medium-rare.",
+    "Steaks onto a plate, foil over, rest 5 to 7 minutes. Meanwhile roast the mushrooms and asparagus at 400°F for 12 minutes.",
+    "Pan sauce in the same skillet: shallots 2 minutes, broth, Dijon and vinegar boiled 4 minutes, then the olive oil and thyme off the heat. Over the steaks, with the arugula, radishes and lemon."
+  ],
+  leftovers: "That is five months and 152 dinners. Two chili portions in the freezer, and the four rules never changed once."
+}
+];
+
+/* ============================================================
+   DECEMBER GROCERY LISTS: five trips
+   ============================================================ */
+
+const DEC_GROCERIES = [
+{
+  trip: 1, week: 1, when: "Shop Mon Nov 30", covers: "Dec 1 to 5",
+  est: "$110 to $130",
+  note: "Five nights, but two of them are batch nights that put four dinners into the freezer, so this trip is really buying nine. The 3½ lb of beef for Thursday's meatballs and the 2¾ lb for Saturday's chili are most of the number.",
+  sections: [
+    { name: "Meat", items: [
+      "10 bone-in, skin-on chicken thighs (~5 lb)",
+      "3½ lb ground beef, 85/15, for Thursday's 54 meatballs",
+      "2¾ lb ground beef, 85/15, for Saturday's chili",
+      "2 lb flank or skirt steak",
+      "(1 braised beef portion already in the freezer from Nov 14)"
+    ]},
+    { name: "Produce", items: [
+      "1½ lb brussels sprouts", "1 lb turnips",
+      "10 oz cremini mushrooms", "5 bell peppers",
+      "2 onions", "4 red onions", "2 jalapeños",
+      "1 head butter lettuce", "4 large bunches kale",
+      "4 avocados", "9 limes", "4 lemons", "4 heads garlic",
+      "2 bunches cilantro", "2 bunches parsley", "1 bunch basil"
+    ]},
+    { name: "Pantry", items: [
+      "Crushed tomatoes, no sugar added (28 oz)",
+      "Petite diced tomatoes, no sugar added (14.5 oz × 2)",
+      "Chipotle peppers in adobo (check: no sugar)",
+      "Tomato paste, no sugar added", "Beef broth (64 oz)",
+      "Kalamata olives", "Almond flour (you need ¾ cup Thursday)",
+      "Unsweetened cocoa powder", "1 dozen eggs",
+      "Freezer bags and a marker: four bags go in this week"
+    ]}
+  ]
+},
+{
+  trip: 2, week: 2, when: "Shop Sat Dec 5", covers: "Dec 6 to 12",
+  est: "$135 to $160",
+  note: "Two big braises bracket the week and both make six or seven servings, so seven nights of shopping covers nine dinners plus a freezer portion. Lamb shoulder and chuck are the two cheapest things on this list per gram of protein.",
+  sections: [
+    { name: "Meat", items: [
+      "3 lb lamb shoulder, cubed",
+      "3 lb beef chuck roast, cubed yourself",
+      "2½ lb boneless skinless chicken breasts or thighs",
+      "2¼ lb ground beef, 85/15",
+      "2¼ lb ground lamb",
+      "2 lb sirloin or flank steak",
+      "4 boneless skinless chicken breasts (~1¾ lb)",
+      "4 slices bacon (check: no sugar cure)"
+    ]},
+    { name: "Produce", items: [
+      "3½ lb turnips", "1 small head cauliflower", "1 large head green cabbage",
+      "3 zucchini", "½ lb green beans", "2 lb cremini mushrooms",
+      "13 carrots", "6 celery ribs",
+      "4 yellow onions", "2 red onions", "1 leek",
+      "2 bell peppers", "2 jalapeños", "1 bunch radishes",
+      "8 large bunches kale", "4 avocados",
+      "5 heads garlic", "6 limes", "5 lemons",
+      "3 bunches cilantro", "2 bunches parsley", "1 bunch mint",
+      "1 bunch fresh thyme", "1 bunch fresh tarragon"
+    ]},
+    { name: "Pantry", items: [
+      "1 bottle dry red wine (1½ cups Saturday)",
+      "Beef broth (64 oz)", "Chicken broth (64 oz)",
+      "Tomato sauce, no sugar added (15 oz)", "Tomato paste, no sugar added",
+      "Crushed tomatoes, no sugar added (28 oz)",
+      "Green chiles (8 oz)", "Almond flour", "Bay leaves"
+    ]}
+  ]
+},
+{
+  trip: 3, week: 3, when: "Shop Sat Dec 12", covers: "Dec 13 to 19",
+  est: "$130 to $155",
+  note: "Sunday's 4 lb chuck goes in the slow cooker at breakfast and covers Monday too. Buy the Christmas meat this week if your butcher takes orders: prime rib and racks of lamb both sell out in the last week, and both want ordering ahead.",
+  sections: [
+    { name: "Meat", items: [
+      "4 lb beef chuck roast",
+      "3 lb lamb shoulder, cubed",
+      "2½ lb chuck or blade steak",
+      "8 bone-in, skin-on chicken thighs (~4 lb)",
+      "8 bone-in, skin-on chicken thighs (~3 lb, smaller, for Saturday)",
+      "**Order now for next week:** 6 lb bone-in prime rib, 2 frenched racks of lamb"
+    ]},
+    { name: "Produce", items: [
+      "2½ lb turnips", "3 fennel bulbs",
+      "2 large heads green cabbage", "1 lb green beans",
+      "2½ lb cremini mushrooms", "7 carrots",
+      "6 yellow onions", "4 red onions", "2 bell peppers",
+      "1 pint cherry tomatoes", "6 oz mixed greens",
+      "6 large bunches kale", "4 avocados",
+      "5 heads garlic", "7 limes", "6 lemons",
+      "2 bunches cilantro", "2 bunches parsley",
+      "1 bunch fresh rosemary", "1 bunch fresh thyme"
+    ]},
+    { name: "Pantry", items: [
+      "1 bottle dry red or white wine (2 cups across two nights)",
+      "Beef broth (64 oz)", "Chicken broth (64 oz)",
+      "Crushed tomatoes, no sugar added (28 oz)",
+      "Tomato paste, no sugar added", "Kalamata olives",
+      "Caraway seed", "Fennel seed", "Dijon mustard", "1 dozen eggs"
+    ]}
+  ]
+},
+{
+  trip: 4, week: 4, when: "Shop Sat Dec 19", covers: "Dec 20 to 26",
+  est: "$260 to $310",
+  note: "By far the biggest trip in five months, and Thursday and Friday are almost all of it. Two frenched racks run $55 to $70 and a 6 lb bone-in prime rib runs $90 to $130. Both have cheaper swaps written into their nights: a 4 lb leg of lamb is about a third the price per serving, and a 5 lb boneless ribeye or a 4 lb sirloin roast both take the same method. Sunday through Wednesday are deliberately small to make room.",
+  sections: [
+    { name: "The two big ones", items: [
+      "6 lb bone-in prime rib, bones cut off and tied back on (or a 5 lb boneless ribeye roast, or a 4 lb sirloin roast)",
+      "2 racks of lamb, frenched, 8 ribs each (or a 4 lb bone-in leg of lamb, which feeds six to eight)"
+    ]},
+    { name: "The rest of the meat", items: [
+      "4 lb beef chuck roast",
+      "6 boneless skinless chicken breasts (~2¼ lb)",
+      "8 boneless skinless chicken thighs (~2 lb)",
+      "(1 bag of 12 meatballs already in the freezer from Dec 3)"
+    ]},
+    { name: "Produce", items: [
+      "5 lb brussels sprouts", "2 very large heads cauliflower",
+      "2½ lb green beans", "2½ lb cremini mushrooms",
+      "1½ lb turnips", "1 head green cabbage", "2 bunches radishes",
+      "7 carrots", "3 celery stalks",
+      "5 yellow onions", "6 red onions",
+      "1 pint cherry tomatoes", "10 oz arugula",
+      "4 large bunches kale", "5 heads garlic", "6 lemons",
+      "2 bunches parsley", "2 bunches fresh rosemary", "2 bunches fresh thyme"
+    ]},
+    { name: "Pantry", items: [
+      "1 bottle red wine for the au jus (1½ cups) plus 1½ cups for Sunday",
+      "Beef broth (96 oz, and Friday alone takes 2 cups)",
+      "Dijon mustard (check: no sugar, you need ¼ cup Thursday)",
+      "Prepared horseradish (check: no sugar, no cream)",
+      "Tomato paste, no sugar added", "Bay leaves", "Flaky salt"
+    ]}
+  ]
+},
+{
+  trip: 5, week: 5, when: "Shop Sat Dec 26", covers: "Dec 27 to 31",
+  est: "$95 to $115",
+  note: "Five quiet nights. Monday comes out of the freezer, Tuesday is Sunday's carcass, and Wednesday is the last bag of meatballs, so really this trip is one chicken and four filets. New Year's Eve is about $9.50 a serving, which after Christmas week will feel like nothing.",
+  sections: [
+    { name: "Meat", items: [
+      "1 whole chicken, 5 lb",
+      "4 filet mignon steaks, 8 oz each",
+      "(2 chili portions and 1 bag of meatballs already in the freezer)"
+    ]},
+    { name: "Produce", items: [
+      "1½ lb turnips", "1 lb asparagus", "1 head green cabbage",
+      "1¼ lb cremini mushrooms", "2 bunches radishes",
+      "6 carrots", "3 celery ribs", "2 leeks",
+      "3 yellow onions", "1 red onion", "3 shallots", "2 bell peppers",
+      "6 large bunches kale", "5 oz arugula", "2 avocados",
+      "3 heads garlic", "4 lemons", "3 limes",
+      "1 bunch parsley", "1 bunch cilantro", "1 bunch fresh rosemary", "1 bunch fresh thyme"
+    ]},
+    { name: "Pantry", items: [
+      "Beef broth (32 oz)", "Dijon mustard",
+      "Beef tallow, optional, for basting the filets",
+      "1 dozen eggs", "Hot sauce, no sugar added", "Flaky salt"
+    ]}
+  ]
+}
+];
+
+/* ============================================================
+   DECEMBER PREP-AHEAD NOTES
+   ============================================================ */
+
+const DEC_PREP = [
+  { w: 1, day: "Monday Nov 30", items: [
+    "Two batch nights this week and they exist for the second half of the month. Thursday makes 54 meatballs and you eat 18; Saturday makes six servings of chili and you eat two.",
+    "Freeze the meatballs in three bags of twelve, not one bag of thirty-six, and freeze them flat on a tray first so they do not fuse. Dec 16, 22 and 30 each take a bag.",
+    "Freeze three chili portions and label them. Dec 28 takes one and two go into January.",
+    "Friday's steak marinates in the morning, not overnight. Lime juice past four hours ruins flank."
+  ]},
+  { w: 2, day: "Saturday Dec 5", items: [
+    "Sunday's lamb stew and Saturday's beef stew both want two and a half hours and three batches of browning. Start both at 3pm.",
+    "Chill the meatballs for Tuesday's albóndigas for ten minutes before rolling or they will not hold, because almond flour binds less than rice did.",
+    "Thursday's green chile stew freezes properly, unlike the bean version it came from. One portion in.",
+    "Saturday's stew makes 40% more than that night needs. Two lunches and a freezer portion."
+  ]},
+  { w: 3, day: "Saturday Dec 12", items: [
+    "Order the Christmas meat this week. Prime rib and frenched racks both sell out in the last week of December, and a butcher will tie the rib bones back on for you if you ask.",
+    "Sunday's barbacoa goes in the slow cooker before breakfast and carries Monday as well. Sear the chuck first.",
+    "Saturday's chicken marinates Friday night. Split the marinade as always: oil and herbs overnight, lemon and Dijon an hour before.",
+    "Write the Christmas week list while Saturday's chicken is in the oven. It is the biggest trip of five months and it is worth doing calmly."
+  ]},
+  { w: 4, day: "Saturday Dec 19", items: [
+    "Sunday's pot roast is deliberately twice the size it needs to be, because Tuesday is busy and Christmas week has no room for a second braise.",
+    "Wednesday night is the prep night, and it is the one that makes Thursday and Friday easy. Salt the prime rib and leave it uncovered on a rack in the fridge for a full 24 hours. Trim the lamb racks and mix the Dijon herb crust. Steam and mash the cauliflower for both nights in one go.",
+    "Thursday: racks out an hour ahead, pull at 125°F. They are small and they overshoot fast.",
+    "Friday: prime rib out of the fridge three hours before it goes in, 450°F for the first 20 minutes only, then 325°F. Pull at 120 to 125°F and rest it a full 30 minutes; it climbs another 5 to 8 degrees on the counter.",
+    "Do not reheat any of the leftover beef. Boxing Day is built on it cold and that is the better meal."
+  ]},
+  { w: 5, day: "Saturday Dec 26", items: [
+    "Move one chili portion to the fridge on Sunday for Monday, and the last bag of meatballs on Tuesday night for Wednesday.",
+    "Sunday's carcass gets simmered Sunday night. Tuesday's soup is the cheapest night of the whole five months and it depends on it.",
+    "New Year's Eve: filets out 30 to 40 minutes ahead, and season the edges as well as the faces. Two minutes a side, one minute basting, then the pan goes straight in the oven.",
+    "Freezer at the end of the year: two chili portions and nothing else. That is the right amount to start January with."
+  ]}
+];
+
+/* ============================================================
    THE MONTHS
    Two plans, one site. Everything the renderer needs comes off
    the selected month, so adding October is adding one entry here.
@@ -4390,6 +5546,30 @@ const PLAN_MONTHS = [
             "That week is what pays for Thanksgiving, which is why they sit two weeks apart."] }
     ],
     weeks: NOV_WEEKS, days: NOV_DAYS, groceries: NOV_GROCERIES, prep: NOV_PREP
+  },
+  {
+    key: "dec", label: "December", short: "Dec", title: "December 2026",
+    span: "Tue 1 Dec to Thu 31 Dec 2026",
+    first: "2026-12-01", last: "2026-12-31",
+    subhead: "Thirty-one dinners. Christmas Eve, Christmas Day and New Year's Eve included.",
+    lede: "The last month, and the one that has to work around three nights it does not " +
+          "control. Christmas Eve is a rack of lamb, Christmas Day is a prime rib and New " +
+          "Year's Eve is filet mignon, all three compliant and all three expensive. Everything " +
+          "around them is braises, freezer bags and deliberate repeats of the best-rated things " +
+          "from the previous four months.",
+    method: [
+      { h: "Repeats are the point this month",
+        p: ["Six nights are dishes you have already cooked: the Irish lamb stew, the classic beef stew, the barbacoa, the Ultimate chicken soup, the Greek lemon chicken and the baked chicken breasts. They are the six highest-rated things in five months and there is no reason a rotation should not rotate.",
+            "They are marked with a repeat tag, and each one's swaps note what you learned the first time. Ten of December's thirty-one nights are sourced, and six of those ten are second appearances."] },
+      { h: "The three big nights",
+        p: ["Christmas Eve is the most expensive night in five months at roughly $28 a serving, because two frenched racks of lamb feed exactly two people. The swap is written at the top of that night: a 4 lb bone-in leg of lamb takes the identical Dijon herb crust, feeds six to eight, and costs about a third per serving. If anyone is coming, buy the leg.",
+            "Christmas Day is a 6 lb prime rib at about $14 a serving across eight servings, which is less per head than the night before it. A boneless ribeye roast or a sirloin roast both take the same method for less.",
+            "New Year's Eve is filet mignon at about $9.50 a serving and twenty-five minutes, which is the cheapest and fastest of the three."] },
+      { h: "The freezer does the rest",
+        p: ["Dec 3 makes 54 meatballs and Dec 5 makes six servings of chili. Between them they put four dinners into the freezer before the middle of the month, and Dec 16, 22, 28 and 30 each take one back out.",
+            "That is what makes the run from Dec 20 to Dec 31 possible: across those twelve nights there are only four real cooking sessions, and three of them are the celebrations."] }
+    ],
+    weeks: DEC_WEEKS, days: DEC_DAYS, groceries: DEC_GROCERIES, prep: DEC_PREP
   }
 ];
 
