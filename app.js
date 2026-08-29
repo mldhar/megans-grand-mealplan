@@ -210,12 +210,56 @@ const VEG_ART = {
   lemon: (x, y, r, rnd) => citrus(x, y, r, rnd, "#e8c53a", "#f7ecb0", "#fbf6d8"),
   lime: (x, y, r, rnd) => citrus(x, y, r, rnd, "#8cb833", "#d6e79a", "#eef5cd"),
   egg: (x, y, r) => `<ellipse cx="${x}" cy="${y}" rx="${r * 1.35}" ry="${r * 1.15}" fill="#fdfbf4"/><ellipse cx="${x}" cy="${y}" rx="${r * 1.35}" ry="${r * 1.15}" fill="none" stroke="#efe6d2" stroke-width="1"/><circle cx="${x}" cy="${y}" r="${r * .52}" fill="url(#gYolk)"/>`,
+
+  /* --- autumn, added for October and November --- */
+  // halved sprout: pale layered core, dark outer leaves, flat cut face
+  brussels: (x, y, r, rnd) => `<g transform="${rot(x, y, rnd() * 360)}">
+      ${blob(x, y, r, 9, .3, rnd, 'fill="#4a7d33"')}
+      <ellipse cx="${x}" cy="${y}" rx="${r * .82}" ry="${r * .78}" fill="#cfe0a4"/>
+      <ellipse cx="${x}" cy="${y}" rx="${r * .5}" ry="${r * .46}" fill="#e8f0cd"/>
+      <path d="M ${x} ${y - r * .78} L ${x} ${y + r * .78}" stroke="#9dba74" stroke-width="1.1" opacity=".8"/>
+      <path d="M ${x - r * .6} ${y - r * .3} q ${r * .6} ${r * .3} ${r * 1.2} 0" stroke="#9dba74" stroke-width="1" fill="none" opacity=".65"/></g>`,
+
+  // torn kale: darker and more ruffled than the generic greens leaf
+  kale: (x, y, r, rnd) => {
+    const c = ["#2d5c28", "#356b2c", "#407a33"][Math.floor(rnd() * 3)];
+    let edge = "";
+    for (let i = 0; i < 7; i++) {
+      const a = (i / 7) * Math.PI * 2, rr = r * (.85 + rnd() * .5);
+      edge += `<circle cx="${(x + Math.cos(a) * rr).toFixed(1)}" cy="${(y + Math.sin(a) * rr * .8).toFixed(1)}" r="${(r * .42).toFixed(1)}" fill="${c}"/>`;
+    }
+    return `<g transform="${rot(x, y, rnd() * 360)}">${edge}<ellipse cx="${x}" cy="${y}" rx="${r * .95}" ry="${r * .8}" fill="${c}"/>
+      <path d="M ${x - r * .8} ${y} h ${r * 1.6}" stroke="#9cc27a" stroke-width="1.1" opacity=".5"/></g>`;
+  },
+
+  // roasted turnip wedge: white root, faint purple shoulder
+  turnip: (x, y, r, rnd) => `<g transform="${rot(x, y, rnd() * 360)}">
+      ${blob(x, y, r, 8, .26, rnd, 'fill="#f7f2e6" stroke="#c0b49c" stroke-width="1.3"')}
+      <path d="M ${x - r} ${y - r * .18} q ${r} ${-r * .72} ${r * 2} 0 q ${-r} ${r * .3} ${-r * 2} 0 Z" fill="#a382bd"/>
+      <path d="M ${x - r * .72} ${y - r * .3} q ${r * .72} ${-r * .34} ${r * 1.44} 0" stroke="#c6aedb" stroke-width="1.1" fill="none" opacity=".9"/>
+      <ellipse cx="${x - r * .22}" cy="${y + r * .3}" rx="${r * .3}" ry="${r * .2}" fill="#fffdf6" opacity=".85"/></g>`,
+
+  // fennel: pale bulb with vertical ribs and a wisp of frond
+  fennel: (x, y, r, rnd) => `<g transform="${rot(x, y, rnd() * 360)}">
+      <ellipse cx="${x}" cy="${y}" rx="${r * .95}" ry="${r * 1.1}" fill="#eaf0dc"/>
+      <ellipse cx="${x}" cy="${y}" rx="${r * .95}" ry="${r * 1.1}" fill="none" stroke="#c3d3a6" stroke-width="1"/>
+      <path d="M ${x - r * .4} ${y - r * .95} v ${r * 1.9}" stroke="#c3d3a6" stroke-width="1.1"/>
+      <path d="M ${x + r * .35} ${y - r * .95} v ${r * 1.9}" stroke="#c3d3a6" stroke-width="1.1"/>
+      <path d="M ${x} ${y - r * 1.05} q ${r * .35} ${-r * .55} ${r * .05} ${-r * .85}" stroke="#6f9b52" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>`,
+
+  // leek: split rounds, white at the root end fading to green
+  leek: (x, y, r, rnd) => `<g transform="${rot(x, y, rnd() * 360)}">
+      <circle cx="${x}" cy="${y}" r="${r}" fill="#8fb35e"/>
+      <circle cx="${x}" cy="${y}" r="${r * .74}" fill="#dfe9c6"/>
+      <circle cx="${x}" cy="${y}" r="${r * .46}" fill="#f4f8e8"/>
+      <circle cx="${x}" cy="${y}" r="${r * .2}" fill="#cfdfae"/></g>`,
 };
 
 const VEG_SIZE = {
   zucchini: 11, squash: 11, cucumber: 10, radish: 9.5, tomato: 10, pepper: 7.5, onion: 8,
   olive: 6.5, broccoli: 15, cauliflower: 14, greens: 9.5, cabbage: 8, greenbean: 8,
-  asparagus: 8, mushroom: 11, bokchoy: 13, avocado: 7.5, lemon: 11, lime: 10, egg: 11
+  asparagus: 8, mushroom: 11, bokchoy: 13, avocado: 7.5, lemon: 11, lime: 10, egg: 11,
+  brussels: 10, kale: 11, turnip: 10, fennel: 10, leek: 8.5
 };
 
 const SAUCE = {
@@ -448,6 +492,8 @@ function renderMonthSwitch() {
              aria-pressed="${m.key === MONTH.key}" title="${esc(m.title)}">${esc(m.short)}</button>`).join("");
 }
 
+const NIGHT_WORD = { 28: "Twenty-eight", 29: "Twenty-nine", 30: "Thirty", 31: "Thirty-one" };
+
 function renderMasthead() {
   $("#hero-eyebrow").textContent = MONTH.span;
   $("#hero-title").textContent = `Megan's Grand ${MONTH.label} Mealplan`;
@@ -455,6 +501,8 @@ function renderMasthead() {
   $("#hero-lede").textContent = MONTH.lede;
   $("#glance-eyebrow").textContent = MONTH.title;
   $("#plan-count").textContent = `${DAYS.length} nights`;
+  $("#glance-h2").textContent = `${NIGHT_WORD[DAYS.length] || DAYS.length} nights at a glance`;
+  $("#brand-mark").textContent = DAYS.length;
   document.title = `Megan's Grand Mealplan · ${MONTH.title}`;
 }
 
