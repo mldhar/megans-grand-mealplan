@@ -111,6 +111,8 @@ const FX = (() => {
       start = { x: e.clientX, y: e.clientY };
       base = parseFloat(el.style.getPropertyValue("--turn")) || 0;
       moved = false;
+      // a press that wanders off the plate must still end here, or it drags forever
+      try { el.setPointerCapture(e.pointerId); } catch (_) {}
     });
     el.addEventListener("pointermove", e => {
       if (!start) return;
@@ -118,13 +120,13 @@ const FX = (() => {
       if (!moved && Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
         moved = true;
         el.classList.add("dragging");
-        try { el.setPointerCapture(e.pointerId); } catch (_) {}
       }
       if (moved) el.style.setProperty("--turn", `${base + dx * 0.6}deg`);
     });
     const end = () => { start = null; el.classList.remove("dragging"); };
     el.addEventListener("pointerup", end);
     el.addEventListener("pointercancel", end);
+    el.addEventListener("lostpointercapture", end);
     // a drag is not a click
     el.addEventListener("click", e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
   }

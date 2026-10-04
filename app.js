@@ -662,8 +662,8 @@ function renderMasthead() {
     `${PLAN_TOTAL.nights} dinners, ${planSpan()}. Dairy-free, grain-free, sugar-free, seed-oil-free.`;
   // the printed shopping list names the month it belongs to
   $("#groceries").dataset.printTitle = `Megan's Grand ${MONTH.label} Mealplan / Shopping lists`;
-  document.title = `Megan's Grand Mealplan · ${MONTH.title}`;
-  baseTitle = document.title;
+  baseTitle = `Megan's Grand Mealplan · ${MONTH.title}`;
+  paintTitle();
 }
 
 /* everything that depends on which month is selected */
@@ -889,7 +889,8 @@ function withTimers(text, stepNo) {
     let secs;
     if (phrase) secs = /half/i.test(phrase) ? 1800 : 3600;
     else secs = Math.round(num(lo) * (/^h/i.test(unit) ? 3600 : 60));
-    if (!secs || secs > 4 * 3600) return m;
+    const most = phrase ? secs : Math.round(num(hi || lo) * (/^h/i.test(unit) ? 3600 : 60));
+    if (!secs || most > 4 * 3600) return m;
     return `<button type="button" class="tchip" data-secs="${secs}" data-step="${stepNo}" title="Start a ${fmtDur(secs)} timer">${ICON.timer}${m}</button>`;
   });
 }
@@ -922,6 +923,7 @@ function startTimer(secs, label, sub) {
 
 function renderTimers(fresh = false) {
   const host = $("#timers");
+  const had = document.activeElement?.closest?.(".timer") ? [document.activeElement.closest(".timer").dataset.id, document.activeElement.dataset.t] : null;
   host.innerHTML = timers.map(t => `
     <div class="timer${t.done ? " done" : ""}${t.paused ? " paused" : ""}" data-id="${t.id}" role="group" aria-label="Timer: ${esc(t.sub)}">
       <span class="t-ring" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="t-track" cx="20" cy="20" r="16"/><circle class="t-fill" cx="20" cy="20" r="16" pathLength="100"/></svg></span>
@@ -936,6 +938,9 @@ function renderTimers(fresh = false) {
       </span>
     </div>`).join("");
   if (fresh) host.lastElementChild?.classList.add("fresh");
+  if (had) ($(`.timer[data-id="${had[0]}"] [data-t="${had[1]}"]`) || $(`.timer[data-id="${had[0]}"] .t-btn`) || $("#modal.open #modal-close"))?.focus();
+  // the recipe and the page keep their last lines clear of the timer stack
+  document.body.style.setProperty("--timers-h", timers.length ? `${host.offsetHeight + 16}px` : "0px");
   paintTimers();
   if (timers.some(t => !t.done && !t.paused)) { if (!tickHandle) tickHandle = setInterval(tickTimers, 250); }
   else { clearInterval(tickHandle); tickHandle = 0; }
@@ -963,6 +968,9 @@ function tickTimers() {
 function ring() {
   try {
     audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    // without a tap on this page load the browser keeps sound locked; notes queued now
+    // would all play later, at the next tap, so skip them
+    if (audio.state !== "running") throw 0;
     const now = audio.currentTime;
     [0, .22, .44, 1.2, 1.42, 1.64, 2.4, 2.62, 2.84].forEach((at, i) => {
       const o = audio.createOscillator(), g = audio.createGain();
@@ -975,8 +983,10 @@ function ring() {
     });
   } catch (_) {}
   navigator.vibrate?.([280, 120, 280, 120, 520]);
-  document.title = "⏰ Timer done · " + baseTitle;
+  paintTitle();
 }
+
+const paintTitle = () => { document.title = (timers.some(t => t.done) ? "⏰ Timer done · " : "") + baseTitle; };
 
 function timerAction(btn) {
   const el = btn.closest(".timer"), t = timers.find(x => x.id === el.dataset.id);
@@ -988,7 +998,7 @@ function timerAction(btn) {
     if (t.paused) { t.end = Date.now() + t.left * 1000; t.paused = false; }
     else { t.left = leftOf(t); t.paused = true; }
   }
-  if (!timers.some(x => x.done)) document.title = baseTitle;
+  paintTitle();
   saveTimers();
   renderTimers();
 }
@@ -1003,7 +1013,9 @@ async function setWake(on) {
   wakeWanted = on;
   try {
     if (on && !wakeLock) {
-      wakeLock = await navigator.wakeLock.request("screen");
+      const lock = await navigator.wakeLock.request("screen");
+      if (!wakeWanted || wakeLock) { lock.release(); paintWake(); return; }
+      wakeLock = lock;
       wakeLock.addEventListener("release", () => { wakeLock = null; paintWake(); });
     } else if (!on && wakeLock) {
       await wakeLock.release();
@@ -1037,6 +1049,7 @@ const tickable = (inner, cls = "") =>
   `<div class="tickable${cls}" role="checkbox" aria-checked="false" tabindex="0">${inner}</div>`;
 
 function setInert(on) {
+  document.body.classList.toggle("modal-open", on);
   $$("body > header, body > main, body > footer, #dock").forEach(el => { el.inert = on; });
 }
 
@@ -1097,7 +1110,7 @@ function openDay(n, push = true, from = null) {
       </div>
       <div>
         <h3 class="m-h">Method <small>${d.steps.length} steps · tap a time to start a timer</small></h3>
-        <ol class="steps">${d.steps.map((s, k) => `<li>${tickable(`<span class="n"></span><span class="txt">${withTimers(s, k + 1)}</span>`)}</li>`).join("")}</ol>
+        <ol class="steps">${d.steps.map((s, k) => `<li><div class="tickable"><button type="button" class="n" aria-pressed="false" aria-label="Step ${k + 1} done"></button><span class="txt">${withTimers(s, k + 1)}</span></div></li>`).join("")}</ol>
       </div>
     </div>
 
@@ -1400,8 +1413,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tick) return toggleTick(tick);
 
     if (e.target.closest("[data-close]") || e.target.closest("#modal-close")) return closeModal();
-    if (e.target.closest("#m-prev")) return openDay(currentDay - 1);
-    if (e.target.closest("#m-next")) return openDay(currentDay + 1);
+    if (e.target.closest("#m-prev")) return currentDay != null && openDay(currentDay - 1);
+    if (e.target.closest("#m-next")) return currentDay != null && openDay(currentDay + 1);
     if (e.target.closest("#m-wake")) return setWake(!wakeLock);
 
     const mt = e.target.closest("[data-month]");
@@ -1449,7 +1462,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#search-clear").addEventListener("click", () => { $("#search").value = ""; applyFilters(); $("#search").focus(); });
 
   document.addEventListener("keydown", e => {
-    const open = $("#modal").classList.contains("open");
+    const open = $("#modal").classList.contains("open") && !closing;
     // the tick-off rows are checkboxes in all but tag name
     if ((e.key === " " || e.key === "Enter") && e.target.classList?.contains("tickable")) {
       e.preventDefault(); return toggleTick(e.target);
@@ -1457,7 +1470,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && open) return closeModal();
     if (open && e.key === "ArrowLeft" && currentDay > 1) return openDay(currentDay - 1);
     if (open && e.key === "ArrowRight" && currentDay < DAYS.length) return openDay(currentDay + 1);
-    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || e.metaKey || e.ctrlKey || e.altKey;
     if (!open && e.key === "/" && !typing) {
       e.preventDefault(); $("#search").focus();
     }
@@ -1514,7 +1527,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function toggleTick(el) {
   const on = el.classList.toggle("on");
-  el.setAttribute("aria-checked", String(on));
+  if (el.getAttribute("role") === "checkbox") el.setAttribute("aria-checked", String(on));
+  el.querySelector(".n")?.setAttribute("aria-pressed", String(on));
 }
 
 /* Printing only ever produces the shopping list, either all five trips or a
