@@ -78,10 +78,11 @@ python3 -m http.server 8765
 | File | What's in it |
 | --- | --- |
 | `index.html` | Page structure |
-| `styles.css` | Design system, light/dark themes, print stylesheet |
-| `data.js` | Both months: days, grocery lists, prep notes, shared dietary rules |
-| `app.js` | Rendering, month switching, filtering, the recipe modal, sharing, and the SVG dish illustrations |
-| `og-image.png` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
+| `styles.css` | Design system, light/dark themes, motion, print stylesheet |
+| `data.js` | All five months: days, grocery lists, prep notes, shared dietary rules |
+| `app.js` | Rendering, month switching, filtering, the recipe modal, kitchen timers, sharing, and the SVG dish illustrations |
+| `fx.js` | Motion and depth only: card tilt, the turntable, reveals, count-ups, the theme wipe, confetti. The site works the same without it |
+| `og-image.jpg` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
 | `icon.svg`, `apple-touch-icon.png` | Favicon and home-screen icon |
 | `tools/` | Sources for the images above, rendered with headless Chrome, not loaded by the site |
 
@@ -108,38 +109,76 @@ night, both are simply omitted.
 
 - Month switcher in the header. Opens on whichever month today falls in, then remembers
   your last choice
-- 30 or 31 recipe cards a month, each with a generated illustration
+- **Tonight, up front.** The hero is tonight's dinner as a 3D plate on a slow turntable:
+  drag it to turn it, step through the other nights with the arrows on the ticket below it,
+  click it for the recipe. Outside the month it shows the opening night
+- **A real calendar.** Every night sits under its actual weekday. Tonight is ringed, nights
+  already cooked are struck through, and filtered-out nights fade in place rather than
+  collapsing the grid
+- 30 or 31 recipe cards a month, each with a generated illustration that stands up in
+  layers when the card tilts toward the pointer
 - Filter by protein, or by hands-on time of 15 minutes or less
-- Full recipe modal: ingredients, method, source rating, protein per plate, and the
-  swaps that keep it compliant
+- Full recipe panel: ingredients, method, source rating, protein per plate, and the
+  swaps that keep it compliant. Swipe left and right between nights on a phone
+- **Kitchen timers.** Every cooking time in a method step ("roast 40 minutes") is a button
+  that starts a timer. Timers keep running with the recipe closed, survive a reload, chime
+  and vibrate when they finish, and can be paused or given another minute. Ranges start at
+  the low end, which is when you should first check
+- **Keep screen on**, in the recipe panel, so a phone propped against the backsplash does not
+  go dark mid-step. Released when the recipe closes. Shown only where the browser supports it
 - Deep links: `#sep-14` opens that night's recipe directly. `#nov-26` is Thanksgiving, `#dec-25` is Christmas Day
 - Grocery checklists that persist in `localStorage`, kept separate per month, so
-  resetting one month leaves the other three alone
-- Keyboard: `/` focuses search, `←` `→` move between nights, `[` `]` switch month
-- Light/dark themes and a print stylesheet that prints only the shopping lists
+  resetting one month leaves the other four alone. Finishing a trip is celebrated
+- Keyboard: `/` focuses search, `←` `→` move between nights, `[` `]` switch month,
+  Space or Enter ticks off an ingredient or step
+- Light/dark themes, switched with a circular wipe from the button, and a print stylesheet
+  that prints only the shopping lists, headed with the right month's name
+- On a phone the section links move to a dock at the bottom of the screen
 - Share button: the native share sheet on a phone, copy-to-clipboard everywhere else
 - Link previews on iMessage, WhatsApp, Slack, Discord and Facebook via Open Graph tags
 
+### Motion and accessibility
+
+Everything that moves is in `fx.js` and the motion section of `styles.css`. If the
+system asks for reduced motion, nothing moves on its own and nothing follows the pointer:
+the plates still stand in 3D, but they do not spin, steam, drift or tilt, and every
+section is visible without waiting for an entrance. The recipe panel makes the page
+behind it inert, so keyboard focus cannot wander out of it, and returns focus to the card
+that opened it.
+
 ### Regenerating the images
 
-Both images are committed, so you only need this if the numbers change:
+Both images are committed, so you only need this if the numbers or the look change.
+The preview card loads the site's own stylesheet and plate renderer, and counts every
+figure on it from `data.js`:
 
 ```bash
 python3 -m http.server 8000
 # then, with headless Chrome:
-chrome --headless --window-size=1200,630 --screenshot=og-image.png http://localhost:8000/tools/og-card.html
+chrome --headless --window-size=1200,630 --screenshot=og-image.jpg http://localhost:8000/tools/og-card.html
 chrome --headless --window-size=180,180  --screenshot=apple-touch-icon.png http://localhost:8000/tools/icon-render.html
 ```
+
+The card is a JPEG because WhatsApp drops link-preview images over about 300KB, and
+a PNG of the plate and its gradients comes out at over 700KB.
 
 The icon's five bars are the five proteins, with heights proportional to how many
 nights each one actually gets across all 152.
 
 ## Illustrations
 
-There are no image files. Each dish is an inline SVG composed at runtime in `app.js`
-from the day's `art: { protein, veg, sauce }` tags, laid out by a seeded PRNG so a
-given dish looks identical on every load. Adding a vegetable to a dish is a one-word
-change in `data.js`.
+There are no image files. Each dish is composed at runtime in `app.js` from the day's
+`art: { protein, veg, sauce }` tags, laid out by a seeded PRNG so a given dish looks
+identical on every load. Adding a vegetable to a dish is a one-word change in `data.js`.
+
+A dish is drawn as six stacked SVG layers: board, plate, sauce, vegetables, protein,
+herbs. On a card the layers shift by their own depth as the card tilts, so the food sits
+above the plate and the plate above the board. In the hero and the recipe panel the same
+layers are stood on a tilted turntable with real 3D transforms, a few rings under the
+plate for the thickness of its rim, and steam rising off the top. The layers draw their
+random numbers in exactly the order the single flat picture did, so all 152 dishes look
+the way they always have. Card plates are drawn as they come near the screen rather than
+all at once, which keeps a month switch quick.
 
 ## Recipe sources
 
