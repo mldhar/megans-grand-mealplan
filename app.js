@@ -700,6 +700,7 @@ function switchMonth(key) {
   store.set("mealplan26:month", key);
   filterProtein = "all";
   filterQuick = false;
+  filterKeep = false;
   $("#search").value = "";
   renderMonth();
   replayMasthead();
@@ -721,10 +722,12 @@ function renderGlance() {
   DAYS.forEach((d, k) => {
     const pos = lead + k, row = Math.floor(pos / 7), col = pos % 7;
     const state = live ? (d.day === live ? " today" : d.day < live ? " past" : "") : "";
+    const v = verdictOf(MONTH.key, d.day);
     cells.push(`
-    <button class="glance-cell${state}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${row + col}"
+    <button class="glance-cell${state}${v ? " v-" + v : ""}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${row + col}"
             title="${esc(d.title)} (${esc(PROTEINS[d.protein].label)})"
-            aria-label="Day ${d.day}, ${esc(d.dow)}: ${esc(d.title)}, ${esc(PROTEINS[d.protein].label)}${state === " today" ? ", tonight" : ""}">
+            data-label="Day ${d.day}, ${esc(d.dow)}: ${esc(d.title)}, ${esc(PROTEINS[d.protein].label)}${state === " today" ? ", tonight" : ""}"
+            aria-label="Day ${d.day}, ${esc(d.dow)}: ${esc(d.title)}, ${esc(PROTEINS[d.protein].label)}${state === " today" ? ", tonight" : ""}${VERDICT_SAYS[v] || ""}">
       <span class="g-top"><span class="g-num">${d.day}</span>${state === " today" ? `<span class="g-now">Tonight</span>` : `<span class="g-glyph">${glyph(d.protein, 14)}</span>`}</span>
       <span class="g-title">${esc(d.title)}</span>
     </button>`);
@@ -780,10 +783,12 @@ function lazyArt() {
 function cardHtml(d, i, live) {
   const p = PROTEINS[d.protein];
   const tonight = live && d.day === live;
+  const v = verdictOf(MONTH.key, d.day);
   return `
-  <button class="card${tonight ? " today" : ""}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${i}"
-          aria-label="Open day ${d.day}: ${esc(d.title)}${tonight ? ", tonight" : ""}">
-    <span class="card-art"><span class="art-slot" data-art="${d.day}"></span>${tonight ? `<span class="ribbon">Tonight</span>` : ""}</span>
+  <button class="card${tonight ? " today" : ""}${v ? " v-" + v : ""}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${i}"
+          data-label="Open day ${d.day}: ${esc(d.title)}${tonight ? ", tonight" : ""}"
+          aria-label="Open day ${d.day}: ${esc(d.title)}${tonight ? ", tonight" : ""}${VERDICT_SAYS[v] || ""}">
+    <span class="card-art"><span class="art-slot" data-art="${d.day}"></span>${tonight ? `<span class="ribbon">Tonight</span>` : ""}<span class="vb again" aria-hidden="true">${VERDICT_ICON.again}Make again</span><span class="vb pass" aria-hidden="true">${VERDICT_ICON.skip}Skip</span></span>
     <span class="card-head">
       <span class="card-no">DAY <b>${pad2(d.day)}</b> · ${d.dow.slice(0, 3)} ${dayOfMonth(d.date)}</span>
       <span class="tag-p">${glyph(d.protein, 11)}${esc(p.label)}</span>
@@ -831,6 +836,7 @@ function buildIndex() {
 
 let filterProtein = "all";
 let filterQuick = false;
+let filterKeep = false;
 
 function renderFilters() {
   const counts = {};
@@ -840,8 +846,11 @@ function renderFilters() {
     Object.entries(PROTEINS).map(([k, v]) =>
       `<button class="fbtn" data-filter="${k}" style="${pcVar(k)}">${glyph(k, 13)}${esc(v.label)} <b>${counts[k] || 0}</b></button>`).join("") +
     `<button class="fbtn quick" data-quick="1" title="Recipes needing 15 minutes or less of hands-on work">
-       <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13.5 2 4 14h7l-1.5 8L20 10h-7l.5-8Z"/></svg>Quick <b>≤15m</b></button>`;
+       <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13.5 2 4 14h7l-1.5 8L20 10h-7l.5-8Z"/></svg>Quick <b>≤15m</b></button>` +
+    `<button class="fbtn keep" data-keep="1" title="Nights you marked Make again"${keepCount() ? "" : " hidden"}>${VERDICT_ICON.again}Make again <b>${keepCount()}</b></button>`;
 }
+
+const keepCount = () => DAYS.filter(d => verdictOf(MONTH.key, d.day) === "again").length;
 
 function applyFilters() {
   const q = $("#search").value.trim().toLowerCase();
@@ -852,7 +861,8 @@ function applyFilters() {
     const okProtein = filterProtein === "all" || d.protein === filterProtein;
     const okQuick = !filterQuick || toMins(d.active) <= 15;
     const okText = !q || searchIndex.get(d.day).includes(q);
-    const on = okProtein && okQuick && okText;
+    const okKeep = !filterKeep || verdictOf(MONTH.key, d.day) === "again";
+    const on = okProtein && okQuick && okText && okKeep;
     if (on) shown++;
     $$(`.card[data-day="${d.day}"], .glance-cell[data-day="${d.day}"]`).forEach(el => el.classList.toggle("hide", !on));
   });
@@ -864,6 +874,7 @@ function applyFilters() {
 
   $$(".fbtn").forEach(b => {
     if (b.dataset.quick) b.classList.toggle("active", filterQuick);
+    else if (b.dataset.keep) b.classList.toggle("active", filterKeep);
     else b.classList.toggle("active", b.dataset.filter === filterProtein);
   });
   $$(".rot-row").forEach(r => r.classList.toggle("active", r.dataset.filter === filterProtein));
@@ -1089,6 +1100,7 @@ function openDay(n, push = true, from = null) {
       <h2 id="modal-title">${esc(d.title)}</h2>
       <p class="m-blurb">${esc(d.blurb)}</p>
       <div class="m-source">${sourceLine(d)}</div>
+      ${verdictRow(MONTH.key, d.day)}
       <div class="m-stats">
         <div><b>${esc(d.time)}</b><span>total</span></div>
         <div><b>${esc(d.active)}</b><span>hands-on</span></div>
@@ -1163,6 +1175,144 @@ function closeModal(instant = false) {
   };
   if (instant) return finish();
   FX.zoomOut($(".modal-panel"), $(".modal-scrim")).then(finish);
+}
+
+/* ============================================================
+   VERDICTS
+   After a night is cooked, one tap says whether it comes back.
+   Kept per night (a December repeat is judged on its own), in this
+   browser, and gathered into one list across all five months that
+   January gets planned from.
+   ============================================================ */
+const VKEY = "mealplan26:verdicts";
+let verdicts = {};
+try { verdicts = JSON.parse(store.get(VKEY) || "{}") || {}; } catch (_) { verdicts = {}; }
+const verdictOf = (mkey, day) => verdicts[`${mkey}-${day}`] || null;
+const VERDICT_SAYS = { again: ", marked make again", skip: ", marked skip" };
+const VERDICT_ICON = {
+  again: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 20.5 4.3 13a4.9 4.9 0 0 1 0-7 4.8 4.8 0 0 1 6.9 0l.8.8.8-.8a4.8 4.8 0 0 1 6.9 0 4.9 4.9 0 0 1 0 7L12 20.5Z"/></svg>',
+  skip: '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="m7 7 10 10M17 7 7 17"/></svg>'
+};
+
+function verdictRow(mkey, day) {
+  const v = verdictOf(mkey, day), key = `${mkey}-${day}`;
+  return `
+    <div class="m-verdict" data-for="${key}">
+      <span class="mv-q">Cooked it? Would you make it again?</span>
+      <span class="mv-btns">
+        <button type="button" class="vbtn again" data-verdict="again" data-key="${key}" aria-pressed="${v === "again"}">${VERDICT_ICON.again}Make again</button>
+        <button type="button" class="vbtn pass" data-verdict="skip" data-key="${key}" aria-pressed="${v === "skip"}">${VERDICT_ICON.skip}Skip next time</button>
+      </span>
+    </div>`;
+}
+
+/* tapping the verdict a night already has takes it back */
+function setVerdict(key, v) {
+  if (verdicts[key] === v) delete verdicts[key]; else verdicts[key] = v;
+  store.set(VKEY, JSON.stringify(verdicts));
+  const now = verdicts[key] || null;
+  const [mkey, day] = [key.slice(0, 3), +key.slice(4)];
+
+  $$(`[data-verdict][data-key="${key}"]`).forEach(b => {
+    const on = b.dataset.verdict === now;
+    b.setAttribute("aria-pressed", String(on));
+    if (on) FX.rerun([b], { frames: [{ transform: "scale(.86)" }, { transform: "scale(1.06)" }, { transform: "none" }], duration: 420 });
+  });
+  if (mkey === MONTH.key) {
+    $$(`.card[data-day="${day}"], .glance-cell[data-day="${day}"]`).forEach(el => {
+      el.classList.toggle("v-again", now === "again");
+      el.classList.toggle("v-skip", now === "skip");
+      el.setAttribute("aria-label", el.dataset.label + (VERDICT_SAYS[now] || ""));
+    });
+    const chip = $(".fbtn.keep");
+    if (chip) { const n = keepCount(); chip.hidden = !n; $("b", chip).textContent = n; if (!n && filterKeep) filterKeep = false; }
+    applyFilters();
+  }
+  renderKeepers();
+}
+
+const monthOf = (key) => PLAN_MONTHS.find(m => m.key === key);
+const nightOf = (mkey, day) => monthOf(mkey)?.days.find(d => d.day === day);
+
+/* open any night in any month, switching to that month first if need be */
+function openNight(ref) {
+  const [mkey, day] = [ref.slice(0, 3), +ref.slice(4)];
+  if (mkey !== MONTH.key) switchMonth(mkey);
+  openDay(day, true, null);
+}
+
+let catchupAll = false;
+
+function renderKeepers() {
+  const host = $("#keepers-body");
+  if (!host) return;
+  const now = today();
+  const rows = [];
+  PLAN_MONTHS.forEach(m => m.days.forEach(d => rows.push({ m, d, key: `${m.key}-${d.day}`, v: verdictOf(m.key, d.day), past: atDay(d.date) < now })));
+  const again = rows.filter(r => r.v === "again"), skip = rows.filter(r => r.v === "skip");
+  // most recent first: what you cooked this week is what you remember best
+  const unrated = rows.filter(r => r.past && !r.v).reverse();
+  const shownUnrated = catchupAll ? unrated : unrated.slice(0, 6);
+
+  const line = (r) => `
+    <li class="kp-row" style="${pcVar(r.d.protein)}">
+      <span class="kp-glyph">${glyph(r.d.protein, 15)}</span>
+      <button type="button" class="kp-title" data-open="${r.key}">${esc(r.d.title)}</button>
+      <span class="kp-when">${esc(r.d.dow.slice(0, 3))} ${shortDate(r.d.date)}</span>
+      ${r.d.source.rating != null ? `<span class="kp-rate">★ ${r.d.source.rating}</span>` : ""}
+    </li>`;
+  const quick = (r) => `
+    <li class="kp-row" style="${pcVar(r.d.protein)}">
+      <span class="kp-glyph">${glyph(r.d.protein, 15)}</span>
+      <button type="button" class="kp-title" data-open="${r.key}">${esc(r.d.title)}</button>
+      <span class="kp-when">${esc(r.d.dow.slice(0, 3))} ${shortDate(r.d.date)}</span>
+      <span class="kp-quick">
+        <button type="button" class="vbtn again sm" data-verdict="again" data-key="${r.key}" aria-pressed="false" aria-label="Make ${esc(r.d.title)} again">${VERDICT_ICON.again}</button>
+        <button type="button" class="vbtn pass sm" data-verdict="skip" data-key="${r.key}" aria-pressed="false" aria-label="Skip ${esc(r.d.title)} next time">${VERDICT_ICON.skip}</button>
+      </span>
+    </li>`;
+
+  host.innerHTML = `
+    <div class="kp-top">
+      <span class="kp-count again">${VERDICT_ICON.again}<b>${again.length}</b> make again</span>
+      <span class="kp-count pass">${VERDICT_ICON.skip}<b>${skip.length}</b> skip</span>
+      <span class="kp-count">${unrated.length ? `<b>${unrated.length}</b> cooked, not yet rated` : "Everything cooked so far is rated"}</span>
+      <button type="button" class="btn-sm" id="copy-verdicts"${again.length || skip.length ? "" : " disabled"}>Copy the list for January</button>
+    </div>
+    ${unrated.length ? `
+    <div class="kp-catch">
+      <h3>Catch up on what you have cooked</h3>
+      <p>One tap each. Most recent first.</p>
+      <ul>${shownUnrated.map(quick).join("")}</ul>
+      ${unrated.length > shownUnrated.length ? `<button type="button" class="btn-sm" id="catchup-more">Show all ${unrated.length}</button>` : ""}
+    </div>` : ""}
+    <div class="kp-lists">
+      <div class="kp-list again">
+        <h3>${VERDICT_ICON.again}Make again</h3>
+        ${again.length ? `<ul>${again.map(line).join("")}</ul>` : `<p class="kp-empty">Nothing yet. Open a night you have cooked and tap Make again.</p>`}
+      </div>
+      <div class="kp-list pass">
+        <h3>${VERDICT_ICON.skip}Skip next time</h3>
+        ${skip.length ? `<ul>${skip.map(line).join("")}</ul>` : `<p class="kp-empty">Nothing yet. These stay out of January.</p>`}
+      </div>
+    </div>`;
+}
+
+/* plain text, ready to paste into a message: this is the brief for January */
+function copyVerdicts(btn) {
+  const rows = [];
+  PLAN_MONTHS.forEach(m => m.days.forEach(d => { const v = verdictOf(m.key, d.day); if (v) rows.push({ m, d, v }); }));
+  const fmt = ({ d }) => `  - ${d.title} (${shortDate(d.date)}, ${PROTEINS[d.protein].label.toLowerCase()}${d.source.url ? `, ${d.source.name}` : ""})`;
+  const txt = [
+    `Megan's Grand Mealplan: verdicts as of ${(t => `${t.getDate()} ${MONTHS[t.getMonth() + 1]}`)(today())}`, "",
+    `MAKE AGAIN (${rows.filter(r => r.v === "again").length})`, ...rows.filter(r => r.v === "again").map(fmt), "",
+    `SKIP (${rows.filter(r => r.v === "skip").length})`, ...rows.filter(r => r.v === "skip").map(fmt)
+  ].join("\n");
+  navigator.clipboard?.writeText(txt).then(() => {
+    const old = btn.textContent;
+    btn.textContent = "Copied"; btn.classList.add("ok");
+    setTimeout(() => { btn.textContent = old; btn.classList.remove("ok"); }, 1600);
+  }).catch(() => {});
 }
 
 /* ============================================================
@@ -1385,6 +1535,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderRules();
   renderMonth();
+  renderKeepers();
   renderTimers();
   initTheme();
   initNav();
@@ -1444,9 +1595,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const fb = e.target.closest(".fbtn");
     if (fb) {
       if (fb.dataset.quick) filterQuick = !filterQuick;
+      else if (fb.dataset.keep) filterKeep = !filterKeep;
       else filterProtein = fb.dataset.filter;
       return applyFilters();
     }
+
+    const vb = e.target.closest("[data-verdict]");
+    if (vb) return setVerdict(vb.dataset.key, vb.dataset.verdict);
+    const kp = e.target.closest("[data-open]");
+    if (kp) return openNight(kp.dataset.open);
+    if (e.target.closest("#copy-verdicts")) return copyVerdicts(e.target.closest("#copy-verdicts"));
+    if (e.target.closest("#catchup-more")) { catchupAll = true; return renderKeepers(); }
 
     const sh = e.target.closest("#share-btn, #foot-share");
     if (sh) return sharePlan(sh);
