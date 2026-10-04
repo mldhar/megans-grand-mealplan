@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="180" height="180" role="img" aria-label="Megan's Grand Mealplan">
-  <rect width="64" height="64" rx="0" fill="#0d181d"/>
+  <rect width="64" height="64" rx="0" fill="#1f1813"/>
   <g>
     <rect x="9"  y="14"   width="8" height="38"   rx="1.5" fill="#e8b545"/>
     <rect x="20" y="21.4" width="8" height="30.6" rx="1.5" fill="#e0834e"/>

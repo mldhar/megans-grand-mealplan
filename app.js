@@ -269,10 +269,21 @@ const SAUCE = {
   brown: (x, y, rnd) => blob(x, y, 74, 13, .32, rnd, 'fill="#6b4620" opacity=".3"') + blob(x - 5, y + 5, 48, 10, .38, rnd, 'fill="#8a5c2c" opacity=".26"'),
 };
 
-/* Each dish is its own inline <svg>, so gradient/clip ids must be unique per
+
+/* ============================================================
+   PLATES IN DEPTH
+   A dish is drawn as six stacked layers (board, plate, sauce, veg,
+   protein, herbs) so it can be stood up in 3D: the cards shift each
+   layer by its own depth, the hero and the recipe panel turn the
+   whole plate on a tilted turntable. The random sequence is drawn in
+   exactly the order it always was, so every dish still looks the way
+   it did when it was a single flat picture.
+   ============================================================ */
+
+/* Each layer is its own inline <svg>, so gradient/clip ids must be unique per
    instance or later SVGs resolve to the first definition in the document. */
 const SVG_IDS = ["plateClip", "gChicken", "gChickenStrip", "gSteak", "gSteakStrip", "gMeatball",
-  "gKofta", "gPatty", "gCrumbleBeef", "gCrumbleLamb", "gTomato", "gYolk", "gPlate", "gBoard"];
+  "gKofta", "gPatty", "gCrumbleBeef", "gCrumbleLamb", "gTomato", "gYolk", "gPlate", "gBoard", "gShadow"];
 let artInstance = 0;
 
 function namespaceIds(svg, suffix) {
@@ -284,16 +295,40 @@ function namespaceIds(svg, suffix) {
   return out;
 }
 
-/* `wide` renders the same plate into a letterbox field for the modal header,
-   so the dish is never cropped by the panel's aspect ratio. */
-function dishArt(d, wide = false) {
-  const rnd = mulberry32(d.day * 7919 + 13);
-  const W = wide ? 900 : 400, H = wide ? 250 : 258;
-  const cx = W / 2, cy = H / 2, R = wide ? 104 : 102;
-  const art = d.art || { protein: "meatball", veg: ["greens"] };
-  let g = "";
+function defsFor(cx, cy, R) {
+  return {
+    plateClip: `<clipPath id="plateClip"><ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R * .94}"/></clipPath>`,
+    gChicken: '<radialGradient id="gChicken" cx="35%" cy="30%"><stop offset="0" stop-color="#efc079"/><stop offset="1" stop-color="#b9762f"/></radialGradient>',
+    gChickenStrip: '<linearGradient id="gChickenStrip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0cf94"/><stop offset="1" stop-color="#c58a3e"/></linearGradient>',
+    gSteak: '<linearGradient id="gSteak" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a3f22"/><stop offset=".5" stop-color="#572814"/><stop offset="1" stop-color="#411d0f"/></linearGradient>',
+    gSteakStrip: '<linearGradient id="gSteakStrip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c4123"/><stop offset="1" stop-color="#4a2011"/></linearGradient>',
+    gMeatball: '<radialGradient id="gMeatball" cx="34%" cy="30%"><stop offset="0" stop-color="#c8834c"/><stop offset="1" stop-color="#71391a"/></radialGradient>',
+    gKofta: '<linearGradient id="gKofta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5723d"/><stop offset="1" stop-color="#6d381a"/></linearGradient>',
+    gPatty: '<radialGradient id="gPatty" cx="34%" cy="30%"><stop offset="0" stop-color="#9c5a2e"/><stop offset="1" stop-color="#5b2a12"/></radialGradient>',
+    gCrumbleBeef: '<radialGradient id="gCrumbleBeef" cx="35%" cy="30%"><stop offset="0" stop-color="#a4643a"/><stop offset="1" stop-color="#5e2e15"/></radialGradient>',
+    gCrumbleLamb: '<radialGradient id="gCrumbleLamb" cx="35%" cy="30%"><stop offset="0" stop-color="#b06d4d"/><stop offset="1" stop-color="#6b3120"/></radialGradient>',
+    gTomato: '<radialGradient id="gTomato" cx="34%" cy="28%"><stop offset="0" stop-color="#e8624a"/><stop offset="1" stop-color="#b62a1c"/></radialGradient>',
+    gYolk: '<radialGradient id="gYolk" cx="35%" cy="32%"><stop offset="0" stop-color="#ffd85e"/><stop offset="1" stop-color="#eda31d"/></radialGradient>',
+    gPlate: '<radialGradient id="gPlate" cx="34%" cy="26%"><stop offset="0" stop-color="#fffefb"/><stop offset="1" stop-color="#ebe5d8"/></radialGradient>',
+    gBoard: '<linearGradient id="gBoard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".3"/><stop offset="1" stop-color="#3a2b18" stop-opacity=".14"/></linearGradient>',
+    gShadow: '<radialGradient id="gShadow"><stop offset=".62" stop-color="#2b1d0d" stop-opacity=".2"/><stop offset="1" stop-color="#2b1d0d" stop-opacity="0"/></radialGradient>'
+  };
+}
 
-  if (art.sauce && SAUCE[art.sauce]) g += `<g clip-path="url(#plateClip)">${SAUCE[art.sauce](cx + 4, cy + 10, rnd)}</g>`;
+/* one layer, carrying only the definitions it actually references */
+function svgLayer(cls, body, defs, vb) {
+  if (!body) return "";
+  const used = Object.keys(defs).filter(id => body.includes(`url(#${id})`)).map(id => defs[id]).join("");
+  return `<svg class="pl ${cls}" ${vb} aria-hidden="true" focusable="false">${used ? `<defs>${used}</defs>` : ""}${body}</svg>`;
+}
+
+function dishParts(d) {
+  const rnd = mulberry32(d.day * 7919 + 13);
+  const W = 400, H = 258, cx = W / 2, cy = H / 2, R = 102;
+  const art = d.art || { protein: "meatball", veg: ["greens"] };
+  const L = { sauce: "", veg: "", protein: "", herbs: "" };
+
+  if (art.sauce && SAUCE[art.sauce]) L.sauce = `<g clip-path="url(#plateClip)">${SAUCE[art.sauce](cx + 4, cy + 10, rnd)}</g>`;
 
   const placed = [];
   const heroA = rnd() * Math.PI * 2;
@@ -319,47 +354,53 @@ function dishArt(d, wide = false) {
   }
 
   vegItems.forEach(v => {
-    g += `<ellipse cx="${v.x.toFixed(1)}" cy="${(v.y + v.r * .34).toFixed(1)}" rx="${(v.r * 1.12).toFixed(1)}" ry="${(v.r * .82).toFixed(1)}" fill="#5c3f1c" opacity=".12"/>`;
-    g += VEG_ART[v.kind](v.x, v.y, v.r, rnd);
+    L.veg += `<ellipse cx="${v.x.toFixed(1)}" cy="${(v.y + v.r * .34).toFixed(1)}" rx="${(v.r * 1.12).toFixed(1)}" ry="${(v.r * .82).toFixed(1)}" fill="#5c3f1c" opacity=".12"/>`;
+    L.veg += VEG_ART[v.kind](v.x, v.y, v.r, rnd);
   });
 
-  g += (PROTEIN_ART[art.protein] || PROTEIN_ART.meatball)(hero.x, hero.y, rnd, 1.12);
+  L.protein = (PROTEIN_ART[art.protein] || PROTEIN_ART.meatball)(hero.x, hero.y, rnd, 1.12);
 
   for (let i = 0; i < 22; i++) {
     const a = rnd() * Math.PI * 2, dist = Math.sqrt(rnd()) * (R - 12);
     const px = cx + Math.cos(a) * dist, py = cy + Math.sin(a) * dist * .92;
-    g += `<ellipse cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" rx="${(1.6 + rnd() * 1.8).toFixed(1)}" ry="${(.9 + rnd()).toFixed(1)}" fill="#3f6b28" opacity="${(.35 + rnd() * .4).toFixed(2)}" transform="${rot(px, py, rnd() * 180)}"/>`;
+    L.herbs += `<ellipse cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" rx="${(1.6 + rnd() * 1.8).toFixed(1)}" ry="${(.9 + rnd()).toFixed(1)}" fill="#3f6b28" opacity="${(.35 + rnd() * .4).toFixed(2)}" transform="${rot(px, py, rnd() * 180)}"/>`;
   }
 
   const tint = (PROTEINS[d.protein] || {}).hex || "#8a6a4e";
+  return { W, H, cx, cy, R, L, tint, defs: defsFor(cx, cy, R) };
+}
 
-  const svg = `<svg class="dish-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Illustration of ${esc(d.title)}" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <clipPath id="plateClip"><ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R * .94}"/></clipPath>
-    <radialGradient id="gChicken" cx="35%" cy="30%"><stop offset="0" stop-color="#efc079"/><stop offset="1" stop-color="#b9762f"/></radialGradient>
-    <linearGradient id="gChickenStrip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0cf94"/><stop offset="1" stop-color="#c58a3e"/></linearGradient>
-    <linearGradient id="gSteak" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a3f22"/><stop offset=".5" stop-color="#572814"/><stop offset="1" stop-color="#411d0f"/></linearGradient>
-    <linearGradient id="gSteakStrip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c4123"/><stop offset="1" stop-color="#4a2011"/></linearGradient>
-    <radialGradient id="gMeatball" cx="34%" cy="30%"><stop offset="0" stop-color="#c8834c"/><stop offset="1" stop-color="#71391a"/></radialGradient>
-    <linearGradient id="gKofta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5723d"/><stop offset="1" stop-color="#6d381a"/></linearGradient>
-    <radialGradient id="gPatty" cx="34%" cy="30%"><stop offset="0" stop-color="#9c5a2e"/><stop offset="1" stop-color="#5b2a12"/></radialGradient>
-    <radialGradient id="gCrumbleBeef" cx="35%" cy="30%"><stop offset="0" stop-color="#a4643a"/><stop offset="1" stop-color="#5e2e15"/></radialGradient>
-    <radialGradient id="gCrumbleLamb" cx="35%" cy="30%"><stop offset="0" stop-color="#b06d4d"/><stop offset="1" stop-color="#6b3120"/></radialGradient>
-    <radialGradient id="gTomato" cx="34%" cy="28%"><stop offset="0" stop-color="#e8624a"/><stop offset="1" stop-color="#b62a1c"/></radialGradient>
-    <radialGradient id="gYolk" cx="35%" cy="32%"><stop offset="0" stop-color="#ffd85e"/><stop offset="1" stop-color="#eda31d"/></radialGradient>
-    <radialGradient id="gPlate" cx="34%" cy="26%"><stop offset="0" stop-color="#fffefb"/><stop offset="1" stop-color="#ebe5d8"/></radialGradient>
-    <linearGradient id="gBoard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".3"/><stop offset="1" stop-color="#3a2b18" stop-opacity=".14"/></linearGradient>
-  </defs>
-  <rect width="${W}" height="${H}" fill="#e9e0cf"/>
-  <rect width="${W}" height="${H}" fill="${tint}" opacity=".11"/>
-  <rect width="${W}" height="${H}" fill="url(#gBoard)"/>
-  <ellipse cx="${cx}" cy="${cy + 7}" rx="${R + 6}" ry="${R * .94 + 5}" fill="#2b1d0d" opacity=".12"/>
-  <ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R * .94}" fill="url(#gPlate)"/>
-  <ellipse cx="${cx}" cy="${cy}" rx="${R - 9}" ry="${R * .94 - 8}" fill="none" stroke="#d5cbb6" stroke-width="1.5" opacity=".8"/>
-  ${g}
-</svg>`;
+const plateBody = (P) =>
+  `<ellipse cx="${P.cx}" cy="${P.cy}" rx="${P.R}" ry="${P.R * .94}" fill="url(#gPlate)"/>
+   <ellipse cx="${P.cx}" cy="${P.cy}" rx="${P.R - 9}" ry="${P.R * .94 - 8}" fill="none" stroke="#d5cbb6" stroke-width="1.5" opacity=".8"/>`;
 
-  return namespaceIds(svg, `${d.day}-${artInstance++}`);
+const foodLayers = (P, vb) =>
+  svgLayer("pl-sauce", P.L.sauce, P.defs, vb) + svgLayer("pl-veg", P.L.veg, P.defs, vb) +
+  svgLayer("pl-protein", P.L.protein, P.defs, vb) + svgLayer("pl-herbs", P.L.herbs, P.defs, vb);
+
+/* the card version: the plate on its tinted board, layers stacked flat
+   until a pointer tilts the card */
+function cardArt(d) {
+  const P = dishParts(d);
+  const vb = `viewBox="0 0 ${P.W} ${P.H}" preserveAspectRatio="xMidYMid slice"`;
+  const base = `<rect width="${P.W}" height="${P.H}" fill="#e9e0cf"/>
+    <rect width="${P.W}" height="${P.H}" fill="${P.tint}" opacity=".11"/>
+    <rect width="${P.W}" height="${P.H}" fill="url(#gBoard)"/>
+    <ellipse cx="${P.cx + 4}" cy="${P.cy + 16}" rx="${P.R + 26}" ry="${P.R * .94 + 20}" fill="url(#gShadow)"/>
+    <ellipse cx="${P.cx}" cy="${P.cy + 7}" rx="${P.R + 6}" ry="${P.R * .94 + 5}" fill="#2b1d0d" opacity=".12"/>`;
+  const html = `<span class="plate2d">${svgLayer("pl-base", base, P.defs, vb)}${svgLayer("pl-plate", plateBody(P), P.defs, vb)}${foodLayers(P, vb)}</span>`;
+  return namespaceIds(html, `${d.day}-${artInstance++}`);
+}
+
+/* the stage version: the plate alone, cropped square and stood on a
+   turntable, with a few rings beneath it for the thickness of the rim */
+function stagePlate(d) {
+  const P = dishParts(d);
+  const m = 14, ry = P.R * .94;
+  const vb = `viewBox="${P.cx - P.R - m} ${(P.cy - ry - m).toFixed(2)} ${2 * P.R + 2 * m} ${(2 * ry + 2 * m).toFixed(2)}" preserveAspectRatio="none"`;
+  const rims = [6, 5, 4, 3, 2, 1].map(k => `<span class="rim" style="--k:${k}"></span>`).join("");
+  const html = `<span class="p3d"><span class="p3d-shadow"></span><span class="p3d-spin"><span class="p3d-turn">${rims}${svgLayer("pl-plate", plateBody(P), P.defs, vb)}${foodLayers(P, vb)}</span></span></span><span class="steam" aria-hidden="true"><i></i><i></i><i></i><i></i></span>`;
+  return namespaceIds(html, `s${d.day}-${artInstance++}`);
 }
 
 /* ============================================================
@@ -369,6 +410,12 @@ const MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 const shortDate = (iso) => { const [, m, d] = iso.split("-"); return `${+d} ${MONTHS[+m]}`; };
 // card heads are tight; every night is in the one month, so the month is dropped there
 const dayOfMonth = (iso) => +iso.split("-")[2];
+const pad2 = (n) => String(n).padStart(2, "0");
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
+};
 
 function stars(rating) {
   if (rating == null) return "";
@@ -384,9 +431,13 @@ function toMins(s) {
 }
 
 const ICON = {
-  clock: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  serves: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4v7a4 4 0 0 0 8 0V4M8 11v9M17 4c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Zm0 9v7"/></svg>',
-  protein: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20v-6M10 20V8M16 20v-9M2 20h20"/></svg>'
+  clock: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  hand: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3.5 20.5 9.5 10 20H4v-6L14.5 3.5Z"/><path d="m12 6 6 6"/></svg>',
+  serves: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4v7a4 4 0 0 0 8 0V4M8 11v9M17 4c-1.5 2-2 4-2 6s.5 3 2 3 2-1 2-3-.5-4-2-6Zm0 9v7"/></svg>',
+  protein: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20v-6M10 20V8M16 20v-9M2 20h20"/></svg>',
+  basket: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9h17l-1.6 9.2a2 2 0 0 1-2 1.8H7.1a2 2 0 0 1-2-1.8L3.5 9Z"/><path d="m8.5 9 2-5M15.5 9l-2-5"/></svg>',
+  timer: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 1.5M10 2.5h4"/></svg>',
+  check: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.4 8.6 6.6 11.6 12.8 4.6"/></svg>'
 };
 
 /* Protein per plate, drawn as two bars against a 90g ceiling so the two
@@ -398,10 +449,10 @@ function proteinBars(pg) {
     <div class="m-protein">
       <span class="eyebrow">Protein per plate</span>
       <div class="mp-bars">
-        ${[["Vishut", pg.him], ["Megan", pg.her]].map(([name, g]) => `
+        ${[["Vishut", pg.him], ["Megan", pg.her]].map(([name, g], i) => `
           <div class="mp-bar">
             <span class="mp-name">${esc(name)}</span>
-            <span class="mp-track"><i style="width:${Math.min(100, g / PRO_CEIL * 100).toFixed(0)}%"></i></span>
+            <span class="mp-track"><i style="width:${Math.min(100, g / PRO_CEIL * 100).toFixed(0)}%;--i:${i}"></i></span>
             <b>${g}g</b>
           </div>`).join("")}
       </div>
@@ -410,7 +461,71 @@ function proteinBars(pg) {
 }
 
 /* ============================================================
-   HERO: the rotation board
+   WHERE ARE WE: today against the month on screen
+   ============================================================ */
+const atDay = (iso) => new Date(iso + "T00:00:00");
+const today = () => { const n = new Date(); n.setHours(0, 0, 0, 0); return n; };
+
+/* tonight's day number, or null if the month on screen is not running */
+function liveDay() {
+  const now = today(), first = atDay(MONTH.first), last = atDay(MONTH.last);
+  if (now < first || now > last) return null;
+  return Math.round((now - first) / 86400000) + 1;
+}
+
+/* ============================================================
+   HERO: tonight's plate on the turntable
+   ============================================================ */
+let heroDay = 1;
+
+function heroLabel(n) {
+  const live = liveDay();
+  if (live) {
+    if (n === live) return "Tonight";
+    if (n === live + 1) return "Tomorrow";
+    if (n === live - 1) return "Last night";
+  } else {
+    if (n === 1) return "Opening night";
+    if (n === DAYS.length) return "Closing night";
+  }
+  return `Night ${n}`;
+}
+
+function renderHero(n = liveDay() || 1, dir = 0) {
+  const d = DAYS.find(x => x.day === n) || DAYS[0];
+  heroDay = d.day;
+  const p = PROTEINS[d.protein];
+  const hero = $("#hero");
+  hero.style.setProperty("--hero-pc", `var(--p-${d.protein})`);
+
+  const plate = $("#stage-plate");
+  plate.innerHTML = stagePlate(d);
+  plate.setAttribute("aria-label", `Open the recipe: ${d.title}`);
+  plate.style.setProperty("--turn", "0deg");
+  // the new plate's own entrance runs from CSS; the direction picks which way it arrives
+  plate.dataset.dir = dir > 0 ? "next" : dir < 0 ? "prev" : "";
+
+  $("#ticket-when").innerHTML = `<b>${esc(heroLabel(d.day))}</b> · ${esc(d.dow.slice(0, 3))} ${shortDate(d.date)}`;
+  $("#ticket-title").textContent = d.title;
+  $("#ticket-stats").innerHTML = `
+    <span>${ICON.clock}${esc(d.time)}</span>
+    <span>${ICON.hand}${esc(d.active)}</span>
+    ${d.protein_g ? `<span class="pro">${ICON.protein}${d.protein_g.him}/${d.protein_g.her}g</span>` : ""}`;
+  $("#ticket-prev").disabled = d.day <= 1;
+  $("#ticket-next").disabled = d.day >= DAYS.length;
+  FX.rerun([$("#ticket-title"), $("#ticket-stats")], { step: 60, duration: 600 });
+
+  const rating = d.source.rating != null
+    ? `<span class="chip-star">★</span> ${d.source.rating} <small>${Number(d.source.reviews).toLocaleString("en-US")} reviews</small>`
+    : `Built for this plan`;
+  $("#orbit").innerHTML = `
+    <span class="chip c1" style="${pcVar(d.protein)}">${glyph(d.protein, 14)}${esc(p.label)}</span>
+    <span class="chip c2">${rating}</span>
+    <span class="chip c3">${ICON.hand}${esc(d.active)} hands-on</span>`;
+}
+
+/* ============================================================
+   THE MONTH IN NUMBERS
    ============================================================ */
 function renderRotation() {
   const counts = {};
@@ -418,9 +533,9 @@ function renderRotation() {
   const max = Math.max(...Object.values(counts));
 
   $("#rot-total").textContent = `${DAYS.length} nights`;
-  $("#rot-rows").innerHTML = Object.entries(PROTEINS).map(([k, v]) => `
-    <button class="rot-row" style="${pcVar(k)}" data-filter="${k}" title="Show the ${esc(v.label.toLowerCase())} nights">
-      ${glyph(k, 19)}
+  $("#rot-rows").innerHTML = Object.entries(PROTEINS).map(([k, v], i) => `
+    <button class="rot-row" style="${pcVar(k)};--i:${i}" data-filter="${k}" title="Show the ${esc(v.label.toLowerCase())} nights">
+      <span class="rot-glyph">${glyph(k, 18)}</span>
       <span class="rot-name">${esc(v.label)}</span>
       <span class="rot-meter">
         <span class="rot-bar"><i style="width:${((counts[k] || 0) / max * 100).toFixed(0)}%"></i></span>
@@ -441,28 +556,28 @@ function renderRotation() {
   }, [0, 0]);
 
   const cells = [
-    `<div><b>${GROCERIES.length}</b><span>shopping trips</span></div>`,
-    `<div><b>${sourced}</b><span>sourced recipes</span></div>`,
-    `<div><b>$${bounds[0]} to $${bounds[1]}</b><span>for the month</span></div>`
+    [`${GROCERIES.length}`, "shopping trips"],
+    [`${sourced}`, "sourced recipes"],
+    [`$${bounds[0]} to $${bounds[1]}`, "for the month"]
   ];
   if (withPro.length === DAYS.length) {
     const floor = Math.min(...withPro.map(d => d.protein_g.him));
-    cells.push(`<div><b>${floor}g+</b><span>protein, his plate</span></div>`);
+    cells.push([`${floor}g+`, "protein, his plate"]);
   }
   const foot = $("#rot-foot");
-  foot.innerHTML = cells.join("");
+  foot.innerHTML = cells.map(([v, l], i) => `<div style="--i:${i}"><b data-count="${esc(v)}">${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
   foot.classList.toggle("four", cells.length === 4);
+  // already on screen from an earlier month: count the new figures in place
+  if ($(".numbers-panel").classList.contains("in")) FX.countUp(foot);
 }
-
-/* how far off is the plan? */
-const atDay = (iso) => new Date(iso + "T00:00:00");
 
 function renderStatus() {
   const first = atDay(MONTH.first), last = atDay(MONTH.last);
-  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const now = today();
   const strip = $("#status-strip"), text = $("#status-text"), btn = $("#status-btn");
   const live = PLAN_MONTHS.find(m => now >= atDay(m.first) && now <= atDay(m.last));
 
+  strip.classList.remove("live");
   if (now < first) {
     const days = Math.round((first - now) / 86400000);
     text.innerHTML = `${esc(MONTH.title)} starts in <b>${days}</b> day${days === 1 ? "" : "s"}. First shop is <b>${esc(MONTH.weeks[0].shop.replace(/^Shop /, ""))}</b>.`;
@@ -475,7 +590,8 @@ function renderStatus() {
     const d = DAYS.find(x => x.day === n);
     text.innerHTML = d ? `Tonight is <b>day ${n}</b>: ${esc(d.title)}.` : `${esc(MONTH.title)} is running.`;
     btn.hidden = !d;
-    if (d) btn.onclick = () => openDay(n);
+    strip.classList.add("live");
+    if (d) btn.onclick = () => openDay(n, true, btn);
   }
 
   // browsing a month that is not the one you are actually cooking from
@@ -485,11 +601,31 @@ function renderStatus() {
   strip.hidden = false;
 }
 
-/* ---------- month switch ---------- */
+/* ---------- month switch ----------
+   Built once; switching months only moves the sliding marker, so the
+   marker has somewhere to slide from. */
 function renderMonthSwitch() {
-  $("#mswitch").innerHTML = PLAN_MONTHS.map(m =>
-    `<button type="button" class="mtab${m.key === MONTH.key ? " on" : ""}" data-month="${m.key}"
-             aria-pressed="${m.key === MONTH.key}" title="${esc(m.title)}">${esc(m.short)}</button>`).join("");
+  const host = $("#mswitch");
+  if (!host.querySelector(".mtab")) {
+    host.innerHTML = `<span class="mswitch-ind" aria-hidden="true"></span>` + PLAN_MONTHS.map(m =>
+      `<button type="button" class="mtab" data-month="${m.key}" title="${esc(m.title)}">${esc(m.short)}</button>`).join("");
+  }
+  $$(".mtab", host).forEach(b => {
+    const on = b.dataset.month === MONTH.key;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
+  placeMonthMarker();
+}
+
+function placeMonthMarker() {
+  const on = $(".mtab.on"), ind = $(".mswitch-ind");
+  if (!on || !ind) return;
+  ind.style.width = `${on.offsetWidth}px`;
+  ind.style.transform = `translateX(${on.offsetLeft}px)`;
+  // keep the chosen month in view when the switch scrolls on a narrow phone
+  const host = $("#mswitch");
+  if (host.scrollWidth > host.clientWidth) host.scrollLeft = on.offsetLeft - (host.clientWidth - on.offsetWidth) / 2;
 }
 
 const NIGHT_WORD = { 28: "Twenty-eight", 29: "Twenty-nine", 30: "Thirty", 31: "Thirty-one" };
@@ -507,7 +643,9 @@ const planSpan = () => `${PLAN_MONTHS[0].short} to ${PLAN_MONTHS[PLAN_MONTHS.len
 
 function renderMasthead() {
   $("#hero-eyebrow").textContent = MONTH.span;
-  $("#hero-title").textContent = `Megan's Grand ${MONTH.label} Mealplan`;
+  // each word rises out of its own mask; the month is the one that changes, so it is the one set in italic
+  $("#hero-title").innerHTML = ["Megan’s", "Grand", MONTH.label, "Mealplan"].map((w, i) =>
+    `<span class="w"><span style="--i:${i}"${w === MONTH.label ? ' class="hl"' : ""}>${esc(w)}</span></span>`).join(" ");
   $("#hero-subhead").textContent = MONTH.subhead;
   $("#hero-lede").textContent = MONTH.lede;
   $("#glance-eyebrow").textContent = MONTH.title;
@@ -520,9 +658,12 @@ function renderMasthead() {
   $("#hero-scope").textContent =
     `Month ${i + 1} of ${PLAN_MONTHS.length} · ${PLAN_TOTAL.nights} dinners in all`;
   $("#foot-line").textContent =
-    `Megan's Grand Mealplan. ${MONTH_WORD[PLAN_TOTAL.months] || PLAN_TOTAL.months} months, ` +
+    `${MONTH_WORD[PLAN_TOTAL.months] || PLAN_TOTAL.months} months, ` +
     `${PLAN_TOTAL.nights} dinners, ${planSpan()}. Dairy-free, grain-free, sugar-free, seed-oil-free.`;
+  // the printed shopping list names the month it belongs to
+  $("#groceries").dataset.printTitle = `Megan's Grand ${MONTH.label} Mealplan / Shopping lists`;
   document.title = `Megan's Grand Mealplan · ${MONTH.title}`;
+  baseTitle = document.title;
 }
 
 /* everything that depends on which month is selected */
@@ -530,6 +671,7 @@ function renderMonth() {
   buildIndex();
   renderMonthSwitch();
   renderMasthead();
+  renderHero();
   renderRotation();
   renderStatus();
   renderFilters();
@@ -540,67 +682,114 @@ function renderMonth() {
   renderGroceries();
   renderPrep();
   applyFilters();
+  FX.reveal();
+}
+
+/* a month switch replays the masthead; the title words are new nodes, so
+   their own CSS entrance runs by itself */
+function replayMasthead() {
+  FX.rerun([$(".hero-meta"), $("#hero-subhead"), $("#hero-lede"), $(".hero-cta"), $("#status-strip")], { delay: 300, step: 70 });
+  FX.rerun([$("#hero-ticket")], { delay: 380 });
+  FX.rerun([$("#brand-mark")], { frames: [{ transform: "rotateX(90deg)" }, { transform: "none" }], duration: 700, easing: "cubic-bezier(.34,1.56,.64,1)" });
 }
 
 function switchMonth(key) {
   if (!PLAN_MONTHS.some(m => m.key === key) || key === MONTH.key) return;
-  closeModal();
+  closeModal(true);
   selectMonth(key);
-  try { localStorage.setItem("mealplan26:month", key); } catch (_) {}
+  store.set("mealplan26:month", key);
   filterProtein = "all";
   filterQuick = false;
   $("#search").value = "";
   renderMonth();
+  replayMasthead();
   if (location.hash) history.replaceState(null, "", location.pathname);
 }
 
 /* ============================================================
-   GLANCE + WEEKS
+   CALENDAR + WEEKS
    ============================================================ */
+
+/* A real month: every night under its weekday, so a Thursday reads as a
+   Thursday. Filtered-out nights fade rather than vanish, which keeps the
+   grid honest. */
 function renderGlance() {
-  $("#glance-grid").innerHTML = DAYS.map(d => `
-    <button class="glance-cell" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)}"
+  const lead = atDay(DAYS[0].date).getDay();
+  const live = liveDay();
+  const cells = [];
+  for (let i = 0; i < lead; i++) cells.push(`<span class="cal-blank" style="--i:${i}" aria-hidden="true"></span>`);
+  DAYS.forEach((d, k) => {
+    const pos = lead + k, row = Math.floor(pos / 7), col = pos % 7;
+    const state = live ? (d.day === live ? " today" : d.day < live ? " past" : "") : "";
+    cells.push(`
+    <button class="glance-cell${state}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${row + col}"
             title="${esc(d.title)} (${esc(PROTEINS[d.protein].label)})"
-            aria-label="Day ${d.day}, ${esc(d.dow)}: ${esc(d.title)}, ${esc(PROTEINS[d.protein].label)}">
-      <span class="g-num">${d.day}</span>
-      <span class="g-dow">${d.dow.slice(0, 3)}</span>
-      <span class="g-glyph">${glyph(d.protein, 13)}</span>
-    </button>`).join("");
+            aria-label="Day ${d.day}, ${esc(d.dow)}: ${esc(d.title)}, ${esc(PROTEINS[d.protein].label)}${state === " today" ? ", tonight" : ""}">
+      <span class="g-top"><span class="g-num">${d.day}</span>${state === " today" ? `<span class="g-now">Tonight</span>` : `<span class="g-glyph">${glyph(d.protein, 14)}</span>`}</span>
+      <span class="g-title">${esc(d.title)}</span>
+    </button>`);
+  });
+  const tail = (7 - (cells.length % 7)) % 7;
+  for (let i = 0; i < tail; i++) cells.push(`<span class="cal-blank" aria-hidden="true"></span>`);
+  $("#glance-grid").innerHTML = cells.join("");
 }
 
 function renderWeekNav() {
   $("#weeknav").innerHTML = WEEKS.map(w =>
-    `<a href="#week-${w.n}"><b>Wk ${w.n}</b> ${esc(w.theme)} <span class="mono">${esc(w.dates)}</span></a>`).join("");
+    `<a href="#week-${w.n}" data-week="${w.n}"><b>${pad2(w.n)}</b><span>${esc(w.theme)}</span><small>${esc(w.dates)}</small></a>`).join("");
 }
 
 function renderWeeks() {
+  const live = liveDay();
   $("#weeks-list").innerHTML = WEEKS.map(w => `
     <section class="week" id="week-${w.n}" data-week="${w.n}">
       <header class="week-head">
+        <span class="week-num" aria-hidden="true">${pad2(w.n)}</span>
         <div class="week-title">
-          <span class="week-badge">Week ${w.n}</span>
+          <span class="week-badge">Week ${w.n} <span class="week-dates">${esc(w.dates)}</span></span>
           <h3>${esc(w.theme)}</h3>
-          <span class="week-dates">${esc(w.dates)}</span>
         </div>
         <p class="week-note">${esc(w.note)}</p>
-        <p class="week-shop">Shop ${esc(w.shop)}</p>
+        <p class="week-shop">${ICON.basket}Shop ${esc(w.shop)}</p>
       </header>
-      <div class="cards">${DAYS.filter(d => d.week === w.n).map(cardHtml).join("")}</div>
+      <div class="cards">${DAYS.filter(d => d.week === w.n).map((d, i) => cardHtml(d, i, live)).join("")}</div>
     </section>`).join("");
+  spyWeeks();
+  lazyArt();
 }
 
-function cardHtml(d) {
+/* A card's plate is drawn when it comes within a screen or so of view, not
+   up front: thirty layered illustrations are most of the cost of a month. */
+let artIO = null;
+function fillArt(slot) {
+  const d = DAYS.find(x => x.day === +slot.dataset.art);
+  if (d && slot.isConnected) slot.outerHTML = cardArt(d);
+}
+function lazyArt() {
+  artIO?.disconnect();
+  const slots = $$(".art-slot");
+  if (!("IntersectionObserver" in window)) return slots.forEach(fillArt);
+  artIO = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    artIO.unobserve(e.target);
+    fillArt(e.target);
+  }), { rootMargin: "900px 0px" });
+  slots.forEach(s => artIO.observe(s));
+}
+
+function cardHtml(d, i, live) {
   const p = PROTEINS[d.protein];
+  const tonight = live && d.day === live;
   return `
-  <button class="card" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)}"
-          aria-label="Open day ${d.day}: ${esc(d.title)}">
-    <span class="card-art">${dishArt(d)}</span>
+  <button class="card${tonight ? " today" : ""}" data-day="${d.day}" data-protein="${d.protein}" style="${pcVar(d.protein)};--i:${i}"
+          aria-label="Open day ${d.day}: ${esc(d.title)}${tonight ? ", tonight" : ""}">
+    <span class="card-art"><span class="art-slot" data-art="${d.day}"></span>${tonight ? `<span class="ribbon">Tonight</span>` : ""}</span>
     <span class="card-head">
-      <span class="card-no">DAY <b>${String(d.day).padStart(2, "0")}</b> · ${d.dow.slice(0, 3)} ${dayOfMonth(d.date)}</span>
+      <span class="card-no">DAY <b>${pad2(d.day)}</b> · ${d.dow.slice(0, 3)} ${dayOfMonth(d.date)}</span>
       <span class="tag-p">${glyph(d.protein, 11)}${esc(p.label)}</span>
     </span>
     <span class="card-body">
-      <h4>${esc(d.title)}</h4>
+      <span class="card-title">${esc(d.title)}</span>
       <span class="card-blurb">${esc(d.blurb)}</span>
       <span class="card-foot">
         <span class="stat">${ICON.clock}${esc(d.time)}</span>
@@ -609,7 +798,20 @@ function cardHtml(d) {
         ${d.source.rating != null ? `<span class="stat rate">★ ${d.source.rating}</span>` : ""}
       </span>
     </span>
+    <span class="glare" aria-hidden="true"></span>
   </button>`;
+}
+
+/* the week strip lights the week you are reading */
+let weekSpy = null;
+function spyWeeks() {
+  weekSpy?.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  weekSpy = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    $$("#weeknav a").forEach(a => a.classList.toggle("on", a.dataset.week === e.target.dataset.week));
+  }), { rootMargin: "-35% 0px -60% 0px" });
+  $$(".week").forEach(w => weekSpy.observe(w));
 }
 
 /* ============================================================
@@ -637,7 +839,8 @@ function renderFilters() {
     `<button class="fbtn active" data-filter="all">All nights <b>${DAYS.length}</b></button>` +
     Object.entries(PROTEINS).map(([k, v]) =>
       `<button class="fbtn" data-filter="${k}" style="${pcVar(k)}">${glyph(k, 13)}${esc(v.label)} <b>${counts[k] || 0}</b></button>`).join("") +
-    `<button class="fbtn" data-quick="1" title="Recipes needing 15 minutes or less of hands-on work">Quick <b>≤15m</b></button>`;
+    `<button class="fbtn quick" data-quick="1" title="Recipes needing 15 minutes or less of hands-on work">
+       <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13.5 2 4 14h7l-1.5 8L20 10h-7l.5-8Z"/></svg>Quick <b>≤15m</b></button>`;
 }
 
 function applyFilters() {
@@ -663,44 +866,213 @@ function applyFilters() {
     if (b.dataset.quick) b.classList.toggle("active", filterQuick);
     else b.classList.toggle("active", b.dataset.filter === filterProtein);
   });
+  $$(".rot-row").forEach(r => r.classList.toggle("active", r.dataset.filter === filterProtein));
 
   $("#result-count").textContent = shown === DAYS.length ? `${DAYS.length} nights` : `${shown} of ${DAYS.length} nights`;
   $("#no-results").hidden = shown > 0;
 }
 
 /* ============================================================
+   KITCHEN TIMERS
+   Any cooking time in a recipe step is a button. Timers keep running
+   with the recipe closed, survive a reload, and ring when they finish.
+   ============================================================ */
+
+/* "25 to 30 minutes", "2½ hours", "an hour". Ranges start the timer at the
+   low end, which is when you should first check. Anything past four hours
+   is an overnight marinade, not a timer, and stays as plain text. */
+const TIME_RE = /(\d+(?:\.\d+)?½?)(?:\s*(?:to|-|–)\s*(\d+(?:\.\d+)?½?))?\s*(minutes?|mins?|hours?|hrs?)\b|\b(half an hour|an hour)\b/gi;
+const num = (s) => s.endsWith("½") ? (parseFloat(s) || 0) + .5 : parseFloat(s);
+
+function withTimers(text, stepNo) {
+  return esc(text).replace(TIME_RE, (m, lo, hi, unit, phrase) => {
+    let secs;
+    if (phrase) secs = /half/i.test(phrase) ? 1800 : 3600;
+    else secs = Math.round(num(lo) * (/^h/i.test(unit) ? 3600 : 60));
+    if (!secs || secs > 4 * 3600) return m;
+    return `<button type="button" class="tchip" data-secs="${secs}" data-step="${stepNo}" title="Start a ${fmtDur(secs)} timer">${ICON.timer}${m}</button>`;
+  });
+}
+
+function fmtDur(secs) {
+  const h = Math.floor(secs / 3600), m = Math.round((secs % 3600) / 60);
+  return h ? `${h} hr${m ? ` ${m} min` : ""}` : `${m} min`;
+}
+function fmtClock(secs) {
+  secs = Math.max(0, Math.ceil(secs));
+  const h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
+  return h ? `${h}:${pad2(m)}:${pad2(s)}` : `${pad2(m)}:${pad2(s)}`;
+}
+
+const TKEY = "mealplan26:timers";
+let timers = [];
+try { timers = JSON.parse(store.get(TKEY) || "[]").filter(t => t && t.total); } catch (_) { timers = []; }
+const saveTimers = () => store.set(TKEY, JSON.stringify(timers));
+let tickHandle = 0, audio = null, baseTitle = document.title;
+
+const leftOf = (t) => t.paused ? t.left : Math.max(0, (t.end - Date.now()) / 1000);
+
+function startTimer(secs, label, sub) {
+  // the click that starts a timer is the one chance to unlock sound on a phone
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume(); } catch (_) {}
+  timers.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), label, sub, total: secs, end: Date.now() + secs * 1000, paused: false, left: secs, done: false });
+  saveTimers();
+  renderTimers(true);
+}
+
+function renderTimers(fresh = false) {
+  const host = $("#timers");
+  host.innerHTML = timers.map(t => `
+    <div class="timer${t.done ? " done" : ""}${t.paused ? " paused" : ""}" data-id="${t.id}" role="group" aria-label="Timer: ${esc(t.sub)}">
+      <span class="t-ring" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="t-track" cx="20" cy="20" r="16"/><circle class="t-fill" cx="20" cy="20" r="16" pathLength="100"/></svg></span>
+      <span class="t-txt"><b class="t-left">${fmtClock(leftOf(t))}</b><span class="t-label">${esc(t.sub)}</span><small>${esc(t.label)}</small></span>
+      <span class="t-btns">
+        ${t.done ? "" : `<button type="button" class="t-btn" data-t="add" aria-label="Add a minute">+1</button>
+        <button type="button" class="t-btn" data-t="pause" aria-label="${t.paused ? "Resume" : "Pause"}">${t.paused
+          ? '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M7 5v14l12-7Z"/></svg>'
+          : '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>'}</button>`}
+        <button type="button" class="t-btn" data-t="x" aria-label="${t.done ? "Dismiss" : "Cancel"} timer">
+          <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </span>
+    </div>`).join("");
+  if (fresh) host.lastElementChild?.classList.add("fresh");
+  paintTimers();
+  if (timers.some(t => !t.done && !t.paused)) { if (!tickHandle) tickHandle = setInterval(tickTimers, 250); }
+  else { clearInterval(tickHandle); tickHandle = 0; }
+}
+
+function paintTimers() {
+  timers.forEach(t => {
+    const el = $(`.timer[data-id="${t.id}"]`);
+    if (!el) return;
+    const left = leftOf(t);
+    $(".t-left", el).textContent = t.done ? "Done" : fmtClock(left);
+    $(".t-fill", el).style.strokeDashoffset = String(100 - (t.done ? 100 : (1 - left / t.total) * 100));
+  });
+}
+
+function tickTimers() {
+  let finished = false;
+  timers.forEach(t => {
+    if (!t.done && !t.paused && Date.now() >= t.end) { t.done = true; finished = true; }
+  });
+  if (finished) { saveTimers(); renderTimers(); ring(); }
+  else paintTimers();
+}
+
+function ring() {
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    const now = audio.currentTime;
+    [0, .22, .44, 1.2, 1.42, 1.64, 2.4, 2.62, 2.84].forEach((at, i) => {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = "sine"; o.frequency.value = i % 3 === 2 ? 1318.5 : 987.8;
+      g.gain.setValueAtTime(0, now + at);
+      g.gain.linearRampToValueAtTime(.22, now + at + .015);
+      g.gain.exponentialRampToValueAtTime(.001, now + at + .2);
+      o.connect(g).connect(audio.destination);
+      o.start(now + at); o.stop(now + at + .22);
+    });
+  } catch (_) {}
+  navigator.vibrate?.([280, 120, 280, 120, 520]);
+  document.title = "⏰ Timer done · " + baseTitle;
+}
+
+function timerAction(btn) {
+  const el = btn.closest(".timer"), t = timers.find(x => x.id === el.dataset.id);
+  if (!t) return;
+  const act = btn.dataset.t;
+  if (act === "x") timers = timers.filter(x => x !== t);
+  if (act === "add") { if (t.paused) t.left += 60; else t.end += 60000; t.total += 60; }
+  if (act === "pause") {
+    if (t.paused) { t.end = Date.now() + t.left * 1000; t.paused = false; }
+    else { t.left = leftOf(t); t.paused = true; }
+  }
+  if (!timers.some(x => x.done)) document.title = baseTitle;
+  saveTimers();
+  renderTimers();
+}
+
+/* ============================================================
+   KEEP THE SCREEN ON
+   A phone propped against the backsplash should not go dark halfway
+   through step four. Released when the recipe closes.
+   ============================================================ */
+let wakeLock = null, wakeWanted = false;
+async function setWake(on) {
+  wakeWanted = on;
+  try {
+    if (on && !wakeLock) {
+      wakeLock = await navigator.wakeLock.request("screen");
+      wakeLock.addEventListener("release", () => { wakeLock = null; paintWake(); });
+    } else if (!on && wakeLock) {
+      await wakeLock.release();
+      wakeLock = null;
+    }
+  } catch (_) { wakeWanted = false; }
+  paintWake();
+}
+function paintWake() {
+  const b = $("#m-wake");
+  b.setAttribute("aria-pressed", String(!!wakeLock));
+  b.classList.toggle("on", !!wakeLock);
+  $(".wake-txt", b).textContent = wakeLock ? "Screen stays on" : "Keep screen on";
+}
+
+/* ============================================================
    MODAL
    ============================================================ */
-let currentDay = null, lastFocus = null;
+let currentDay = null, lastFocus = null, closing = null;
 
 function sourceLine(d) {
   const s = d.source;
   if (!s.url) return `<span class="src-orig">Built for this plan</span>`;
   const rate = s.rating != null
-    ? `<span class="stars">${stars(s.rating)}</span><span class="rate-n">${s.rating}</span><span class="rev">${s.reviews} reviews</span>`
+    ? `<span class="stars">${stars(s.rating)}</span><span class="rate-n">${s.rating}</span><span class="rev">${Number(s.reviews).toLocaleString("en-US")} reviews</span>`
     : "";
   return `${rate}<a class="src-link" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)} ↗</a>`;
 }
 
-function openDay(n, push = true) {
+const tickable = (inner, cls = "") =>
+  `<div class="tickable${cls}" role="checkbox" aria-checked="false" tabindex="0">${inner}</div>`;
+
+function setInert(on) {
+  $$("body > header, body > main, body > footer, #dock").forEach(el => { el.inert = on; });
+}
+
+function openDay(n, push = true, from = null) {
   const d = DAYS.find(x => x.day === n);
   if (!d) return;
-  if (!$("#modal").classList.contains("open")) lastFocus = document.activeElement;
+  const dlg = $("#modal"), panel = $(".modal-panel");
+  const wasOpen = dlg.classList.contains("open") && !closing;
+  const dir = wasOpen && currentDay ? Math.sign(n - currentDay) : 0;
+  if (!wasOpen && !closing) lastFocus = document.activeElement;
+  closing = null;
+  panel.getAnimations().forEach(a => a.cancel());
+  $(".modal-scrim").getAnimations().forEach(a => a.cancel());
+
   currentDay = n;
   const hash = `#${MONTH.key}-${n}`;
   if (push && location.hash !== hash) history.replaceState(null, "", hash);
 
   const p = PROTEINS[d.protein];
-  $("#mb-no").innerHTML = `DAY <b>${String(d.day).padStart(2, "0")}</b> / ${DAYS.length} · ${esc(d.dow)} ${shortDate(d.date)}`;
+  $("#mb-no").innerHTML = `DAY <b>${pad2(d.day)}</b> / ${DAYS.length} <span>· ${esc(d.dow.slice(0, 3))} ${shortDate(d.date)}</span>`;
   $("#m-prev").disabled = n <= 1;
   $("#m-next").disabled = n >= DAYS.length;
 
   const totalIng = d.ingredients.reduce((a, g) => a + g.i.length, 0);
+  const label = heroLabel(d.day);
 
   $("#modal-body").innerHTML = `
-    <div class="m-art">${dishArt(d, true)}</div>
+    <div class="m-art" style="${pcVar(d.protein)}">
+      <div class="m-stage" role="img" aria-label="Illustration of ${esc(d.title)}">${stagePlate(d)}</div>
+      <span class="m-hint" aria-hidden="true">Drag to turn the plate</span>
+    </div>
     <div class="m-head" style="${pcVar(d.protein)}">
-      <span class="tag-p">${glyph(d.protein, 11)}${esc(p.label)}</span>
+      <div class="m-kick">
+        <span class="tag-p">${glyph(d.protein, 11)}${esc(p.label)}</span>
+        ${/^Night /.test(label) ? "" : `<span class="m-when">${esc(label)}</span>`}
+      </div>
       <h2 id="modal-title">${esc(d.title)}</h2>
       <p class="m-blurb">${esc(d.blurb)}</p>
       <div class="m-source">${sourceLine(d)}</div>
@@ -719,13 +1091,13 @@ function openDay(n, push = true) {
         <h3 class="m-h">Ingredients <small>${totalIng} items · tap to tick off</small></h3>
         ${d.ingredients.map(gp => `
           <div class="ing-group">
-            <h5>${esc(gp.g)}</h5>
-            <ul>${gp.i.map(i => `<li><button class="tickable" type="button"><span class="mark"></span><span class="txt">${esc(i)}</span></button></li>`).join("")}</ul>
+            <h4>${esc(gp.g)}</h4>
+            <ul>${gp.i.map(i => `<li>${tickable(`<span class="mark">${ICON.check}</span><span class="txt">${esc(i)}</span>`)}</li>`).join("")}</ul>
           </div>`).join("")}
       </div>
       <div>
-        <h3 class="m-h">Method <small>${d.steps.length} steps</small></h3>
-        <ol class="steps">${d.steps.map(s => `<li><button class="tickable" type="button"><span class="n"></span><span class="txt">${esc(s)}</span></button></li>`).join("")}</ol>
+        <h3 class="m-h">Method <small>${d.steps.length} steps · tap a time to start a timer</small></h3>
+        <ol class="steps">${d.steps.map((s, k) => `<li>${tickable(`<span class="n"></span><span class="txt">${withTimers(s, k + 1)}</span>`)}</li>`).join("")}</ol>
       </div>
     </div>
 
@@ -735,23 +1107,49 @@ function openDay(n, push = true) {
     </div>
     ${d.leftovers ? `<div class="m-left"><b>Plan ahead</b><p>${esc(d.leftovers)}</p></div>` : ""}`;
 
-  const dlg = $("#modal");
-  dlg.classList.add("open");
-  dlg.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  $(".modal-inner").scrollTop = 0;
-  $("#modal-close").focus();
+  const stage = $(".m-stage");
+  FX.dragTurn(stage);
+  FX.stageTilt($(".m-art"));
+
+  if (!wasOpen) {
+    dlg.classList.add("open");
+    dlg.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setInert(true);
+    $(".modal-inner").scrollTop = 0;
+    FX.zoomIn(panel, from);
+    $("#modal-close").focus({ preventScroll: true });
+    $("#m-wake").hidden = !("wakeLock" in navigator);
+    paintWake();
+  } else {
+    $(".modal-inner").scrollTo({ top: 0, behavior: FX.motionOK() ? "smooth" : "auto" });
+    FX.slide($("#modal-body"), dir);
+  }
 }
 
-function closeModal() {
+function closeModal(instant = false) {
   const dlg = $("#modal");
-  if (!dlg.classList.contains("open")) return;
-  dlg.classList.remove("open");
-  dlg.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  if (!dlg.classList.contains("open") || closing) return;
   if (/^#[a-z]{3}-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname);
   currentDay = null;
-  if (lastFocus) lastFocus.focus();
+  setWake(false);
+  setInert(false);
+  if (lastFocus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+
+  // a token, so a close that is overtaken by a reopen does not hide the new one
+  const token = {};
+  closing = token;
+  const finish = () => {
+    if (closing !== token) return;
+    closing = null;
+    dlg.classList.remove("open");
+    dlg.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    $(".modal-panel").getAnimations().forEach(a => a.cancel());
+    $(".modal-scrim").getAnimations().forEach(a => a.cancel());
+  };
+  if (instant) return finish();
+  FX.zoomOut($(".modal-panel"), $(".modal-scrim")).then(finish);
 }
 
 /* ============================================================
@@ -791,8 +1189,8 @@ function renderMethod() {
 }
 
 function renderPrep() {
-  $("#prep-list").innerHTML = PREP.map(p => `
-    <div class="prep-card">
+  $("#prep-list").innerHTML = PREP.map((p, i) => `
+    <div class="prep-card" data-reveal style="--i:${i % 3}">
       <h3><span class="prep-w">Week ${p.w}</span>${esc(p.day)}</h3>
       <ul>${p.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
     </div>`).join("");
@@ -801,20 +1199,23 @@ function renderPrep() {
 /* ---------- groceries ---------- */
 const LSK = "mealplan26:groceries";
 let checked = {};
-try { checked = JSON.parse(localStorage.getItem(LSK) || "{}"); } catch (_) { checked = {}; }
-const saveChecks = () => { try { localStorage.setItem(LSK, JSON.stringify(checked)); } catch (_) {} };
+try { checked = JSON.parse(store.get(LSK) || "{}"); } catch (_) { checked = {}; }
+const saveChecks = () => store.set(LSK, JSON.stringify(checked));
 
 function renderGroceries() {
   $("#grocery-list").innerHTML = GROCERIES.map(t => `
-    <section class="trip" id="trip-${t.trip}">
+    <section class="trip" id="trip-${t.trip}" data-reveal>
       <header class="trip-head">
-        <div>
+        <div class="trip-id">
           <span class="trip-badge">Trip ${t.trip}</span>
           <h3>${esc(t.when)}</h3>
           <p class="trip-covers">Covers ${esc(t.covers)} · est. ${esc(t.est)}</p>
         </div>
         <div class="trip-actions">
-          <span class="trip-progress" data-trip="${t.trip}"></span>
+          <span class="trip-progress" data-trip="${t.trip}">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tp-track" cx="22" cy="22" r="18"/><circle class="tp-fill" cx="22" cy="22" r="18" pathLength="100"/></svg>
+            <b></b>
+          </span>
           <button class="btn-sm" data-copy="${t.trip}">Copy list</button>
           <button class="btn-sm" data-print="${t.trip}">Print this list</button>
         </div>
@@ -828,7 +1229,7 @@ function renderGroceries() {
               const key = `${MONTH.key}.${t.trip}.${si}.${ii}`;
               return `<li><label class="gitem${checked[key] ? " done" : ""}">
                 <input type="checkbox" data-key="${key}"${checked[key] ? " checked" : ""}>
-                <span class="box" aria-hidden="true"></span><span class="txt">${esc(it)}</span></label></li>`;
+                <span class="box" aria-hidden="true">${ICON.check}</span><span class="txt">${esc(it)}</span></label></li>`;
             }).join("")}</ul>
           </div>`).join("")}
       </div>
@@ -837,13 +1238,19 @@ function renderGroceries() {
   updateTotal();
 }
 
+/* returns true when this call is the one that completed the trip */
 function updateProgress(trip) {
   const boxes = $$(`#trip-${trip} input[type=checkbox]`);
   const done = boxes.filter(b => b.checked).length;
   const el = $(`.trip-progress[data-trip="${trip}"]`);
-  if (!el) return;
-  el.textContent = `${done}/${boxes.length}`;
-  el.classList.toggle("all", done === boxes.length && boxes.length > 0);
+  if (!el) return false;
+  const all = done === boxes.length && boxes.length > 0;
+  const was = el.classList.contains("all");
+  $("b", el).textContent = `${done}/${boxes.length}`;
+  $(".tp-fill", el).style.strokeDashoffset = String(100 - (boxes.length ? done / boxes.length * 100 : 0));
+  el.classList.toggle("all", all);
+  el.setAttribute("aria-label", `${done} of ${boxes.length} ticked`);
+  return all && !was;
 }
 
 function updateTotal() {
@@ -852,6 +1259,8 @@ function updateTotal() {
   const pct = boxes.length ? (done / boxes.length * 100) : 0;
   $("#gtotal").innerHTML = `<b>${done}</b> of <b>${boxes.length}</b> items ticked off`;
   $("#gmeter-fill").style.width = pct + "%";
+  $("#gring-fill").style.strokeDashoffset = String(100 - pct);
+  $("#gring-pct").textContent = `${Math.round(pct)}%`;
 }
 
 function copyTrip(trip) {
@@ -865,6 +1274,12 @@ function copyTrip(trip) {
     setTimeout(() => { b.textContent = old; b.classList.remove("ok"); }, 1600);
   }).catch(() => {});
 }
+
+const proteinColors = () => {
+  const cs = getComputedStyle(document.documentElement);
+  return Object.keys(PROTEINS).map(k => cs.getPropertyValue(`--p-${k}`).trim()).filter(Boolean)
+    .concat([cs.getPropertyValue("--good").trim()]);
+};
 
 /* ---------- sharing ---------- */
 /* Native share sheet on a phone, clipboard everywhere else. Always shares the
@@ -904,21 +1319,31 @@ function flashShared(btn, msg) {
 }
 
 /* ---------- theme + nav ---------- */
+const THEME_BG = { light: "#f6f1e9", dark: "#12100e" };
+
+function paintThemeColor(theme) {
+  $$('meta[name="theme-color"]').forEach(m => { m.content = THEME_BG[theme]; });
+}
+
 function initTheme() {
-  const saved = localStorage.getItem("mealplan26:theme");
-  if (saved) document.documentElement.setAttribute("data-theme", saved);
-  $("#theme-toggle").addEventListener("click", () => {
+  const saved = document.documentElement.getAttribute("data-theme");
+  if (saved) paintThemeColor(saved);
+  $("#theme-toggle").addEventListener("click", e => {
     const cur = document.documentElement.getAttribute("data-theme")
       || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     const next = cur === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("mealplan26:theme", next);
+    FX.themeSwap(() => {
+      document.documentElement.setAttribute("data-theme", next);
+      paintThemeColor(next);
+    }, e.currentTarget);
+    store.set("mealplan26:theme", next);
   });
 }
 
 function initNav() {
   const links = $$(".nav-link");
-  const secs = links.map(l => document.getElementById(l.getAttribute("href").slice(1))).filter(Boolean);
+  const ids = [...new Set(links.map(l => l.getAttribute("href").slice(1)))];
+  const secs = ids.map(id => document.getElementById(id)).filter(Boolean);
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) links.forEach(l => l.classList.toggle("on", l.getAttribute("href") === "#" + e.target.id));
@@ -931,52 +1356,75 @@ function initNav() {
    BOOT
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  // the tools/ pages load this file for its renderers only
+  if (!$("#weeks-list")) return;
+
   /* Which month opens first, in order: a #sep-12 style link, then whatever
      you last looked at, then the month today actually falls in. */
   const deep = /^#([a-z]{3})-(\d+)$/.exec(location.hash);
   let start = null;
   if (deep && PLAN_MONTHS.some(m => m.key === deep[1])) start = deep[1];
   if (!start) {
-    try {
-      const saved = localStorage.getItem("mealplan26:month");
-      if (saved && PLAN_MONTHS.some(m => m.key === saved)) start = saved;
-    } catch (_) {}
+    const saved = store.get("mealplan26:month");
+    if (saved && PLAN_MONTHS.some(m => m.key === saved)) start = saved;
   }
   selectMonth(start || monthForToday());
 
   renderRules();
   renderMonth();
+  renderTimers();
   initTheme();
   initNav();
+  FX.hero($("#hero"));
+  FX.scroll();
+  FX.tilt($("#weeks-list"), ".card");
+  FX.dragTurn($("#stage-plate"));
+  document.fonts?.ready.then(placeMonthMarker);
+  addEventListener("resize", placeMonthMarker);
 
   if (deep) openDay(+deep[2], false);
 
   document.addEventListener("click", e => {
+    // a cooking time inside a step starts a timer rather than ticking the step
+    const tc = e.target.closest(".tchip");
+    if (tc) {
+      const d = DAYS.find(x => x.day === currentDay);
+      startTimer(+tc.dataset.secs, d ? d.title : "", `Step ${tc.dataset.step} · ${tc.textContent.trim()}`);
+      return;
+    }
+    const tb = e.target.closest(".t-btn");
+    if (tb) return timerAction(tb);
+
     // tick an ingredient or a step off while cooking
     const tick = e.target.closest(".tickable");
-    if (tick) { tick.classList.toggle("on"); return; }
+    if (tick) return toggleTick(tick);
 
     if (e.target.closest("[data-close]") || e.target.closest("#modal-close")) return closeModal();
     if (e.target.closest("#m-prev")) return openDay(currentDay - 1);
     if (e.target.closest("#m-next")) return openDay(currentDay + 1);
+    if (e.target.closest("#m-wake")) return setWake(!wakeLock);
 
     const mt = e.target.closest("[data-month]");
     if (mt) {
       switchMonth(mt.dataset.month);
-      if (mt.classList.contains("mtab")) $("#glance").scrollIntoView({ behavior: "smooth", block: "start" });
+      if (mt.classList.contains("mtab")) $("#glance").scrollIntoView({ behavior: FX.motionOK() ? "smooth" : "auto", block: "start" });
       return;
     }
 
+    if (e.target.closest("#stage-plate, #ticket-open")) return openDay(heroDay, true, $("#stage-plate"));
+    if (e.target.closest("#ticket-prev")) return renderHero(heroDay - 1, -1);
+    if (e.target.closest("#ticket-next")) return renderHero(heroDay + 1, 1);
+
     const cell = e.target.closest(".glance-cell");
-    if (cell) return openDay(+cell.dataset.day);
+    if (cell) return openDay(+cell.dataset.day, true, cell);
     const card = e.target.closest(".card");
-    if (card) return openDay(+card.dataset.day);
+    if (card) return openDay(+card.dataset.day, true, card);
 
     const rot = e.target.closest(".rot-row");
     if (rot) {
       filterProtein = filterProtein === rot.dataset.filter ? "all" : rot.dataset.filter;
       applyFilters();
-      $("#plan").scrollIntoView({ behavior: "smooth" });
+      $("#plan").scrollIntoView({ behavior: FX.motionOK() ? "smooth" : "auto" });
       return;
     }
 
@@ -1002,18 +1450,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", e => {
     const open = $("#modal").classList.contains("open");
+    // the tick-off rows are checkboxes in all but tag name
+    if ((e.key === " " || e.key === "Enter") && e.target.classList?.contains("tickable")) {
+      e.preventDefault(); return toggleTick(e.target);
+    }
     if (e.key === "Escape" && open) return closeModal();
     if (open && e.key === "ArrowLeft" && currentDay > 1) return openDay(currentDay - 1);
     if (open && e.key === "ArrowRight" && currentDay < DAYS.length) return openDay(currentDay + 1);
-    if (!open && e.key === "/" && document.activeElement !== $("#search")) {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
+    if (!open && e.key === "/" && !typing) {
       e.preventDefault(); $("#search").focus();
     }
-    if (!open && (e.key === "[" || e.key === "]") && document.activeElement !== $("#search")) {
+    if (!open && (e.key === "[" || e.key === "]") && !typing) {
       const i = PLAN_MONTHS.findIndex(m => m.key === MONTH.key);
       const next = PLAN_MONTHS[e.key === "[" ? i - 1 : i + 1];
       if (next) switchMonth(next.key);
     }
   });
+
+  /* swipe between nights on a phone; the plate itself is for turning */
+  let touch = null;
+  $("#modal-body").addEventListener("touchstart", e => {
+    touch = e.target.closest(".m-stage") ? null : { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  $("#modal-body").addEventListener("touchend", e => {
+    if (!touch || currentDay == null) return;
+    const dx = e.changedTouches[0].clientX - touch.x, dy = e.changedTouches[0].clientY - touch.y;
+    touch = null;
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+    const n = currentDay + (dx < 0 ? 1 : -1);
+    if (n >= 1 && n <= DAYS.length) openDay(n);
+  }, { passive: true });
 
   $("#grocery-list").addEventListener("change", e => {
     const box = e.target.closest("input[type=checkbox]");
@@ -1021,7 +1488,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (box.checked) checked[box.dataset.key] = true; else delete checked[box.dataset.key];
     box.closest(".gitem").classList.toggle("done", box.checked);
     saveChecks();
-    updateProgress(+box.dataset.key.split(".")[1]);
+    const trip = +box.dataset.key.split(".")[1];
+    if (updateProgress(trip)) FX.confetti($(`.trip-progress[data-trip="${trip}"]`), proteinColors());
     updateTotal();
   });
 
@@ -1036,12 +1504,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#print-all").addEventListener("click", () => printGroceries());
   $("#print-groceries").addEventListener("click", () => printGroceries());
+
+  // a wake lock is dropped whenever the tab is hidden; take it back on return
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && wakeWanted && !wakeLock && $("#modal").classList.contains("open")) setWake(true);
+    if (document.visibilityState === "visible") tickTimers();
+  });
 });
+
+function toggleTick(el) {
+  const on = el.classList.toggle("on");
+  el.setAttribute("aria-checked", String(on));
+}
 
 /* Printing only ever produces the shopping list, either all five trips or a
    single one. Nothing else on the page goes to paper. */
 function printGroceries(trip) {
-  closeModal();
+  closeModal(true);
   document.body.classList.add("print-groceries");
   if (trip) document.body.dataset.printTrip = String(trip);
 
