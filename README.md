@@ -82,6 +82,8 @@ python3 -m http.server 8765
 | `data.js` | All five months: days, grocery lists, prep notes, shared dietary rules |
 | `app.js` | Rendering, month switching, filtering, the recipe modal, kitchen timers, sharing, and the SVG dish illustrations |
 | `fx.js` | Motion and depth only: card tilt, the turntable, reveals, count-ups, the theme wipe, confetti. The site works the same without it |
+| `sw.js` | The service worker that keeps a copy of the site for when there is no signal |
+| `manifest.webmanifest`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | What a phone needs to add the site to its home screen as an app |
 | `og-image.jpg` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
 | `icon.svg`, `apple-touch-icon.png` | Favicon and home-screen icon |
 | `tools/` | Sources for the images above, rendered with headless Chrome, not loaded by the site |
@@ -126,7 +128,17 @@ night, both are simply omitted.
   the low end, which is when you should first check
 - **Keep screen on**, in the recipe panel, so a phone propped against the backsplash does not
   go dark mid-step. Released when the recipe closes. Shown only where the browser supports it
-- Deep links: `#sep-14` opens that night's recipe directly. `#nov-26` is Thanksgiving, `#dec-25` is Christmas Day
+- **Verdicts.** Every recipe asks "Cooked it? Would you make it again?" with Make again and
+  Skip next time. The verdict shows on the night's card and calendar square, and Make again
+  becomes a filter. The Keepers section gathers them across all five months: a catch-up list
+  of nights already cooked but not rated, most recent first, with one tap each; the make-again
+  and skip lists; and a button that copies the lot as plain text. That list is the brief
+  January gets planned from
+- **Works with no signal.** After one visit the whole site, fonts included, is saved on the
+  device. With no connection it opens from the saved copy and says so; ticks, timers and
+  verdicts keep saving as normal. It can be added to a phone's home screen as an app
+- Deep links: `#sep-14` opens that night's recipe directly. `#nov-26` is Thanksgiving, `#dec-25` is Christmas Day.
+  They also work when followed with the site already open
 - Grocery checklists that persist in `localStorage`, kept separate per month, so
   resetting one month leaves the other four alone. Finishing a trip is celebrated
 - Keyboard: `/` focuses search, `←` `→` move between nights, `[` `]` switch month,
@@ -136,6 +148,19 @@ night, both are simply omitted.
 - On a phone the section links move to a dock at the bottom of the screen
 - Share button: the native share sheet on a phone, copy-to-clipboard everywhere else
 - Link previews on iMessage, WhatsApp, Slack, Discord and Facebook via Open Graph tags
+
+### Offline, and why updates still arrive
+
+`sw.js` fetches the site's own files from the network first and keeps the copy only as a
+fallback, refreshing it every time the network answers. So anyone online always gets the
+current plan, and an edit to `data.js` reaches every phone on its next visit with signal.
+On a weak connection it waits three and a half seconds before falling back to the copy.
+Fonts are kept separately and served from the copy first, since a font file at a given
+address never changes. If you add a new file the site needs at load, add it to `CORE` in
+`sw.js` and bump the cache name (`mealplan-site-v1` to `-v2`) so old copies are cleared.
+
+Verdicts, ticked groceries and timers are all `localStorage`, so they are per browser:
+Megan's phone and Vishut's phone each keep their own.
 
 ### Motion and accessibility
 
@@ -157,6 +182,9 @@ python3 -m http.server 8000
 # then, with headless Chrome:
 chrome --headless --window-size=1200,630 --screenshot=og-image.jpg http://localhost:8000/tools/og-card.html
 chrome --headless --window-size=180,180  --screenshot=apple-touch-icon.png http://localhost:8000/tools/icon-render.html
+chrome --headless --window-size=192,192  --screenshot=icon-192.png http://localhost:8000/tools/icon-render.html
+chrome --headless --window-size=512,512  --screenshot=icon-512.png http://localhost:8000/tools/icon-render.html
+chrome --headless --window-size=512,512  --screenshot=icon-maskable-512.png "http://localhost:8000/tools/icon-render.html?pad=0.14"
 ```
 
 The card is a JPEG because WhatsApp drops link-preview images over about 300KB, and

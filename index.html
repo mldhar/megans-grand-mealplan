@@ -45,12 +45,16 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- installable, and readable with no signal: see sw.js -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Mealplan">
 </head>
 <body>
 
 <a class="skip" href="#plan">Skip to the plan</a>
 <span id="share-status" class="sr-only" role="status" aria-live="polite"></span>
 <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+<div class="netstate" id="netstate" role="status" aria-live="polite" hidden></div>
 
 <header class="topbar" id="topbar">
   <div class="topbar-in">

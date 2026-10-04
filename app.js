@@ -1544,9 +1544,18 @@ document.addEventListener("DOMContentLoaded", () => {
   FX.tilt($("#weeks-list"), ".card");
   FX.dragTurn($("#stage-plate"));
   document.fonts?.ready.then(placeMonthMarker);
+  initOffline();
   addEventListener("resize", placeMonthMarker);
 
   if (deep) openDay(+deep[2], false);
+
+  // a night's link followed while the site is already open
+  addEventListener("hashchange", () => {
+    const m = /^#([a-z]{3})-(\d+)$/.exec(location.hash);
+    if (!m || !PLAN_MONTHS.some(x => x.key === m[1])) return;
+    if (m[1] !== MONTH.key) switchMonth(m[1]);
+    openDay(+m[2]);
+  });
 
   document.addEventListener("click", e => {
     // a cooking time inside a step starts a timer rather than ticking the step
@@ -1683,6 +1692,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.visibilityState === "visible") tickTimers();
   });
 });
+
+/* ---------- offline ----------
+   The service worker keeps a copy of the site for when there is no signal.
+   Only on https (or this machine), where browsers allow one. */
+function initOffline() {
+  const secure = location.protocol === "https:" || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if ("serviceWorker" in navigator && secure) {
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+  const pill = $("#netstate");
+  let t = 0;
+  const paint = (back) => {
+    clearTimeout(t);
+    if (!navigator.onLine) {
+      pill.textContent = "No signal. Showing your saved copy; ticks, timers and verdicts still save.";
+      pill.className = "netstate off"; pill.hidden = false;
+    } else if (back) {
+      pill.textContent = "Back online.";
+      pill.className = "netstate on"; pill.hidden = false;
+      t = setTimeout(() => { pill.hidden = true; }, 2400);
+    } else pill.hidden = true;
+  };
+  addEventListener("offline", () => paint());
+  addEventListener("online", () => paint(true));
+  paint();
+}
 
 function toggleTick(el) {
   const on = el.classList.toggle("on");
