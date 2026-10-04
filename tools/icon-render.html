@@ -1,3 +1,9 @@
-<style>html,body{margin:0;padding:0;width:180px;height:180px;overflow:hidden;background:#1f1813}
-img{display:block;width:180px;height:180px}</style>
-<img src="touch.svg">
+<style>html,body{margin:0;padding:0;overflow:hidden;background:#1f1813}
+img{display:block;width:100vw;height:100vh;box-sizing:border-box}</style>
+<img src="touch.svg" id="icon">
+<script>
+  // the window size sets the icon size; ?pad=0.14 pulls the bars into the safe
+  // zone of a maskable icon, which Android crops to a circle or a squircle
+  var pad = +new URLSearchParams(location.search).get("pad") || 0;
+  document.getElementById("icon").style.padding = (pad * 100) + "vmin";
+</script>
