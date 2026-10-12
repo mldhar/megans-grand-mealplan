@@ -1222,6 +1222,20 @@ svg { flex: none; }
 /* ============================================================
    PREP
    ============================================================ */
+/* the calendar files: the one way the plan can reach you when the site is closed */
+.cal-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap;
+  margin-bottom: 22px; padding: 22px 24px; border-radius: var(--r-xl);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface) 70%);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line)); box-shadow: var(--sh-1);
+}
+.cal-cta-txt { flex: 1 1 380px; }
+.cal-cta h3 { font-size: 22px; letter-spacing: -.02em; margin-bottom: 6px; }
+.cal-cta p { font-size: 14.5px; color: var(--ink-2); max-width: 64ch; }
+.cal-cta p b { color: var(--ink); }
+.cal-cta-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.st-prep { display: block; margin-top: 4px; }
+
 .prep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
 .prep-card {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);

@@ -598,6 +598,13 @@ function renderStatus() {
   if (live && live.key !== MONTH.key) {
     text.innerHTML += ` Tonight's dinner is over in <button type="button" class="linkish" data-month="${live.key}">${esc(live.title)}</button>.`;
   }
+  // the evening's own job, if the plan has one: a rub, a marinade, a freezer move
+  const t = today(), iso = `${t.getFullYear()}-${pad2(t.getMonth() + 1)}-${pad2(t.getDate())}`;
+  const jobs = PLAN_MONTHS.flatMap(m => (m.ahead || []).filter(a => a.on === iso).map(a => ({ a, ref: `${m.key}-${a.night}` })));
+  if (jobs.length) {
+    text.innerHTML += jobs.map(({ a, ref }) =>
+      ` <span class="st-prep">Prep tonight: <button type="button" class="linkish" data-open="${ref}" title="${esc(a.detail)}">${esc(a.title)}</button>.</span>`).join("");
+  }
   strip.hidden = false;
 }
 
