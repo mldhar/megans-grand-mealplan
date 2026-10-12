@@ -315,10 +315,11 @@ DTSTAMP:20261205T000000Z
 DTSTART:20261205T190000
 DTEND:20261205T191500
 SUMMARY:Prep: Freeze the chili\, and tomorrow's stew starts at 3pm
-DESCRIPTION:Tonight: freeze the spare chili in labelled portions\; one is D
- ec 28 and the rest start January. Tomorrow's lamb stew wants two and a hal
- f hours and three batches of browning.\n\nFor Sunday 6 Dec: Irish Lamb Ste
- w\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-6
+DESCRIPTION:Tonight: two portions of the chili into the freezer\, labelled 
+ with the date\, for New Year's Day\, and two into lunch boxes. Tomorrow's 
+ lamb stew wants two and a half hours and three batches of browning.\n\nFor
+  Sunday 6 Dec: Irish Lamb Stew\nhttps://mldhar.github.io/megans-grand-meal
+ plan/#dec-6
 URL:https://mldhar.github.io/megans-grand-mealplan/#dec-6
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -449,10 +450,10 @@ DTSTAMP:20261227T000000Z
 DTSTART:20261227T190000
 DTEND:20261227T191500
 SUMMARY:Prep: Chili to the fridge\, carcass in the pot
-DESCRIPTION:Move Monday's chili from the freezer to the fridge\, and simmer
-  tonight's carcass: Tuesday's soup depends on it.\n\nFor Monday 28 Dec: Ch
- ili from the Freezer\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-
- 28
+DESCRIPTION:Move October's two chili portions from the freezer to the fridg
+ e for Monday\, and simmer tonight's carcass: Tuesday's soup depends on it.
+ \n\nFor Monday 28 Dec: Chili from the Freezer\nhttps://mldhar.github.io/me
+ gans-grand-mealplan/#dec-28
 URL:https://mldhar.github.io/megans-grand-mealplan/#dec-28
 BEGIN:VALARM
 ACTION:DISPLAY

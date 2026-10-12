@@ -646,8 +646,8 @@ DTSTAMP:20261129T000000Z
 DTSTART;VALUE=DATE:20261129
 DTEND;VALUE=DATE:20261130
 SUMMARY:Dinner: Last Chili of the Year
-DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nO
- ne of the four chili portions you froze in October\, or twenty minutes to 
+DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nT
+ wo of the four chili portions you froze in October\, or twenty minutes to 
  make a fresh one. Either way this is the night you do not cook.\n\nhttps:/
  /mldhar.github.io/megans-grand-mealplan/#nov-29
 URL:https://mldhar.github.io/megans-grand-mealplan/#nov-29
@@ -1032,9 +1032,9 @@ DTSTART;VALUE=DATE:20261228
 DTEND;VALUE=DATE:20261229
 SUMMARY:Dinner: Chili from the Freezer
 DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nO
- ne of the three portions you froze on Dec 5. Fifteen minutes\, and the las
- t week of the year does not need you cooking.\n\nhttps://mldhar.github.io/
- megans-grand-mealplan/#dec-28
+ ctober's last two portions\, oldest in the freezer first. Fifteen minutes\
+ , and the last week of the year does not need you cooking.\n\nhttps://mldh
+ ar.github.io/megans-grand-mealplan/#dec-28
 URL:https://mldhar.github.io/megans-grand-mealplan/#dec-28
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -1085,9 +1085,9 @@ DTSTART;VALUE=DATE:20270101
 DTEND;VALUE=DATE:20270102
 SUMMARY:Dinner: Chili from the Freezer
 DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nT
- he last two portions of Dec 5's chili\, and New Year's Day asks nothing el
- se of you. Fifteen minutes\, most of it the pan warming.\n\nhttps://mldhar
- .github.io/megans-grand-mealplan/#jan-1
+ he last chili in the freezer\, two portions from Dec 5\, and New Year's Da
+ y asks nothing else of you. Fifteen minutes\, most of it the pan warming.\
+ n\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-1
 URL:https://mldhar.github.io/megans-grand-mealplan/#jan-1
 TRANSP:TRANSPARENT
 END:VEVENT
