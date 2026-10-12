@@ -179,7 +179,13 @@ night, both are simply omitted.
   becomes a filter. The Keepers section gathers them across every month: a catch-up list
   of nights already cooked but not rated, most recent first, with one tap each; the make-again
   and skip lists; and a button that copies the lot as plain text. That list is the brief
-  January gets planned from
+  each new month gets planned from
+- **Ratings on every device.** Verdicts are saved in the browser they were made in, and an
+  iPhone's home-screen app keeps its own storage apart from Safari's. Send to another device
+  (in Keepers) shares a link ending `#keep=oct5a12s.nov3a`, every rated night with `a` for
+  make again and `s` for skip. Opening it, or pasting it into Paste a link in the home-screen
+  app, says how many are new, how many differ and how many match, and changes nothing until
+  you say so. It only adds or overwrites the nights it names
 - **Works with no signal.** After one visit the whole site, fonts included, is saved on the
   device. With no connection it opens from the saved copy and says so; ticks, timers and
   verdicts keep saving as normal. It can be added to a phone's home screen as an app
@@ -191,7 +197,10 @@ night, both are simply omitted.
 - Deep links: `#sep-14` opens that night's recipe directly. `#nov-26` is Thanksgiving, `#dec-25` is Christmas Day.
   They also work when followed with the site already open
 - Grocery checklists that persist in `localStorage`, kept separate per month, so
-  resetting one month leaves the other four alone. Finishing a trip is celebrated
+  resetting one month leaves the others alone. Finishing a trip is celebrated
+- Send list, on each trip: what is still unticked, as plain text, to the share sheet
+  (Messages, Notes, Reminders) or the clipboard. Hand half the shop to someone else and
+  they get only what is left
 - Keyboard: `/` focuses search, `←` `→` move between nights, `[` `]` switch month,
   Space or Enter ticks off an ingredient or step
 - Light/dark themes, switched with a circular wipe from the button, and a print stylesheet
