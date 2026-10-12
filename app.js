@@ -1516,7 +1516,7 @@ function renderGroceries() {
             <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tp-track" cx="22" cy="22" r="18"/><circle class="tp-fill" cx="22" cy="22" r="18" pathLength="100"/></svg>
             <b></b>
           </span>
-          <button class="btn-sm" data-copy="${t.trip}">Copy list</button>
+          <button class="btn-sm" data-send="${t.trip}" title="What is still unticked, to Messages, Notes or Reminders">Send list</button>
           <button class="btn-sm" data-print="${t.trip}">Print this list</button>
         </div>
       </header>
@@ -1563,16 +1563,39 @@ function updateTotal() {
   $("#gring-pct").textContent = `${Math.round(pct)}%`;
 }
 
-function copyTrip(trip) {
+/* What is still to buy on a trip, as plain text: to someone else doing
+   the shop, or into Notes. Ticked lines are left off, unless everything
+   is ticked, when the whole list goes as a record. */
+function tripText(t) {
+  const left = t.sections.map((sec, si) => ({
+    name: sec.name,
+    items: sec.items.filter((_, ii) => !checked[`${MONTH.key}.${t.trip}.${si}.${ii}`])
+  }));
+  const total = t.sections.reduce((a, sec) => a + sec.items.length, 0);
+  const n = left.reduce((a, sec) => a + sec.items.length, 0);
+  const all = n === 0;
+  const secs = all ? t.sections : left.filter(sec => sec.items.length);
+  return {
+    n: all ? total : n,
+    text: [
+      `${t.when.replace(/^Shop /, "Shopping, ")}, for ${t.covers}`,
+      n === total || all ? `${total} things, est. ${t.est}` : `${n} still to buy (${total - n} already ticked off)`,
+      "",
+      ...secs.flatMap(sec => [sec.name.toUpperCase(), ...sec.items.map(i => `- ${i}`), ""])
+    ].join("\n").trim()
+  };
+}
+
+async function sendTrip(trip, btn) {
   const t = GROCERIES.find(x => x.trip === trip);
-  const txt = [`SHOPPING LIST. ${t.when}. Covers ${t.covers}.`, ""]
-    .concat(t.sections.flatMap(s => [s.name.toUpperCase(), ...s.items.map(i => `  - ${i}`), ""]))
-    .join("\n");
-  navigator.clipboard?.writeText(txt).then(() => {
-    const b = $(`[data-copy="${trip}"]`), old = b.textContent;
-    b.textContent = "Copied"; b.classList.add("ok");
-    setTimeout(() => { b.textContent = old; b.classList.remove("ok"); }, 1600);
-  }).catch(() => {});
+  const { text } = tripText(t);
+  const flash = (msg) => { const old = btn.textContent; btn.textContent = msg; btn.classList.add("ok"); setTimeout(() => { btn.textContent = old; btn.classList.remove("ok"); }, 1600); };
+  if (navigator.share) {
+    try { await navigator.share({ title: `Shopping list, ${t.when.replace(/^Shop /, "")}`, text }); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  try { await navigator.clipboard.writeText(text); flash("Copied"); }
+  catch (_) { flash("Could not copy"); }
 }
 
 const proteinColors = () => {
@@ -1788,8 +1811,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sh = e.target.closest("#share-btn, #foot-share");
     if (sh) return sharePlan(sh);
 
-    const cp = e.target.closest("[data-copy]");
-    if (cp) return copyTrip(+cp.dataset.copy);
+    const sb = e.target.closest("[data-send]");
+    if (sb) return sendTrip(+sb.dataset.send, sb);
 
     const pr = e.target.closest("[data-print]");
     if (pr) return printGroceries(+pr.dataset.print);
