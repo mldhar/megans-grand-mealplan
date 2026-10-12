@@ -1317,6 +1317,44 @@ svg { flex: none; }
 .kp-top .btn-sm { margin-left: auto; }
 .kp-top .btn-sm:disabled { opacity: .45; transform: none; }
 
+.btn-sm.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-sm.primary:hover { background: color-mix(in srgb, var(--accent) 86%, var(--ink)); color: #fff; border-color: transparent; }
+
+/* ratings from another device, waiting for a yes */
+.kp-offer {
+  display: flex; align-items: center; gap: 12px 18px; flex-wrap: wrap;
+  margin-bottom: 18px; padding: 16px 18px 16px 20px; border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  animation: kp-in .5s var(--spring) both;
+}
+.kp-offer.done { background: color-mix(in srgb, var(--good) 10%, var(--surface)); border-color: color-mix(in srgb, var(--good) 40%, var(--line)); }
+.kp-offer:focus { outline: none; }
+.kp-offer:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.kp-offer p { flex: 1 1 320px; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+.kp-offer p b { color: var(--ink); }
+.kp-offer-btns { display: flex; gap: 8px; }
+@keyframes kp-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
+
+/* carrying ratings between devices */
+.kp-move {
+  display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap;
+  margin: -6px 0 18px; padding: 0 4px;
+  font-size: 13.5px; color: var(--ink-3);
+}
+.kp-move > span:first-child { flex: 1 1 260px; }
+.kp-move-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.kp-move .btn-sm:disabled { opacity: .45; transform: none; }
+.kp-paste { flex: 1 1 100%; display: flex; gap: 8px; }
+.kp-paste input {
+  flex: 1; min-width: 0; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--surface); color: var(--ink);
+  font-family: var(--mono); font-size: 12.5px;
+}
+/* under 16px, iPhones zoom the whole page in on focus */
+@media (pointer: coarse) { .kp-paste input { font-size: 16px; } }
+.kp-paste input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+
 .kp-catch {
   margin-bottom: 18px; padding: 22px 24px; border-radius: var(--r-xl);
   background: linear-gradient(160deg, color-mix(in srgb, var(--accent-2) 12%, var(--surface)), var(--surface));
