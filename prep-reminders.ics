@@ -1,0 +1,479 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Megan's Grand Mealplan//Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Mealplan prep
+BEGIN:VEVENT
+UID:prep-20261016-oct-17@mldhar.github.io
+DTSTAMP:20261016T000000Z
+DTSTART:20261016T190000
+DTEND:20261016T191500
+SUMMARY:Prep: Tomorrow's short ribs want your afternoon
+DESCRIPTION:The Cabernet short ribs are about three hours start to finish\,
+  most of it in the oven. Start mid-afternoon\; it is the one night this mo
+ nth that needs it.\n\nFor Saturday 17 Oct: Cabernet Braised Short Ribs\nht
+ tps://mldhar.github.io/megans-grand-mealplan/#oct-17
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-17
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's short ribs want your afternoon
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261017-oct-18@mldhar.github.io
+DTSTAMP:20261017T000000Z
+DTSTART:20261017T190000
+DTEND:20261017T191500
+SUMMARY:Prep: Barbacoa goes in before breakfast
+DESCRIPTION:Tomorrow morning: sear the chuck hard first\, 3 minutes a side\
+ , then everything except the cabbage into the slow cooker. Eight hours on 
+ low\, untouched.\n\nFor Sunday 18 Oct: Barbacoa\nhttps://mldhar.github.io/
+ megans-grand-mealplan/#oct-18
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-18
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Barbacoa goes in before breakfast
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261020-oct-21@mldhar.github.io
+DTSTAMP:20261020T000000Z
+DTSTART:20261020T190000
+DTEND:20261020T191500
+SUMMARY:Prep: Rub tomorrow's chipotle thighs
+DESCRIPTION:Olive oil on the thighs\, then press the dry spices into the sk
+ in. Uncovered on a rack in the fridge: four hours is the useful minimum\, 
+ twelve is better.\n\nFor Wednesday 21 Oct: Chipotle Roast Chicken Thighs\n
+ https://mldhar.github.io/megans-grand-mealplan/#oct-21
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-21
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Rub tomorrow's chipotle thighs
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261023-oct-24@mldhar.github.io
+DTSTAMP:20261023T000000Z
+DTSTART:20261023T190000
+DTEND:20261023T191500
+SUMMARY:Prep: Rub tomorrow's paprika steaks
+DESCRIPTION:Oil\, then the spices\, on both faces. Uncovered on a rack in t
+ he fridge overnight.\n\nFor Saturday 24 Oct: Smoked Paprika Steak\, Roaste
+ d Radish\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-24
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-24
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Rub tomorrow's paprika steaks
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261024-oct-25@mldhar.github.io
+DTSTAMP:20261024T000000Z
+DTSTART:20261024T190000
+DTEND:20261024T191500
+SUMMARY:Prep: Salt Sunday's chicken in the morning
+DESCRIPTION:First thing tomorrow: pat the bird dry\, salt it all over and l
+ eave it uncovered in the fridge all day. Strip the carcass while it is sti
+ ll warm after dinner.\n\nFor Sunday 25 Oct: Whole Roast Chicken over Roots
+ \nhttps://mldhar.github.io/megans-grand-mealplan/#oct-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-25
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Salt Sunday's chicken in the morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261025-oct-26@mldhar.github.io
+DTSTAMP:20261025T000000Z
+DTSTART:20261025T190000
+DTEND:20261025T191500
+SUMMARY:Prep: Simmer the carcass\, and build tomorrow's pie
+DESCRIPTION:Simmer tonight's bones: that broth is Monday's pie\, Tuesday's 
+ skillet and Nov 13's soup. If the oven is still warm\, assemble Monday's c
+ ottage pie now and bake it tomorrow.\n\nFor Monday 26 Oct: Cottage Pie\, C
+ auliflower Top\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-26
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-26
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Simmer the carcass\, and build tomorrow's pie
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261030-oct-31@mldhar.github.io
+DTSTAMP:20261030T000000Z
+DTSTART:20261030T190000
+DTEND:20261030T191500
+SUMMARY:Prep: Marinate the Halloween chicken in the morning
+DESCRIPTION:First thing tomorrow: whisk the marinade\, keep a third back in
+  a jar\, bag the rest with the chicken. It holds in a 200°F oven for half
+  an hour if the door keeps ringing.\n\nFor Saturday 31 Oct: Halloween Shee
+ t Pan Chicken\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-31
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-31
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate the Halloween chicken in the morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261031-nov-1@mldhar.github.io
+DTSTAMP:20261031T000000Z
+DTSTART:20261031T190000
+DTEND:20261031T191500
+SUMMARY:Prep: Chicken into the slow cooker before breakfast
+DESCRIPTION:Tomorrow morning: carrots\, turnips and onion in first as the r
+ ack\, the dried and spiced bird on top\, seven hours on low with the lid n
+ ever lifted. Strip the carcass while it is warm and simmer the bones that 
+ night.\n\nFor Sunday 1 Nov: Slow Cooker Whole Chicken\nhttps://mldhar.gith
+ ub.io/megans-grand-mealplan/#nov-1
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Chicken into the slow cooker before breakfast
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261106-nov-7@mldhar.github.io
+DTSTAMP:20261106T000000Z
+DTSTART:20261106T190000
+DTEND:20261106T191500
+SUMMARY:Prep: Rub tomorrow's brisket\, freeze the spare meatballs
+DESCRIPTION:Mix the rub and press it into every surface of the brisket\; co
+ ver loosely and refrigerate. Tomorrow is five hours at 275°F\, foil on fo
+ r four. Tonight's lamb meatballs make 34: freeze the other 16 flat\, they 
+ are Nov 27.\n\nFor Saturday 7 Nov: Slow-Roasted Brisket\nhttps://mldhar.gi
+ thub.io/megans-grand-mealplan/#nov-7
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-7
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Rub tomorrow's brisket\, freeze the spare meatballs
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261107-nov-8@mldhar.github.io
+DTSTAMP:20261107T000000Z
+DTSTART:20261107T190000
+DTEND:20261107T191500
+SUMMARY:Prep: Tomorrow's lamb stew starts at 3pm
+DESCRIPTION:Two and a half hours and three batches of browning. Start at 3p
+ m to eat at a sensible time.\n\nFor Sunday 8 Nov: Irish Lamb Stew\nhttps:/
+ /mldhar.github.io/megans-grand-mealplan/#nov-8
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's lamb stew starts at 3pm
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261109-nov-11@mldhar.github.io
+DTSTAMP:20261109T000000Z
+DTSTART:20261109T190000
+DTEND:20261109T191500
+SUMMARY:Prep: Chill a tin of coconut milk
+DESCRIPTION:Into the fridge tonight for Wednesday's Swedish meatballs\, so 
+ the cream separates. A tin at room temperature will not work.\n\nFor Wedne
+ sday 11 Nov: Swedish Meatballs\, No Flour\nhttps://mldhar.github.io/megans
+ -grand-mealplan/#nov-11
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-11
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Chill a tin of coconut milk
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261114-nov-15@mldhar.github.io
+DTSTAMP:20261114T000000Z
+DTSTART:20261114T190000
+DTEND:20261114T191500
+SUMMARY:Prep: Marinate tomorrow's ras el hanout chicken
+DESCRIPTION:Whisk the marinade\, bag it with the thighs and refrigerate. An
+  hour on the counter before it goes in the oven.\n\nFor Sunday 15 Nov: Ras
+  el Hanout Roast Chicken Tray\nhttps://mldhar.github.io/megans-grand-mealp
+ lan/#nov-15
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-15
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's ras el hanout chicken
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261118-nov-19@mldhar.github.io
+DTSTAMP:20261118T000000Z
+DTSTART:20261118T190000
+DTEND:20261118T191500
+SUMMARY:Prep: Marinate tomorrow's baharat chicken
+DESCRIPTION:Whisk the marinade and bag it with the thighs. An hour on the c
+ ounter before roasting.\n\nFor Thursday 19 Nov: Baharat Chicken Thighs\nht
+ tps://mldhar.github.io/megans-grand-mealplan/#nov-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-19
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's baharat chicken
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261119-nov-20@mldhar.github.io
+DTSTAMP:20261119T000000Z
+DTSTART:20261119T190000
+DTEND:20261119T191500
+SUMMARY:Prep: Rub tomorrow's coriander steaks
+DESCRIPTION:Olive oil\, then the cracked coriander\, pepper\, salt and garl
+ ic powder pressed into both faces. Uncovered on a rack in the fridge.\n\nF
+ or Friday 20 Nov: Coriander Steak\, Roasted Fennel\nhttps://mldhar.github.
+ io/megans-grand-mealplan/#nov-20
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-20
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Rub tomorrow's coriander steaks
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261125-nov-26@mldhar.github.io
+DTSTAMP:20261125T000000Z
+DTSTART:20261125T190000
+DTEND:20261125T191500
+SUMMARY:Prep: Thanksgiving prep night
+DESCRIPTION:While tonight's tray roasts: trim\, tie and salt the tenderloin
+  and leave it uncovered on a rack in the fridge. Mix the herb oil. Steam a
+ nd mash the cauliflower. Tomorrow morning: move Nov 6's lamb meatballs fro
+ m the freezer to the fridge.\n\nFor Thursday 26 Nov: Thanksgiving: Beef Te
+ nderloin Roast\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-26
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-26
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Thanksgiving prep night
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261128-nov-29@mldhar.github.io
+DTSTAMP:20261128T000000Z
+DTSTART:20261128T190000
+DTEND:20261128T191500
+SUMMARY:Prep: Move two chili portions to the fridge
+DESCRIPTION:From the freezer tonight\, and Sunday is a fifteen-minute night
+  at the end of a long month.\n\nFor Sunday 29 Nov: Last Chili of the Year\
+ nhttps://mldhar.github.io/megans-grand-mealplan/#nov-29
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-29
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Move two chili portions to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261130-dec-1@mldhar.github.io
+DTSTAMP:20261130T000000Z
+DTSTART:20261130T190000
+DTEND:20261130T191500
+SUMMARY:Prep: Move the braised beef to the fridge
+DESCRIPTION:From the freezer to the fridge tonight\, for tomorrow.\n\nFor T
+ uesday 1 Dec: Braised Beef from the Freezer\nhttps://mldhar.github.io/mega
+ ns-grand-mealplan/#dec-1
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Move the braised beef to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261203-dec-4@mldhar.github.io
+DTSTAMP:20261203T000000Z
+DTSTART:20261203T190000
+DTEND:20261203T191500
+SUMMARY:Prep: Freeze the meatballs\, marinate the flank in the morning
+DESCRIPTION:Tonight: freeze the spare meatballs flat on a tray\, then in th
+ ree bags of twelve for Dec 16\, 22 and 30. Tomorrow morning\, not tonight:
+  marinate the flank steak for two to four hours. Lime juice past four hour
+ s turns it mealy.\n\nFor Friday 4 Dec: Steak Fajitas\nhttps://mldhar.githu
+ b.io/megans-grand-mealplan/#dec-4
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-4
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Freeze the meatballs\, marinate the flank in the morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261205-dec-6@mldhar.github.io
+DTSTAMP:20261205T000000Z
+DTSTART:20261205T190000
+DTEND:20261205T191500
+SUMMARY:Prep: Freeze the chili\, and tomorrow's stew starts at 3pm
+DESCRIPTION:Tonight: freeze the spare chili in labelled portions\; one is D
+ ec 28 and the rest start January. Tomorrow's lamb stew wants two and a hal
+ f hours and three batches of browning.\n\nFor Sunday 6 Dec: Irish Lamb Ste
+ w\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-6
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-6
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Freeze the chili\, and tomorrow's stew starts at 3pm
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261211-dec-12@mldhar.github.io
+DTSTAMP:20261211T000000Z
+DTSTART:20261211T190000
+DTEND:20261211T191500
+SUMMARY:Prep: Tomorrow's beef stew starts at 3pm
+DESCRIPTION:Two and a half hours and three batches of browning. It makes 40
+ % more than the night needs: two lunches and a freezer portion.\n\nFor Sat
+ urday 12 Dec: Classic Beef Stew\nhttps://mldhar.github.io/megans-grand-mea
+ lplan/#dec-12
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-12
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's beef stew starts at 3pm
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261212-dec-13@mldhar.github.io
+DTSTAMP:20261212T000000Z
+DTSTART:20261212T190000
+DTEND:20261212T191500
+SUMMARY:Prep: Barbacoa goes in before breakfast
+DESCRIPTION:Tomorrow morning: sear the chuck hard first\, then into the slo
+ w cooker before breakfast. It carries Monday too.\n\nFor Sunday 13 Dec: Ba
+ rbacoa\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-13
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-13
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Barbacoa goes in before breakfast
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261213-dec-24@mldhar.github.io
+DTSTAMP:20261213T000000Z
+DTSTART:20261213T190000
+DTEND:20261213T191500
+SUMMARY:Prep: Order the Christmas meat this week
+DESCRIPTION:Prime rib and frenched lamb racks both sell out in the last wee
+ k of December. Ask the butcher to tie the rib bones back on.\n\nFor Thursd
+ ay 24 Dec: Christmas Eve: Rack of Lamb\nhttps://mldhar.github.io/megans-gr
+ and-mealplan/#dec-24
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-24
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Order the Christmas meat this week
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261215-dec-16@mldhar.github.io
+DTSTAMP:20261215T000000Z
+DTSTART:20261215T190000
+DTEND:20261215T191500
+SUMMARY:Prep: Meatball bag one to the fridge
+DESCRIPTION:Out of the freezer tonight\, for tomorrow.\n\nFor Wednesday 16 
+ Dec: Freezer Meatballs\, Tomato & Kale\nhttps://mldhar.github.io/megans-gr
+ and-mealplan/#dec-16
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-16
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Meatball bag one to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261218-dec-19@mldhar.github.io
+DTSTAMP:20261218T000000Z
+DTSTART:20261218T190000
+DTEND:20261218T191500
+SUMMARY:Prep: Marinate tomorrow's Greek lemon chicken
+DESCRIPTION:Oil\, garlic\, oregano\, thyme\, salt and pepper over the thigh
+ s in a bag tonight. The lemon and Dijon go in an hour before dinner tomorr
+ ow\, not now.\n\nFor Saturday 19 Dec: Greek Lemon Chicken\nhttps://mldhar.
+ github.io/megans-grand-mealplan/#dec-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-19
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's Greek lemon chicken
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261221-dec-22@mldhar.github.io
+DTSTAMP:20261221T000000Z
+DTSTART:20261221T190000
+DTEND:20261221T191500
+SUMMARY:Prep: Meatball bag two to the fridge
+DESCRIPTION:Out of the freezer tonight\, for tomorrow.\n\nFor Tuesday 22 De
+ c: Freezer Meatballs & Pot Roast\nhttps://mldhar.github.io/megans-grand-me
+ alplan/#dec-22
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-22
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Meatball bag two to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261223-dec-25@mldhar.github.io
+DTSTAMP:20261223T000000Z
+DTSTART:20261223T190000
+DTEND:20261223T191500
+SUMMARY:Prep: Christmas prep night
+DESCRIPTION:Salt the prime rib all over and leave it uncovered on a rack in
+  the fridge for a full 24 hours. Trim the lamb racks and mix the Dijon her
+ b crust. Steam and mash the cauliflower for both nights in one go.\n\nFor 
+ Friday 25 Dec: Christmas Day: Prime Rib\nhttps://mldhar.github.io/megans-g
+ rand-mealplan/#dec-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-25
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Christmas prep night
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261227-dec-28@mldhar.github.io
+DTSTAMP:20261227T000000Z
+DTSTART:20261227T190000
+DTEND:20261227T191500
+SUMMARY:Prep: Chili to the fridge\, carcass in the pot
+DESCRIPTION:Move Monday's chili from the freezer to the fridge\, and simmer
+  tonight's carcass: Tuesday's soup depends on it.\n\nFor Monday 28 Dec: Ch
+ ili from the Freezer\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-
+ 28
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-28
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Chili to the fridge\, carcass in the pot
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261229-dec-30@mldhar.github.io
+DTSTAMP:20261229T000000Z
+DTSTART:20261229T190000
+DTEND:20261229T191500
+SUMMARY:Prep: Last bag of meatballs to the fridge
+DESCRIPTION:Out of the freezer tonight\, for tomorrow.\n\nFor Wednesday 30 
+ Dec: Last Bag of Meatballs\nhttps://mldhar.github.io/megans-grand-mealplan
+ /#dec-30
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-30
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Last bag of meatballs to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -5458,6 +5458,80 @@ const DEC_PREP = [
    the selected month, so adding October is adding one entry here.
    ============================================================ */
 
+/* ============================================================
+   THE NIGHT BEFORE
+   Everything the plan asks you to do on an earlier evening: rubs and
+   marinades that go on overnight, freezer-to-fridge moves, long cooks
+   that need an early start, and the odd errand. Each one names the
+   evening it belongs to ("on") and the night it is for. They feed the
+   "Prep tonight" line on the site and the 7pm reminders in
+   prep-reminders.ics (tools/make-calendar.js).
+   ============================================================ */
+const OCT_AHEAD = [
+  { on: "2026-10-16", night: 17, title: "Tomorrow's short ribs want your afternoon",
+    detail: "The Cabernet short ribs are about three hours start to finish, most of it in the oven. Start mid-afternoon; it is the one night this month that needs it." },
+  { on: "2026-10-17", night: 18, title: "Barbacoa goes in before breakfast",
+    detail: "Tomorrow morning: sear the chuck hard first, 3 minutes a side, then everything except the cabbage into the slow cooker. Eight hours on low, untouched." },
+  { on: "2026-10-20", night: 21, title: "Rub tomorrow's chipotle thighs",
+    detail: "Olive oil on the thighs, then press the dry spices into the skin. Uncovered on a rack in the fridge: four hours is the useful minimum, twelve is better." },
+  { on: "2026-10-23", night: 24, title: "Rub tomorrow's paprika steaks",
+    detail: "Oil, then the spices, on both faces. Uncovered on a rack in the fridge overnight." },
+  { on: "2026-10-24", night: 25, title: "Salt Sunday's chicken in the morning",
+    detail: "First thing tomorrow: pat the bird dry, salt it all over and leave it uncovered in the fridge all day. Strip the carcass while it is still warm after dinner." },
+  { on: "2026-10-25", night: 26, title: "Simmer the carcass, and build tomorrow's pie",
+    detail: "Simmer tonight's bones: that broth is Monday's pie, Tuesday's skillet and Nov 13's soup. If the oven is still warm, assemble Monday's cottage pie now and bake it tomorrow." },
+  { on: "2026-10-30", night: 31, title: "Marinate the Halloween chicken in the morning",
+    detail: "First thing tomorrow: whisk the marinade, keep a third back in a jar, bag the rest with the chicken. It holds in a 200°F oven for half an hour if the door keeps ringing." }
+];
+
+const NOV_AHEAD = [
+  { on: "2026-10-31", night: 1, title: "Chicken into the slow cooker before breakfast",
+    detail: "Tomorrow morning: carrots, turnips and onion in first as the rack, the dried and spiced bird on top, seven hours on low with the lid never lifted. Strip the carcass while it is warm and simmer the bones that night." },
+  { on: "2026-11-06", night: 7, title: "Rub tomorrow's brisket, freeze the spare meatballs",
+    detail: "Mix the rub and press it into every surface of the brisket; cover loosely and refrigerate. Tomorrow is five hours at 275°F, foil on for four. Tonight's lamb meatballs make 34: freeze the other 16 flat, they are Nov 27." },
+  { on: "2026-11-07", night: 8, title: "Tomorrow's lamb stew starts at 3pm",
+    detail: "Two and a half hours and three batches of browning. Start at 3pm to eat at a sensible time." },
+  { on: "2026-11-09", night: 11, title: "Chill a tin of coconut milk",
+    detail: "Into the fridge tonight for Wednesday's Swedish meatballs, so the cream separates. A tin at room temperature will not work." },
+  { on: "2026-11-14", night: 15, title: "Marinate tomorrow's ras el hanout chicken",
+    detail: "Whisk the marinade, bag it with the thighs and refrigerate. An hour on the counter before it goes in the oven." },
+  { on: "2026-11-18", night: 19, title: "Marinate tomorrow's baharat chicken",
+    detail: "Whisk the marinade and bag it with the thighs. An hour on the counter before roasting." },
+  { on: "2026-11-19", night: 20, title: "Rub tomorrow's coriander steaks",
+    detail: "Olive oil, then the cracked coriander, pepper, salt and garlic powder pressed into both faces. Uncovered on a rack in the fridge." },
+  { on: "2026-11-25", night: 26, title: "Thanksgiving prep night",
+    detail: "While tonight's tray roasts: trim, tie and salt the tenderloin and leave it uncovered on a rack in the fridge. Mix the herb oil. Steam and mash the cauliflower. Tomorrow morning: move Nov 6's lamb meatballs from the freezer to the fridge." },
+  { on: "2026-11-28", night: 29, title: "Move two chili portions to the fridge",
+    detail: "From the freezer tonight, and Sunday is a fifteen-minute night at the end of a long month." }
+];
+
+const DEC_AHEAD = [
+  { on: "2026-11-30", night: 1, title: "Move the braised beef to the fridge",
+    detail: "From the freezer to the fridge tonight, for tomorrow." },
+  { on: "2026-12-03", night: 4, title: "Freeze the meatballs, marinate the flank in the morning",
+    detail: "Tonight: freeze the spare meatballs flat on a tray, then in three bags of twelve for Dec 16, 22 and 30. Tomorrow morning, not tonight: marinate the flank steak for two to four hours. Lime juice past four hours turns it mealy." },
+  { on: "2026-12-05", night: 6, title: "Freeze the chili, and tomorrow's stew starts at 3pm",
+    detail: "Tonight: freeze the spare chili in labelled portions; one is Dec 28 and the rest start January. Tomorrow's lamb stew wants two and a half hours and three batches of browning." },
+  { on: "2026-12-11", night: 12, title: "Tomorrow's beef stew starts at 3pm",
+    detail: "Two and a half hours and three batches of browning. It makes 40% more than the night needs: two lunches and a freezer portion." },
+  { on: "2026-12-12", night: 13, title: "Barbacoa goes in before breakfast",
+    detail: "Tomorrow morning: sear the chuck hard first, then into the slow cooker before breakfast. It carries Monday too." },
+  { on: "2026-12-13", night: 24, title: "Order the Christmas meat this week",
+    detail: "Prime rib and frenched lamb racks both sell out in the last week of December. Ask the butcher to tie the rib bones back on." },
+  { on: "2026-12-15", night: 16, title: "Meatball bag one to the fridge",
+    detail: "Out of the freezer tonight, for tomorrow." },
+  { on: "2026-12-18", night: 19, title: "Marinate tomorrow's Greek lemon chicken",
+    detail: "Oil, garlic, oregano, thyme, salt and pepper over the thighs in a bag tonight. The lemon and Dijon go in an hour before dinner tomorrow, not now." },
+  { on: "2026-12-21", night: 22, title: "Meatball bag two to the fridge",
+    detail: "Out of the freezer tonight, for tomorrow." },
+  { on: "2026-12-23", night: 25, title: "Christmas prep night",
+    detail: "Salt the prime rib all over and leave it uncovered on a rack in the fridge for a full 24 hours. Trim the lamb racks and mix the Dijon herb crust. Steam and mash the cauliflower for both nights in one go." },
+  { on: "2026-12-27", night: 28, title: "Chili to the fridge, carcass in the pot",
+    detail: "Move Monday's chili from the freezer to the fridge, and simmer tonight's carcass: Tuesday's soup depends on it." },
+  { on: "2026-12-29", night: 30, title: "Last bag of meatballs to the fridge",
+    detail: "Out of the freezer tonight, for tomorrow." }
+];
+
 const PLAN_MONTHS = [
   {
     key: "aug", label: "August", short: "Aug", title: "August 2026",
@@ -5521,7 +5595,7 @@ const PLAN_MONTHS = [
         p: ["Saturday Oct 17's short ribs are the most expensive night of the month at about $6.40 a serving, and the only night where the sourced recipe's own cut is the pricey one. Chuck in large chunks braises the same way for less than half.",
             "Against that, six nights this month run under $3.00 a serving, and Sunday Oct 25's whole chicken covers three dinners on its own."] }
     ],
-    weeks: OCT_WEEKS, days: OCT_DAYS, groceries: OCT_GROCERIES, prep: OCT_PREP
+    weeks: OCT_WEEKS, days: OCT_DAYS, groceries: OCT_GROCERIES, prep: OCT_PREP, ahead: OCT_AHEAD
   },
   {
     key: "nov", label: "November", short: "Nov", title: "November 2026",
@@ -5545,7 +5619,7 @@ const PLAN_MONTHS = [
         p: ["Nov 8 to 14 is the cheapest week across all four months per gram of protein. Lamb shoulder, chuck and shin are braising cuts at roughly a third of the price of the seared equivalents, and two of the seven nights are built on meat you already cooked.",
             "That week is what pays for Thanksgiving, which is why they sit two weeks apart."] }
     ],
-    weeks: NOV_WEEKS, days: NOV_DAYS, groceries: NOV_GROCERIES, prep: NOV_PREP
+    weeks: NOV_WEEKS, days: NOV_DAYS, groceries: NOV_GROCERIES, prep: NOV_PREP, ahead: NOV_AHEAD
   },
   {
     key: "dec", label: "December", short: "Dec", title: "December 2026",
@@ -5569,7 +5643,7 @@ const PLAN_MONTHS = [
         p: ["Dec 3 makes 54 meatballs and Dec 5 makes six servings of chili. Between them they put four dinners into the freezer before the middle of the month, and Dec 16, 22, 28 and 30 each take one back out.",
             "That is what makes the run from Dec 20 to Dec 31 possible: across those twelve nights there are only four real cooking sessions, and three of them are the celebrations."] }
     ],
-    weeks: DEC_WEEKS, days: DEC_DAYS, groceries: DEC_GROCERIES, prep: DEC_PREP
+    weeks: DEC_WEEKS, days: DEC_DAYS, groceries: DEC_GROCERIES, prep: DEC_PREP, ahead: DEC_AHEAD
   }
 ];
 

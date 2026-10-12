@@ -1,0 +1,1081 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Megan's Grand Mealplan//Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Mealplan dinners
+BEGIN:VEVENT
+UID:dinner-oct-12@mldhar.github.io
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:Dinner: Sheet Pan Beef & Charred Cabbage
+DESCRIPTION:Beef · 40 min (10 min hands-on) · 74/48g protein a plate\n\nC
+ abbage cut into thick wedges and roasted until the outer leaves blacken\, 
+ with seasoned beef pressed thin on the same tray so the fat runs into it.\
+ n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-12
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-13@mldhar.github.io
+DTSTAMP:20261013T000000Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261014
+SUMMARY:Dinner: Pollo Guisado
+DESCRIPTION:Chicken · 1 hr 10 min (20 min hands-on) · 74/48g protein a pl
+ ate\n\n4.91 stars from 33 reviews. A Puerto Rican chicken stew where the p
+ otato comes out for turnip and the seasoning packet gets made from scratch
+ \, because the packet is mostly cornstarch and MSG.\n\nhttps://mldhar.gith
+ ub.io/megans-grand-mealplan/#oct-13
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-14@mldhar.github.io
+DTSTAMP:20261014T000000Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:Dinner: Roasting Tray Lamb & Fennel
+DESCRIPTION:Lamb · 45 min (15 min hands-on) · 74/48g protein a plate\n\nG
+ round lamb pressed into a tray over fennel wedges. The fennel goes sweet a
+ nd soft under the fat\, which is the only thing that makes fennel worth ea
+ ting.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-14
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-15@mldhar.github.io
+DTSTAMP:20261015T000000Z
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:Dinner: Sheet Pan Meatballs\, Brussels & Radish
+DESCRIPTION:Meatballs · 35 min (10 min hands-on) · 72/47g protein a plate
+ \n\nBag of meatballs\, a pound of sprouts\, a pound of radishes\, one tray
+ \, twenty-five minutes. Roasted radishes lose all their bite and taste lik
+ e a much better potato.\n\nhttps://mldhar.github.io/megans-grand-mealplan/
+ #oct-15
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-16@mldhar.github.io
+DTSTAMP:20261016T000000Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:Dinner: Fast Steak\, Sautéed Cabbage
+DESCRIPTION:Steak · 25 min (25 min hands-on) · 76/49g protein a plate\n\n
+ The Downshiftology cabbage method with the ghee swapped out: fifteen minut
+ es in a hot pan until it caramelises rather than steams. Steak seared alon
+ gside in the time it takes.\n\nhttps://mldhar.github.io/megans-grand-mealp
+ lan/#oct-16
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-17@mldhar.github.io
+DTSTAMP:20261017T000000Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+SUMMARY:Dinner: Cabernet Braised Short Ribs
+DESCRIPTION:Beef · 3 hr (25 min hands-on) · 78/50g protein a plate\n\n5 s
+ tars from 31 ratings. Two and a half hours in which you do nothing\, and t
+ he best thing in the whole four months. This is the Saturday to invite som
+ eone to.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-17
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-18@mldhar.github.io
+DTSTAMP:20261018T000000Z
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+SUMMARY:Dinner: Barbacoa
+DESCRIPTION:Beef · 8 hr 10 min (10 min hands-on) · 78/50g protein a plate
+ \n\n4.95 stars from 191 ratings and compliant exactly as published. Ten mi
+ nutes of prep\, eight hours in which the slow cooker does everything\, and
+  three of this week's dinners come out of it.\n\nhttps://mldhar.github.io/
+ megans-grand-mealplan/#oct-18
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-19@mldhar.github.io
+DTSTAMP:20261019T000000Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:Dinner: Chicken Tinga
+DESCRIPTION:Chicken · 55 min (15 min hands-on) · 75/48g protein a plate\n
+ \n5 stars from 6 ratings. Chicken poached then shredded into a chipotle an
+ d fire-roasted tomato sauce. The only swaps are the things you put it on.\
+ n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-20@mldhar.github.io
+DTSTAMP:20261020T000000Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:Dinner: Best Ever Chili\, No Beans
+DESCRIPTION:Beef · 1 hr 20 min (20 min hands-on) · 76/49g protein a plate
+ \n\n4.98 stars from 350 ratings\, and the second-most-reviewed recipe here
+ . Two cans of beans come out and a pound of mushrooms goes in\, which is a
+  bigger swap than usual but the chili survives it.\n\nhttps://mldhar.githu
+ b.io/megans-grand-mealplan/#oct-20
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-21@mldhar.github.io
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:Dinner: Chipotle Roast Chicken Thighs
+DESCRIPTION:Chicken · 50 min + overnight rub (10 min hands-on) · 76/49g p
+ rotein a plate\n\nA chipotle and cocoa rub that goes on overnight\, then f
+ orty minutes in the oven over cabbage that catches all the fat.\n\nhttps:/
+ /mldhar.github.io/megans-grand-mealplan/#oct-21
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-22@mldhar.github.io
+DTSTAMP:20261022T000000Z
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+SUMMARY:Dinner: Smoky Lamb & Pepper Bake
+DESCRIPTION:Lamb · 45 min (15 min hands-on) · 73/47g protein a plate\n\nG
+ round lamb\, three kinds of pepper and a lot of smoked paprika\, baked hot
+  so the top goes crusty and the peppers collapse underneath.\n\nhttps://ml
+ dhar.github.io/megans-grand-mealplan/#oct-22
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-23@mldhar.github.io
+DTSTAMP:20261023T000000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261024
+SUMMARY:Dinner: Chipotle Meatball Skillet
+DESCRIPTION:Meatballs · 20 min (15 min hands-on) · 72/46g protein a plate
+ \n\nFifteen minutes. Meatballs browned hard\, chipotle and tomato splashed
+  in\, and shredded cabbage stirred through at the last second so it barely
+  wilts.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-23
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-24@mldhar.github.io
+DTSTAMP:20261024T000000Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Dinner: Smoked Paprika Steak\, Roasted Radish
+DESCRIPTION:Steak · 50 min + overnight rub (15 min hands-on) · 78/50g pro
+ tein a plate\n\nA pound and a half of radishes roasted until they go mild 
+ and golden\, under two thick steaks with a smoked paprika crust.\n\nhttps:
+ //mldhar.github.io/megans-grand-mealplan/#oct-24
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-24
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-25@mldhar.github.io
+DTSTAMP:20261025T000000Z
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+SUMMARY:Dinner: Whole Roast Chicken over Roots
+DESCRIPTION:Chicken · 1 hr 45 min (10 min hands-on) · 77/50g protein a pl
+ ate\n\nA five-pound bird on a bed of turnips\, radishes and onions that sp
+ end ninety minutes catching everything that drips out of it. Ten minutes o
+ f work.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-26@mldhar.github.io
+DTSTAMP:20261026T000000Z
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+SUMMARY:Dinner: Cottage Pie\, Cauliflower Top
+DESCRIPTION:Beef · 1 hr (25 min hands-on) · 74/48g protein a plate\n\nThe
+  Oct 6 shepherd's pie method with beef instead of lamb\, built on Sunday's
+  broth. You have made this once already\, so tonight it takes forty minute
+ s.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-26
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-27@mldhar.github.io
+DTSTAMP:20261027T000000Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261028
+SUMMARY:Dinner: Chicken & Kale Skillet
+DESCRIPTION:Chicken · 20 min (15 min hands-on) · 71/46g protein a plate\n
+ \nSunday's leftover chicken\, a bunch of kale and Sunday's broth. Fifteen 
+ minutes\, one pan\, and it uses up the last of the bird.\n\nhttps://mldhar
+ .github.io/megans-grand-mealplan/#oct-27
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-28@mldhar.github.io
+DTSTAMP:20261028T000000Z
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+SUMMARY:Dinner: Steak & Mushroom Braise
+DESCRIPTION:Steak · 1 hr 50 min (20 min hands-on) · 76/49g protein a plat
+ e\n\nThe cheap end of the steak counter braised rather than seared. An hou
+ r and a half in a low oven turns chuck steak into something you can cut wi
+ th a spoon.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#oct-28
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-29@mldhar.github.io
+DTSTAMP:20261029T000000Z
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+SUMMARY:Dinner: Lamb & Kale Bake
+DESCRIPTION:Lamb · 50 min (15 min hands-on) · 73/47g protein a plate\n\nG
+ round lamb and two big bunches of kale baked together under a layer of tom
+ ato\, so the kale goes silky rather than crisp.\n\nhttps://mldhar.github.i
+ o/megans-grand-mealplan/#oct-29
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-30@mldhar.github.io
+DTSTAMP:20261030T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:Dinner: Twenty-Minute Meatballs\, Charred Broccoli
+DESCRIPTION:Meatballs · 20 min (20 min hands-on) · 72/46g protein a plate
+ \n\nBroccoli hard-charred in a dry pan until it blackens\, meatballs brown
+ ed in the same pan after. Nothing about this is complicated and it is the 
+ best broccoli you will make.\n\nhttps://mldhar.github.io/megans-grand-meal
+ plan/#oct-30
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-oct-31@mldhar.github.io
+DTSTAMP:20261031T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Dinner: Halloween Sheet Pan Chicken
+DESCRIPTION:Chicken · 50 min (10 min hands-on) · 75/48g protein a plate\n
+ \nLast night of the month\, and deliberately the least work in it. Everyth
+ ing on one tray\, forty minutes in the oven\, and you are not in the kitch
+ en when the door goes.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#
+ oct-31
+URL:https://mldhar.github.io/megans-grand-mealplan/#oct-31
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-1@mldhar.github.io
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:Dinner: Slow Cooker Whole Chicken
+DESCRIPTION:Chicken · 8 hr 25 min (15 min hands-on) · 76/49g protein a pl
+ ate\n\n4.92 stars from 34 ratings. Fifteen minutes in the morning\, seven 
+ hours you are not in the kitchen\, and a bird that pulls apart with a fork
+ .\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-1
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-2@mldhar.github.io
+DTSTAMP:20261102T000000Z
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:Dinner: Beef Patties\, Roasted Turnip
+DESCRIPTION:Beef · 40 min (15 min hands-on) · 74/48g protein a plate\n\nT
+ urnips roasted hard while you cook six patties in a cast iron pan. Fifteen
+  minutes of your attention and one of the cheapest nights in four months.\
+ n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-2
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-3@mldhar.github.io
+DTSTAMP:20261103T000000Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Dinner: Meatball & Root Tray Bake
+DESCRIPTION:Meatballs · 45 min (10 min hands-on) · 72/47g protein a plate
+ \n\nMeatballs\, turnips\, radishes and fennel on one tray at 425°F. Ten m
+ inutes of work and then thirty-five in which you are not needed.\n\nhttps:
+ //mldhar.github.io/megans-grand-mealplan/#nov-3
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-3
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-4@mldhar.github.io
+DTSTAMP:20261104T000000Z
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+SUMMARY:Dinner: Skirt Steak with Chimichurri
+DESCRIPTION:Steak · 25 min (25 min hands-on) · 76/49g protein a plate\n\n
+ 5 stars from 8 ratings\, and the entire published ingredient list is steak
+ \, salt\, pepper and a cup of chimichurri. Twenty-five minutes and nothing
+  to swap.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-4
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-4
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-5@mldhar.github.io
+DTSTAMP:20261105T000000Z
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:Dinner: Garlic Baked Chicken Thighs
+DESCRIPTION:Chicken · 45 min (10 min hands-on) · 73/47g protein a plate\n
+ \n5 stars from 14 ratings. Five ingredients\, five minutes of work\, thirt
+ y-five in the oven. The butter becomes olive oil and nothing else changes.
+ \n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-5
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-5
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-6@mldhar.github.io
+DTSTAMP:20261106T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261107
+SUMMARY:Dinner: Roast Lamb Meatballs\, Fennel & Onion
+DESCRIPTION:Lamb · 45 min (25 min hands-on) · 74/48g protein a plate\n\nL
+ amb meatballs roasted on fennel and red onion until the fat renders down i
+ nto them. Make the full batch: half of it is Nov 27\, the day after Thanks
+ giving.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-6
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-6
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-7@mldhar.github.io
+DTSTAMP:20261107T000000Z
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+SUMMARY:Dinner: Slow-Roasted Brisket
+DESCRIPTION:Beef · 5 hr 30 min + overnight rub (20 min hands-on) · 78/50g
+  protein a plate\n\nA dry rub the night before and five hours at 275°F un
+ der foil. Twenty minutes of work spread across a Saturday\, and it is Mond
+ ay's dinner as well.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#no
+ v-7
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-7
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-8@mldhar.github.io
+DTSTAMP:20261108T000000Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:Dinner: Irish Lamb Stew
+DESCRIPTION:Lamb · 2 hr 30 min (25 min hands-on) · 77/50g protein a plate
+ \n\n4.96 stars from 25 ratings. Lamb shoulder is the cheapest lamb in the 
+ shop and the only cut that gets better the longer you leave it alone.\n\nh
+ ttps://mldhar.github.io/megans-grand-mealplan/#nov-8
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-8
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-9@mldhar.github.io
+DTSTAMP:20261109T000000Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:Dinner: Braised Thighs\, Mushroom & Thyme
+DESCRIPTION:Chicken · 1 hr 15 min (20 min hands-on) · 75/48g protein a pl
+ ate\n\nBone-in thighs browned then braised in a pound of mushrooms and bro
+ th. An hour in the oven with the lid off so the skin stays crisp above the
+  liquid.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-9
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-10@mldhar.github.io
+DTSTAMP:20261110T000000Z
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+SUMMARY:Dinner: Brisket Hash\, Fried Egg
+DESCRIPTION:Beef · 20 min (15 min hands-on) · 74/48g protein a plate\n\nS
+ aturday's brisket\, chopped and fried hard with turnips until the edges ca
+ tch. Fifteen minutes\, and it is better than the brisket was on the night.
+ \n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-10
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-10
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-11@mldhar.github.io
+DTSTAMP:20261111T000000Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:Dinner: Swedish Meatballs\, No Flour
+DESCRIPTION:Meatballs · 45 min (30 min hands-on) · 73/47g protein a plate
+ \n\n4.79 stars from 32 reviews and the most heavily rewritten recipe in fo
+ ur months. The breadcrumbs\, the flour roux and the cream all come out\, a
+ nd the nutmeg and allspice carry it.\n\nhttps://mldhar.github.io/megans-gr
+ and-mealplan/#nov-11
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-11
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-12@mldhar.github.io
+DTSTAMP:20261112T000000Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+SUMMARY:Dinner: Steak Braised with Peppers
+DESCRIPTION:Steak · 1 hr 50 min (20 min hands-on) · 76/49g protein a plat
+ e\n\nChuck steak and four peppers\, ninety minutes in a low oven. The chea
+ p cut and the long braise together cost less than a single sirloin night.\
+ n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-12
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-13@mldhar.github.io
+DTSTAMP:20261113T000000Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:Dinner: Chicken Soup from Sunday's Bird
+DESCRIPTION:Chicken · 30 min (15 min hands-on) · 71/46g protein a plate\n
+ \nThe carcass you simmered on Sunday\, the meat you stripped off it\, and 
+ twenty minutes. Almost free\, and better than any soup you can buy.\n\nhtt
+ ps://mldhar.github.io/megans-grand-mealplan/#nov-13
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-14@mldhar.github.io
+DTSTAMP:20261114T000000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Dinner: Braised Beef & Fennel\, Red Wine
+DESCRIPTION:Beef · 3 hr 30 min (25 min hands-on) · 78/50g protein a plate
+ \n\nThree hours at 300°F with a bottle's worth of wine and four fennel bu
+ lbs that collapse into the sauce. The Saturday to open something good with
+ .\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-14
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-15@mldhar.github.io
+DTSTAMP:20261115T000000Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:Dinner: Ras el Hanout Roast Chicken Tray
+DESCRIPTION:Chicken · 50 min + marinate (15 min hands-on) · 76/49g protei
+ n a plate\n\nOne spice blend does the whole night. Thighs marinated in it 
+ overnight\, and the same blend on the cauliflower and onions underneath.\n
+ \nhttps://mldhar.github.io/megans-grand-mealplan/#nov-15
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-16@mldhar.github.io
+DTSTAMP:20261116T000000Z
+DTSTART;VALUE=DATE:20261116
+DTEND;VALUE=DATE:20261117
+SUMMARY:Dinner: Warm-Spiced Beef & Cabbage Skillet
+DESCRIPTION:Beef · 20 min (20 min hands-on) · 74/48g protein a plate\n\nC
+ innamon and cumin in a beef and cabbage skillet\, which sounds wrong and i
+ s the best fifteen-minute thing in the month.\n\nhttps://mldhar.github.io/
+ megans-grand-mealplan/#nov-16
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-17@mldhar.github.io
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:Dinner: Cinnamon Lamb & Tomato Bake
+DESCRIPTION:Lamb · 1 hr (20 min hands-on) · 74/48g protein a plate\n\nGro
+ und lamb baked slowly under tomatoes with cinnamon and oregano. Closer to 
+ a moussaka filling than anything else here\, without the potato or the bé
+ chamel.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-17
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-18@mldhar.github.io
+DTSTAMP:20261118T000000Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Dinner: Meatballs\, Cumin & Charred Onion
+DESCRIPTION:Meatballs · 40 min (10 min hands-on) · 72/47g protein a plate
+ \n\nMeatballs and four onions cut into wedges\, roasted at 450°F until th
+ e onions blacken at the tips and go sweet all the way through.\n\nhttps://
+ mldhar.github.io/megans-grand-mealplan/#nov-18
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-19@mldhar.github.io
+DTSTAMP:20261119T000000Z
+DTSTART;VALUE=DATE:20261119
+DTEND;VALUE=DATE:20261120
+SUMMARY:Dinner: Baharat Chicken Thighs
+DESCRIPTION:Chicken · 50 min + marinate (10 min hands-on) · 75/48g protei
+ n a plate\n\nBaharat is the warm-spice blend that tastes closest to what y
+ ou want in November: black pepper\, cumin\, cinnamon\, cardamom\, cloves. 
+ On thighs\, overnight\, into a hot oven.\n\nhttps://mldhar.github.io/megan
+ s-grand-mealplan/#nov-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-20@mldhar.github.io
+DTSTAMP:20261120T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:Dinner: Coriander Steak\, Roasted Fennel
+DESCRIPTION:Steak · 50 min + overnight rub (15 min hands-on) · 78/50g pro
+ tein a plate\n\nWhole coriander seed cracked coarse and pressed into two t
+ hick steaks the night before\, roasted over fennel that goes soft and swee
+ t underneath.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-20
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-21@mldhar.github.io
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:Dinner: Whole Roast Chicken\, Spiced
+DESCRIPTION:Chicken · 1 hr 45 min (10 min hands-on) · 77/50g protein a pl
+ ate\n\nThe last roast chicken before Thanksgiving week\, done with the war
+ m-spice blend from the rest of this week. The carcass becomes the broth Th
+ ursday's gravy needs.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#n
+ ov-21
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-22@mldhar.github.io
+DTSTAMP:20261122T000000Z
+DTSTART;VALUE=DATE:20261122
+DTEND;VALUE=DATE:20261123
+SUMMARY:Dinner: Crockpot Salsa Verde Chicken
+DESCRIPTION:Chicken · 3 hr 5 min (5 min hands-on) · 73/47g protein a plat
+ e\n\n5 stars from 72 ratings. Four ingredients into a slow cooker and noth
+ ing else asked of you\, which is exactly right four days before Thanksgivi
+ ng.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-22
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-23@mldhar.github.io
+DTSTAMP:20261123T000000Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261124
+SUMMARY:Dinner: Twenty-Minute Meatball Skillet
+DESCRIPTION:Meatballs · 20 min (20 min hands-on) · 72/46g protein a plate
+ \n\nThree days before Thanksgiving is not the time for a project. Bag of m
+ eatballs\, a pan\, twenty minutes.\n\nhttps://mldhar.github.io/megans-gran
+ d-mealplan/#nov-23
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-24@mldhar.github.io
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:Dinner: Beef & Cabbage Skillet
+DESCRIPTION:Beef · 20 min (20 min hands-on) · 74/48g protein a plate\n\nF
+ ifteen minutes\, one pan\, and nothing that competes with Thursday. The la
+ st easy night before the shopping gets serious.\n\nhttps://mldhar.github.i
+ o/megans-grand-mealplan/#nov-24
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-24
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-25@mldhar.github.io
+DTSTAMP:20261125T000000Z
+DTSTART;VALUE=DATE:20261125
+DTEND;VALUE=DATE:20261126
+SUMMARY:Dinner: The Night Before
+DESCRIPTION:Chicken · 45 min (10 min hands-on) · 73/47g protein a plate\n
+ \nOne tray\, ten minutes of work\, and an oven you need back. Everything a
+ bout tomorrow is easier if tonight is nothing.\n\nhttps://mldhar.github.io
+ /megans-grand-mealplan/#nov-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-26@mldhar.github.io
+DTSTAMP:20261126T000000Z
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:Dinner: Thanksgiving: Beef Tenderloin Roast
+DESCRIPTION:Steak · 45 min + overnight salt (30 min hands-on) · 79/51g pr
+ otein a plate\n\n4.99 stars from 160 ratings. Turkey is not one of your fi
+ ve proteins\, so Thanksgiving is a four-pound tenderloin instead\, with ev
+ erything around it compliant and none of it tasting like a compromise.\n\n
+ https://mldhar.github.io/megans-grand-mealplan/#nov-26
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-27@mldhar.github.io
+DTSTAMP:20261127T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:Dinner: Freezer Lamb Meatballs
+DESCRIPTION:Lamb · 20 min (10 min hands-on) · 72/46g protein a plate\n\nY
+ ou made these on Nov 6 for exactly this evening. Sixteen meatballs out of 
+ the freezer\, a salad\, and no thinking at all.\n\nhttps://mldhar.github.i
+ o/megans-grand-mealplan/#nov-27
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-28@mldhar.github.io
+DTSTAMP:20261128T000000Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:Dinner: Cold Tenderloin\, Warm Everything Else
+DESCRIPTION:Steak · 35 min (10 min hands-on) · 74/48g protein a plate\n\n
+ Thursday's beef sliced cold over hot roasted vegetables\, which is the bes
+ t way to eat leftover tenderloin and the only way that does not overcook i
+ t.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#nov-28
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-29@mldhar.github.io
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261129
+DTEND;VALUE=DATE:20261130
+SUMMARY:Dinner: Last Chili of the Year
+DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nO
+ ne of the four chili portions you froze in October\, or twenty minutes to 
+ make a fresh one. Either way this is the night you do not cook.\n\nhttps:/
+ /mldhar.github.io/megans-grand-mealplan/#nov-29
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-nov-30@mldhar.github.io
+DTSTAMP:20261130T000000Z
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261201
+SUMMARY:Dinner: Last Night of the Plan
+DESCRIPTION:Chicken · 30 min (25 min hands-on) · 74/48g protein a plate\n
+ \nFour months\, 121 dinners\, and this one is written to empty the vegetab
+ le drawer. Whatever is in there goes in the pan.\n\nhttps://mldhar.github.
+ io/megans-grand-mealplan/#nov-30
+URL:https://mldhar.github.io/megans-grand-mealplan/#nov-30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-1@mldhar.github.io
+DTSTAMP:20261201T000000Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:Dinner: Braised Beef from the Freezer
+DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nT
+ he portion you froze on Nov 14\, in its sauce. Twenty-five minutes\, most 
+ of it waiting\, and the first night of the month asks nothing of you.\n\nh
+ ttps://mldhar.github.io/megans-grand-mealplan/#dec-1
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-2@mldhar.github.io
+DTSTAMP:20261202T000000Z
+DTSTART;VALUE=DATE:20261202
+DTEND;VALUE=DATE:20261203
+SUMMARY:Dinner: Crispy Baked Chicken Thighs
+DESCRIPTION:Chicken · 50 min (10 min hands-on) · 76/49g protein a plate\n
+ \n4.94 stars from 393 ratings\, the highest review count in five months\, 
+ and compliant exactly as published. Five minutes of work and forty in the 
+ oven.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-2
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-3@mldhar.github.io
+DTSTAMP:20261203T000000Z
+DTSTART;VALUE=DATE:20261203
+DTEND;VALUE=DATE:20261204
+SUMMARY:Dinner: Batch Meatballs\, Three Bags
+DESCRIPTION:Meatballs · 50 min (30 min hands-on) · 74/48g protein a plate
+ \n\nThe restock night. Make 54 beef meatballs\, eat 18\, and put three bag
+ s of twelve into the freezer for the back half of the month when there is 
+ no time to cook.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-3
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-3
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-4@mldhar.github.io
+DTSTAMP:20261204T000000Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+SUMMARY:Dinner: Steak Fajitas
+DESCRIPTION:Steak · 50 min + marinate (20 min hands-on) · 76/49g protein 
+ a plate\n\n5 stars from 31 ratings. The marinade is compliant as written a
+ nd only the tortillas and sour cream come out.\n\nhttps://mldhar.github.io
+ /megans-grand-mealplan/#dec-4
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-4
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-5@mldhar.github.io
+DTSTAMP:20261205T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Dinner: Texas Chili\, No Beans
+DESCRIPTION:Beef · 1 hr 15 min (20 min hands-on) · 75/48g protein a plate
+ \n\nYou made this on Oct 10 and it was the best thing in the freezer for t
+ wo months. Making it again is the point: this is the second restock night.
+ \n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-5
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-5
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-6@mldhar.github.io
+DTSTAMP:20261206T000000Z
+DTSTART;VALUE=DATE:20261206
+DTEND;VALUE=DATE:20261207
+SUMMARY:Dinner: Irish Lamb Stew
+DESCRIPTION:Lamb · 2 hr 30 min (25 min hands-on) · 77/50g protein a plate
+ \n\n4.96 stars from 25 ratings\, and the second time it appears. Lamb shou
+ lder is still the cheapest lamb in the shop and this is still the best thi
+ ng to do with it in December.\n\nhttps://mldhar.github.io/megans-grand-mea
+ lplan/#dec-6
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-6
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-7@mldhar.github.io
+DTSTAMP:20261207T000000Z
+DTSTART;VALUE=DATE:20261207
+DTEND;VALUE=DATE:20261208
+SUMMARY:Dinner: Ultimate Chicken Soup
+DESCRIPTION:Chicken · 30 min (15 min hands-on) · 73/47g protein a plate\n
+ \n4.97 stars from 382 ratings and the most-reviewed recipe on the whole si
+ te. Thirty minutes\, and in December you will want it more than you did in
+  October.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-7
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-7
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-8@mldhar.github.io
+DTSTAMP:20261208T000000Z
+DTSTART;VALUE=DATE:20261208
+DTEND;VALUE=DATE:20261209
+SUMMARY:Dinner: Albóndigas Soup
+DESCRIPTION:Meatballs · 50 min (20 min hands-on) · 73/47g protein a plate
+ \n\n5 stars from 7 votes. Mexican meatball soup where the rice binder beco
+ mes almond flour and the potatoes become turnips\, and the mint in the mea
+ tballs stays because it is the whole point.\n\nhttps://mldhar.github.io/me
+ gans-grand-mealplan/#dec-8
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-8
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-9@mldhar.github.io
+DTSTAMP:20261209T000000Z
+DTSTART;VALUE=DATE:20261209
+DTEND;VALUE=DATE:20261210
+SUMMARY:Dinner: Fast Steak\, Winter Greens
+DESCRIPTION:Steak · 20 min (20 min hands-on) · 76/49g protein a plate\n\n
+ Twenty minutes in the middle of a week of bowls. Steak seared hard\, and t
+ wo bunches of kale wilted in the fat left behind.\n\nhttps://mldhar.github
+ .io/megans-grand-mealplan/#dec-9
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-10@mldhar.github.io
+DTSTAMP:20261210T000000Z
+DTSTART;VALUE=DATE:20261210
+DTEND;VALUE=DATE:20261211
+SUMMARY:Dinner: Green Chile Chicken Stew
+DESCRIPTION:Chicken · 45 min (20 min hands-on) · 74/48g protein a plate\n
+ \n4.99 stars from 179 ratings as a white chicken chili. The beans and the 
+ corn are what made it white\, so this is honestly a different dish: a gree
+ n chile chicken stew\, and a very good one.\n\nhttps://mldhar.github.io/me
+ gans-grand-mealplan/#dec-10
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-10
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-11@mldhar.github.io
+DTSTAMP:20261211T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:Dinner: Lamb & Cabbage Bake
+DESCRIPTION:Lamb · 55 min (15 min hands-on) · 74/48g protein a plate\n\nG
+ round lamb and a whole cabbage baked together until the cabbage collapses 
+ into the fat. Fifteen minutes of work and forty in the oven you can ignore
+ .\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-11
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-11
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-12@mldhar.github.io
+DTSTAMP:20261212T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:Dinner: Classic Beef Stew
+DESCRIPTION:Beef · 2 hr 15 min (25 min hands-on) · 77/50g protein a plate
+ \n\n4.99 stars from 150 ratings\, back for the second time. Same two swaps
+ \, same three batches of browning\, and it is still the best braise in fiv
+ e months.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-12
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-13@mldhar.github.io
+DTSTAMP:20261213T000000Z
+DTSTART;VALUE=DATE:20261213
+DTEND;VALUE=DATE:20261214
+SUMMARY:Dinner: Barbacoa
+DESCRIPTION:Beef · 8 hr 10 min (10 min hands-on) · 78/50g protein a plate
+ \n\n4.95 stars from 191 ratings\, back for the second time and still compl
+ iant exactly as published. Ten minutes of prep and eight hours in which yo
+ u decorate a tree.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-
+ 13
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-14@mldhar.github.io
+DTSTAMP:20261214T000000Z
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261215
+SUMMARY:Dinner: Crisped Barbacoa Bowls
+DESCRIPTION:Beef · 20 min (15 min hands-on) · 74/48g protein a plate\n\nS
+ unday's beef pressed into a hot dry pan until the edges go crunchy. Twelve
+  minutes\, and it is better than it was yesterday.\n\nhttps://mldhar.githu
+ b.io/megans-grand-mealplan/#dec-14
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-15@mldhar.github.io
+DTSTAMP:20261215T000000Z
+DTSTART;VALUE=DATE:20261215
+DTEND;VALUE=DATE:20261216
+SUMMARY:Dinner: Lamb & Root Braise
+DESCRIPTION:Lamb · 2 hr 30 min (20 min hands-on) · 76/49g protein a plate
+ \n\nLamb shoulder\, turnips and fennel with the lid on for two hours. The 
+ last long braise before Christmas week takes over.\n\nhttps://mldhar.githu
+ b.io/megans-grand-mealplan/#dec-15
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-16@mldhar.github.io
+DTSTAMP:20261216T000000Z
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+SUMMARY:Dinner: Freezer Meatballs\, Tomato & Kale
+DESCRIPTION:Meatballs · 25 min (10 min hands-on) · 72/46g protein a plate
+ \n\nBag one of three from Dec 3. Twelve meatballs\, a tin of tomatoes\, an
+ d dinner in twenty minutes on a Wednesday in December.\n\nhttps://mldhar.g
+ ithub.io/megans-grand-mealplan/#dec-16
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-17@mldhar.github.io
+DTSTAMP:20261217T000000Z
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
+SUMMARY:Dinner: One Pot Chicken & Cabbage
+DESCRIPTION:Chicken · 1 hr 10 min (15 min hands-on) · 75/48g protein a pl
+ ate\n\nThighs browned then buried in a whole cabbage and left in the oven.
+  One pot\, ten minutes of work\, and the cabbage ends up better than the c
+ hicken.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-17
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-18@mldhar.github.io
+DTSTAMP:20261218T000000Z
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:Dinner: Steak & Onion Braise
+DESCRIPTION:Steak · 1 hr 50 min (20 min hands-on) · 76/49g protein a plat
+ e\n\nFour onions cooked down to almost nothing under chuck steak\, ninety 
+ minutes in a low oven. The cheap cut and the cheap vegetable\, and it eats
+  like neither.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-18
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-19@mldhar.github.io
+DTSTAMP:20261219T000000Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:Dinner: Greek Lemon Chicken
+DESCRIPTION:Chicken · 55 min + marinate (15 min hands-on) · 76/49g protei
+ n a plate\n\n4.98 stars from 341 ratings\, back from the first of Septembe
+ r. The night before Christmas week starts\, and it is the same fifteen min
+ utes of work it was then.\n\nhttps://mldhar.github.io/megans-grand-mealpla
+ n/#dec-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-20@mldhar.github.io
+DTSTAMP:20261220T000000Z
+DTSTART;VALUE=DATE:20261220
+DTEND;VALUE=DATE:20261221
+SUMMARY:Dinner: Sunday Pot Roast
+DESCRIPTION:Beef · 4 hr (20 min hands-on) · 78/50g protein a plate\n\nThe
+  last unhurried Sunday of the year. Four pounds of chuck in the oven for t
+ hree and a half hours while you do everything else Christmas needs.\n\nhtt
+ ps://mldhar.github.io/megans-grand-mealplan/#dec-20
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-21@mldhar.github.io
+DTSTAMP:20261221T000000Z
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20261222
+SUMMARY:Dinner: Best Baked Chicken Breast
+DESCRIPTION:Chicken · 30 min (10 min hands-on) · 77/50g protein a plate\n
+ \n4.99 stars from 224 ratings\, back from September. Twenty-five minutes e
+ nd to end and five of them yours\, which is all Monday of Christmas week c
+ an spare.\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-21
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-22@mldhar.github.io
+DTSTAMP:20261222T000000Z
+DTSTART;VALUE=DATE:20261222
+DTEND;VALUE=DATE:20261223
+SUMMARY:Dinner: Freezer Meatballs & Pot Roast
+DESCRIPTION:Meatballs · 20 min (15 min hands-on) · 74/48g protein a plate
+ \n\nBag two of three\, plus what is left of Sunday's pot roast. Fifteen mi
+ nutes\, no shopping\, and the fridge gets emptier before the big shop.\n\n
+ https://mldhar.github.io/megans-grand-mealplan/#dec-22
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-23@mldhar.github.io
+DTSTAMP:20261223T000000Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+SUMMARY:Dinner: The Quiet Night
+DESCRIPTION:Chicken · 40 min (10 min hands-on) · 73/47g protein a plate\n
+ \nOne tray\, ten minutes\, eaten early. Tomorrow and Friday both need the 
+ oven\, the fridge and your attention\, so tonight needs none of them.\n\nh
+ ttps://mldhar.github.io/megans-grand-mealplan/#dec-23
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-24@mldhar.github.io
+DTSTAMP:20261224T000000Z
+DTSTART;VALUE=DATE:20261224
+DTEND;VALUE=DATE:20261225
+SUMMARY:Dinner: Christmas Eve: Rack of Lamb
+DESCRIPTION:Lamb · 35 min (15 min hands-on) · 76/49g protein a plate\n\n5
+  stars from 6 ratings and compliant exactly as published: Dijon\, garlic\,
+  rosemary\, thyme\, parsley\, lemon zest. Thirty-five minutes total\, whic
+ h is the least work any celebration night has ever asked.\n\nhttps://mldha
+ r.github.io/megans-grand-mealplan/#dec-24
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-24
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-25@mldhar.github.io
+DTSTAMP:20261225T000000Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:Dinner: Christmas Day: Prime Rib
+DESCRIPTION:Steak · 1 hr 45 min + overnight salt (25 min hands-on) · 79/5
+ 1g protein a plate\n\n4.98 stars from 312 ratings. Six pounds\, salted the
+  day before\, twenty minutes hot then an hour and a bit low. The butter be
+ comes a garlic herb oil and nothing else changes.\n\nhttps://mldhar.github
+ .io/megans-grand-mealplan/#dec-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-26@mldhar.github.io
+DTSTAMP:20261226T000000Z
+DTSTART;VALUE=DATE:20261226
+DTEND;VALUE=DATE:20261227
+SUMMARY:Dinner: Boxing Day: Cold Prime Rib
+DESCRIPTION:Beef · 35 min (10 min hands-on) · 76/49g protein a plate\n\nY
+ esterday's beef sliced thin and cold over hot roasted vegetables\, with a 
+ horseradish sauce made from actual horseradish. Ten minutes of work on the
+  day you least want to cook.\n\nhttps://mldhar.github.io/megans-grand-meal
+ plan/#dec-26
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-27@mldhar.github.io
+DTSTAMP:20261227T000000Z
+DTSTART;VALUE=DATE:20261227
+DTEND;VALUE=DATE:20261228
+SUMMARY:Dinner: Roast Chicken\, Quiet Sunday
+DESCRIPTION:Chicken · 1 hr 35 min (10 min hands-on) · 77/50g protein a pl
+ ate\n\nAfter a week of roasts\, the smallest possible roast. One bird\, te
+ n minutes of work\, and the carcass makes the broth Tuesday's soup runs on
+ .\n\nhttps://mldhar.github.io/megans-grand-mealplan/#dec-27
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-28@mldhar.github.io
+DTSTAMP:20261228T000000Z
+DTSTART;VALUE=DATE:20261228
+DTEND;VALUE=DATE:20261229
+SUMMARY:Dinner: Chili from the Freezer
+DESCRIPTION:Beef · 25 min (10 min hands-on) · 74/48g protein a plate\n\nO
+ ne of the three portions you froze on Dec 5. Fifteen minutes\, and the las
+ t week of the year does not need you cooking.\n\nhttps://mldhar.github.io/
+ megans-grand-mealplan/#dec-28
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-29@mldhar.github.io
+DTSTAMP:20261229T000000Z
+DTSTART;VALUE=DATE:20261229
+DTEND;VALUE=DATE:20261230
+SUMMARY:Dinner: Chicken Soup from Sunday's Bird
+DESCRIPTION:Chicken · 30 min (15 min hands-on) · 71/46g protein a plate\n
+ \nSunday's carcass\, Sunday's meat\, and twenty minutes. The cheapest nigh
+ t of the whole five months at about $1.90 a serving.\n\nhttps://mldhar.git
+ hub.io/megans-grand-mealplan/#dec-29
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-30@mldhar.github.io
+DTSTAMP:20261230T000000Z
+DTSTART;VALUE=DATE:20261230
+DTEND;VALUE=DATE:20261231
+SUMMARY:Dinner: Last Bag of Meatballs
+DESCRIPTION:Meatballs · 25 min (15 min hands-on) · 72/46g protein a plate
+ \n\nBag three of three from Dec 3. The freezer is now empty of meatballs a
+ nd the year has one night left.\n\nhttps://mldhar.github.io/megans-grand-m
+ ealplan/#dec-30
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:dinner-dec-31@mldhar.github.io
+DTSTAMP:20261231T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:Dinner: New Year's Eve: Filet Mignon
+DESCRIPTION:Steak · 25 min (20 min hands-on) · 79/51g protein a plate\n\n
+ 4.99 stars from 90 ratings. Two minutes a side\, one minute basting\, then
+  the pan goes in the oven. Twenty minutes for the last dinner of the year 
+ and five months of plan.\n\nhttps://mldhar.github.io/megans-grand-mealplan
+ /#dec-31
+URL:https://mldhar.github.io/megans-grand-mealplan/#dec-31
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
