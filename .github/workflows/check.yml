@@ -1,0 +1,22 @@
+# Runs tools/check.js on every push to main and every pull request:
+# dates and weekdays, the four rules, the protein floor, the night-before
+# list, the calendar files and the quoted totals. See the README.
+name: Check the plan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/check.js

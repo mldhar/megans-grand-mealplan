@@ -96,7 +96,8 @@ python3 -m http.server 8765
 | `manifest.webmanifest`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` | What a phone needs to add the site to its home screen as an app |
 | `og-image.jpg` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
 | `icon.svg`, `apple-touch-icon.png` | Favicon and home-screen icon |
-| `tools/` | Sources for the images above, rendered with headless Chrome, not loaded by the site |
+| `tools/` | Sources for the images above, rendered with headless Chrome; `make-calendar.js`, which writes the calendar files; and `check.js`, which checks the plan. None of it is loaded by the site |
+| `.github/workflows/check.yml` | Runs `tools/check.js` on every push and pull request |
 
 ### Editing
 
@@ -124,6 +125,29 @@ node tools/make-calendar.js --from 2026-10-12   # or omit --from for "from today
 Every event keeps a stable ID made from its date and night, so a calendar that matches on
 IDs can update rather than duplicate. Not every app does, so after a big change it is safest
 to delete the old events before importing the new file.
+
+### Checking a change
+
+```bash
+node tools/check.js
+```
+
+Run it before committing; GitHub runs it on every push and pull request and marks the
+commit red if it fails. It needs nothing but Node. It checks:
+
+- every month runs night after night, and every night's date and weekday agree
+- every ingredient and shopping line against the four rules (lines that say an item is
+  absent, like "no sugar added" or "(check: no cornstarch)", are allowed)
+- the 70g/45g protein floor on every night that lists its protein
+- that every night-before job falls in the fortnight before its night, and every trip,
+  prep note and night points at a week the month has
+- that `prep-reminders.ics` and `dinners.ics` still match `data.js`
+- that the totals quoted in `index.html` and this README ("183 dinners", "six months",
+  "90 sourced") match the plan
+- that every script parses and every file the page or the offline copy asks for exists
+
+It prints each problem with where it is, for example
+`aug-8: "cream" breaks the dairy rule in "1 cup heavy cream"`.
 
 `protein_g: { him, her }` is optional per day. Where it is present the card shows a
 `74/48g` chip and the modal draws the meter; where it is absent, as on every August
