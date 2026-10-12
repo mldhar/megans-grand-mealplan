@@ -58,7 +58,7 @@
 
   <div class="middle">
     <div>
-      <h1>Five months of dinners, <em>already decided.</em></h1>
+      <h1><span id="months-word">Six</span> months of dinners, <em>already decided.</em></h1>
       <p class="sub">No dairy, no starch, no added sugar, no seed oils. Five proteins on rotation, every night portioned from the protein up.</p>
     </div>
     <div class="plate"><span class="stage-plate" id="plate"></span></div>
@@ -76,11 +76,13 @@
   const floor = Math.min(...PLAN_MONTHS.flatMap(m => m.days.filter(d => d.protein_g).map(d => d.protein_g.him)));
   const first = PLAN_MONTHS[0], last = PLAN_MONTHS[PLAN_MONTHS.length - 1];
   document.getElementById("mark").textContent = nights;
-  document.getElementById("span").textContent = `${first.short} to ${last.short} ${first.first.slice(0, 4)}`;
+  const ya = first.first.slice(0, 4), yb = last.last.slice(0, 4);
+  document.getElementById("span").textContent = ya === yb ? `${first.short} to ${last.short} ${ya}` : `${first.short} ${ya} to ${last.short} ${yb}`;
+  document.getElementById("months-word").textContent = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"][PLAN_MONTHS.length];
   document.getElementById("stats").innerHTML = [
     [nights, "dinners"], [PLAN_MONTHS.length, "months"], [sourced, "sourced recipes"], [`${Math.floor(floor / 10) * 10}g+`, "protein a plate"]
   ].map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
-  // the first night of the plan, Greek sheet pan chicken: the most colourful plate in five months
+  // the first night of the plan, Greek sheet pan chicken: the most colourful plate in the plan
   document.getElementById("plate").innerHTML = stagePlate(PLAN_MONTHS[0].days[0]);
 </script>
 </body>

@@ -476,4 +476,268 @@ DESCRIPTION:Prep: Last bag of meatballs to the fridge
 TRIGGER:PT0S
 END:VALARM
 END:VEVENT
+BEGIN:VEVENT
+UID:prep-20261231-jan-1@mldhar.github.io
+DTSTAMP:20261231T000000Z
+DTSTART:20261231T190000
+DTEND:20261231T191500
+SUMMARY:Prep: Chili to the fridge before the filets
+DESCRIPTION:Move the last two chili portions from the freezer to the fridge
+  tonight. New Year's Day then asks nothing else of you.\n\nFor Friday 1 Ja
+ n: Chili from the Freezer\nhttps://mldhar.github.io/megans-grand-mealplan/
+ #jan-1
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Chili to the fridge before the filets
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270101-jan-2@mldhar.github.io
+DTSTAMP:20270101T000000Z
+DTSTART:20270101T190000
+DTEND:20270101T191500
+SUMMARY:Prep: Salt tomorrow's chicken in the morning
+DESCRIPTION:First thing tomorrow: pat the bird dry\, salt it all over and l
+ eave it uncovered in the fridge all day.\n\nFor Saturday 2 Jan: Super Easy
+  Roast Chicken\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-2
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-2
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Salt tomorrow's chicken in the morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270102-jan-4@mldhar.github.io
+DTSTAMP:20270102T000000Z
+DTSTART:20270102T190000
+DTEND:20270102T191500
+SUMMARY:Prep: Strip the bird and simmer the carcass
+DESCRIPTION:While it is still warm\, pick off every scrap of meat\, about a
+  pound\, then simmer the carcass with an onion for two hours. The meat and
+  the broth are Monday's soup.\n\nFor Monday 4 Jan: Chicken Soup from Satur
+ day's Bird\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-4
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-4
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Strip the bird and simmer the carcass
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270102-jan-3@mldhar.github.io
+DTSTAMP:20270102T000000Z
+DTSTART:20270102T190000
+DTEND:20270102T191500
+SUMMARY:Prep: Tomorrow's beef stew starts at 3pm
+DESCRIPTION:Two and a half hours and three batches of browning.\n\nFor Sund
+ ay 3 Jan: Classic Beef Stew\nhttps://mldhar.github.io/megans-grand-mealpla
+ n/#jan-3
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-3
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's beef stew starts at 3pm
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270107-jan-8@mldhar.github.io
+DTSTAMP:20270107T000000Z
+DTSTART:20270107T190000
+DTEND:20270107T191500
+SUMMARY:Prep: Marinate the flank tomorrow morning
+DESCRIPTION:Morning\, not tonight: two to four hours in the lime marinade a
+ nd no longer\, or the outside turns grey and mealy.\n\nFor Friday 8 Jan: C
+ arne Asada\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-8
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate the flank tomorrow morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270109-jan-10@mldhar.github.io
+DTSTAMP:20270109T000000Z
+DTSTART:20270109T190000
+DTEND:20270109T191500
+SUMMARY:Prep: Barbacoa goes in before breakfast
+DESCRIPTION:Tomorrow morning: sear the chuck hard first\, then everything e
+ xcept the cabbage into the slow cooker. Eight hours on low\, untouched.\n\
+ nFor Sunday 10 Jan: Barbacoa\nhttps://mldhar.github.io/megans-grand-mealpl
+ an/#jan-10
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-10
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Barbacoa goes in before breakfast
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270114-jan-15@mldhar.github.io
+DTSTAMP:20270114T000000Z
+DTSTART:20270114T190000
+DTEND:20270114T191500
+SUMMARY:Prep: Marinate the fajita steak tomorrow morning
+DESCRIPTION:Morning: whisk the marinade\, keep ¼ cup back for the peppers\
+ , and bag the rest with the steak. Two to four hours.\n\nFor Friday 15 Jan
+ : Steak Fajitas\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-15
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-15
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate the fajita steak tomorrow morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270115-jan-16@mldhar.github.io
+DTSTAMP:20270115T000000Z
+DTSTART:20270115T190000
+DTEND:20270115T191500
+SUMMARY:Prep: Tomorrow's lamb stew starts at 3pm
+DESCRIPTION:Two and a half hours and three batches of browning.\n\nFor Satu
+ rday 16 Jan: Irish Lamb Stew\nhttps://mldhar.github.io/megans-grand-mealpl
+ an/#jan-16
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-16
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's lamb stew starts at 3pm
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270116-jan-17@mldhar.github.io
+DTSTAMP:20270116T000000Z
+DTSTART:20270116T190000
+DTEND:20270116T191500
+SUMMARY:Prep: Tomorrow's pot roast is a four-hour oven
+DESCRIPTION:Sear the chuck and get it into a 300°F oven by 2:30pm to eat a
+ t 7.\n\nFor Sunday 17 Jan: Oven-Braised Pot Roast\nhttps://mldhar.github.i
+ o/megans-grand-mealplan/#jan-17
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-17
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Tomorrow's pot roast is a four-hour oven
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270117-jan-19@mldhar.github.io
+DTSTAMP:20270117T000000Z
+DTSTART:20270117T190000
+DTEND:20270117T191500
+SUMMARY:Prep: Chill a tin of coconut milk
+DESCRIPTION:Into the fridge tonight for Tuesday's Swedish meatballs\, so th
+ e cream separates. A tin at room temperature will not work.\n\nFor Tuesday
+  19 Jan: Swedish Meatballs\, No Flour\nhttps://mldhar.github.io/megans-gra
+ nd-mealplan/#jan-19
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-19
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Chill a tin of coconut milk
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270119-jan-20@mldhar.github.io
+DTSTAMP:20270119T000000Z
+DTSTART:20270119T190000
+DTEND:20270119T191500
+SUMMARY:Prep: Marinate tomorrow's Greek lemon chicken
+DESCRIPTION:Oil\, garlic\, oregano\, thyme\, salt and pepper over the thigh
+ s in a bag tonight. The lemon and Dijon go in an hour before dinner tomorr
+ ow\, not now.\n\nFor Wednesday 20 Jan: Greek Lemon Chicken\nhttps://mldhar
+ .github.io/megans-grand-mealplan/#jan-20
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-20
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's Greek lemon chicken
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270121-jan-31@mldhar.github.io
+DTSTAMP:20270121T000000Z
+DTSTART:20270121T190000
+DTEND:20270121T191500
+SUMMARY:Prep: Order the lamb shoulder for the last night
+DESCRIPTION:4½ lb bone-in lamb shoulder for Sunday the 31st. Not every sho
+ p keeps it bone-in without notice.\n\nFor Sunday 31 Jan: Slow-Roast Lamb S
+ houlder\, the Last Night\nhttps://mldhar.github.io/megans-grand-mealplan/#
+ jan-31
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-31
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Order the lamb shoulder for the last night
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270122-jan-23@mldhar.github.io
+DTSTAMP:20270122T000000Z
+DTSTART:20270122T190000
+DTEND:20270122T191500
+SUMMARY:Prep: Marinate tomorrow's chicken in the morning
+DESCRIPTION:Tomorrow morning: two-thirds of the marinade over the thighs in
+  a bag. One to two hours is enough and all day is better.\n\nFor Saturday 
+ 23 Jan: Roast Chicken & Brussels Sprouts\nhttps://mldhar.github.io/megans-
+ grand-mealplan/#jan-23
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-23
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's chicken in the morning
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270124-jan-25@mldhar.github.io
+DTSTAMP:20270124T000000Z
+DTSTART:20270124T190000
+DTEND:20270124T191500
+SUMMARY:Prep: Marinate tomorrow's shawarma before bed
+DESCRIPTION:Whisk the marinade\, add the chicken strips and sliced onion\, 
+ and refrigerate in a bag overnight.\n\nFor Monday 25 Jan: Baked Chicken Sh
+ awarma\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-25
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-25
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Marinate tomorrow's shawarma before bed
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270127-jan-28@mldhar.github.io
+DTSTAMP:20270127T000000Z
+DTSTART:20270127T190000
+DTEND:20270127T191500
+SUMMARY:Prep: Meatballs to the fridge
+DESCRIPTION:Two bags of Jan 6's chicken meatballs out of the freezer tonigh
+ t\, for tomorrow.\n\nFor Thursday 28 Jan: Freezer Meatballs\, Tomato Brais
+ e\nhttps://mldhar.github.io/megans-grand-mealplan/#jan-28
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-28
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Meatballs to the fridge
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:prep-20270130-jan-31@mldhar.github.io
+DTSTAMP:20270130T000000Z
+DTSTART:20270130T190000
+DTEND:20270130T191500
+SUMMARY:Prep: Salt tomorrow's lamb shoulder
+DESCRIPTION:Salt it all over and leave it uncovered in the fridge overnight
+ . Tomorrow it goes into a 300°F oven at about 2:30pm.\n\nFor Sunday 31 Ja
+ n: Slow-Roast Lamb Shoulder\, the Last Night\nhttps://mldhar.github.io/meg
+ ans-grand-mealplan/#jan-31
+URL:https://mldhar.github.io/megans-grand-mealplan/#jan-31
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Prep: Salt tomorrow's lamb shoulder
+TRIGGER:PT0S
+END:VALARM
+END:VEVENT
 END:VCALENDAR

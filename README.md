@@ -1,6 +1,6 @@
 # Megan's Grand Mealplan
 
-A static site for five months of dinner plans, 152 nights in total:
+A static site for six months of dinner plans, 183 nights in total:
 
 | Month | Nights | Shape |
 | --- | --- | --- |
@@ -9,11 +9,12 @@ A static site for five months of dinner plans, 152 nights in total:
 | **October 2026** | 31 | Braises and roasting trays, turnips in place of potatoes |
 | **November 2026** | 30 | Root roasts, long braises, and a compliant Thanksgiving |
 | **December 2026** | 31 | Soup, stew, the freezer, and three celebration nights |
+| **January 2027** | 31 | A first draft: the best-rated nights back in rotation, until the verdicts swap them |
 
-All five are dairy-free, grain- and starch-free, no added sugar, no vegetable or seed
+All six are dairy-free, grain- and starch-free, no added sugar, no vegetable or seed
 oils, on the same five proteins: chicken, beef, meatballs, steak and lamb.
 
-## The five months
+## The six months
 
 **August** is the original plan. Five weekly flavour directions (Mediterranean,
 Southwest, stir-fry, steakhouse, greatest hits), recipes listed at whatever yield they
@@ -48,6 +49,14 @@ dinners into the freezer, which is what makes the run from Dec 20 to Dec 31 poss
 across those twelve nights there are only four real cooking sessions, and three of them
 are the celebrations.
 
+**January** is a first draft, written before any verdicts were in. Twenty-nine of its
+thirty-one nights have been cooked in this plan before and come back on their published
+ratings: the stews, the barbacoa, the Greek chicken, the soups. Two August favourites,
+Greek sheet pan chicken and the shakshuka, return resized to the 70g floor, and two
+nights are new, ending the plan with a slow-roast lamb shoulder on Jan 31. It costs
+about a third less than December. As the Keepers list fills up, nights that got a Skip
+are swapped for ones that got a Make again.
+
 ### Repeats
 
 From December on, a night may be a dish from an earlier month. Twelve recipes appear in
@@ -79,7 +88,7 @@ python3 -m http.server 8765
 | --- | --- |
 | `index.html` | Page structure |
 | `styles.css` | Design system, light/dark themes, motion, print stylesheet |
-| `data.js` | All five months: days, grocery lists, prep notes, shared dietary rules |
+| `data.js` | All six months: days, grocery lists, prep notes, the night-before list, shared dietary rules |
 | `app.js` | Rendering, month switching, filtering, the recipe modal, kitchen timers, sharing, and the SVG dish illustrations |
 | `fx.js` | Motion and depth only: card tilt, the turntable, reveals, count-ups, the theme wipe, confetti. The site works the same without it |
 | `sw.js` | The service worker that keeps a copy of the site for when there is no signal |
@@ -143,7 +152,7 @@ night, both are simply omitted.
   go dark mid-step. Released when the recipe closes. Shown only where the browser supports it
 - **Verdicts.** Every recipe asks "Cooked it? Would you make it again?" with Make again and
   Skip next time. The verdict shows on the night's card and calendar square, and Make again
-  becomes a filter. The Keepers section gathers them across all five months: a catch-up list
+  becomes a filter. The Keepers section gathers them across every month: a catch-up list
   of nights already cooked but not rated, most recent first, with one tap each; the make-again
   and skip lists; and a button that copies the lot as plain text. That list is the brief
   January gets planned from
@@ -209,7 +218,7 @@ The card is a JPEG because WhatsApp drops link-preview images over about 300KB, 
 a PNG of the plate and its gradients comes out at over 700KB.
 
 The icon's five bars are the five proteins, with heights proportional to how many
-nights each one actually gets across all 152.
+nights each one actually got across the first 152.
 
 ## Illustrations
 
@@ -222,13 +231,13 @@ herbs. On a card the layers shift by their own depth as the card tilts, so the f
 above the plate and the plate above the board. In the hero and the recipe panel the same
 layers are stood on a tilted turntable with real 3D transforms, a few rings under the
 plate for the thickness of its rim, and steam rising off the top. The layers draw their
-random numbers in exactly the order the single flat picture did, so all 152 dishes look
+random numbers in exactly the order the single flat picture did, so every dish looks
 the way they always have. Card plates are drawn as they come near the screen rather than
 all at once, which keeps a month switch quick.
 
 ## Recipe sources
 
-Sixty-five of the 152 nights link to a published recipe on
+Ninety of the 183 nights link to a published recipe on
 [Budget Bytes](https://www.budgetbytes.com/) or [Downshiftology](https://downshiftology.com/),
 with the star rating and review count read off the source page. The rest are marked
 *Built for this plan*.
@@ -240,11 +249,13 @@ with the star rating and review count read off the source page. The rest are mar
 | October | 12 / 31 | 11 | 1 | Tighter still: highly rated, oven-led **and** braisable |
 | November | 7 / 30 | 6 | 1 | The pool of oven-led, potato-free, dairy-free recipes on two sites is close to exhausted |
 | December | 15 / 31 | 7 | 8 | Repeats allowed, so the best-rated nights come back |
+| January | 25 / 31 | 0 | 25 | A draft built on repeats, chosen by rating until the verdicts arrive |
 
 Nothing carries an invented rating. Where a night has no stars it is because it is
 original, not because the number was lost. The count falls from August to November as
 the filter narrows; the alternative was citing pages that had not been read. December
-recovers only because repeating a proven recipe became allowed.
+recovers only because repeating a proven recipe became allowed, and January is built
+almost entirely that way, which is why it cites no new pages.
 
 Serious Eats was requested but blocks automated access, so no recipe could be read or
 verified there and none is cited.

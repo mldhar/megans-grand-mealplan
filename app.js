@@ -646,7 +646,12 @@ const PLAN_TOTAL = PLAN_MONTHS.reduce((a, m) => {
 }, { nights: 0, sourced: 0, months: PLAN_MONTHS.length });
 
 const MONTH_WORD = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
-const planSpan = () => `${PLAN_MONTHS[0].short} to ${PLAN_MONTHS[PLAN_MONTHS.length - 1].short} ${PLAN_MONTHS[0].first.slice(0, 4)}`;
+// "Aug to Dec 2026", or "Aug 2026 to Jan 2027" once the plan crosses a year
+function planSpan() {
+  const a = PLAN_MONTHS[0], b = PLAN_MONTHS[PLAN_MONTHS.length - 1];
+  const ya = a.first.slice(0, 4), yb = b.last.slice(0, 4);
+  return ya === yb ? `${a.short} to ${b.short} ${ya}` : `${a.short} ${ya} to ${b.short} ${yb}`;
+}
 
 function renderMasthead() {
   $("#hero-eyebrow").textContent = MONTH.span;
