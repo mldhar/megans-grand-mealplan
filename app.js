@@ -1236,25 +1236,102 @@ function verdictRow(mkey, day) {
 function setVerdict(key, v) {
   if (verdicts[key] === v) delete verdicts[key]; else verdicts[key] = v;
   store.set(VKEY, JSON.stringify(verdicts));
+  paintVerdict(key, true);
+  paintKeepChip();
+  renderKeepers();
+}
+
+/* one night's verdict onto every button, card and calendar cell showing it */
+function paintVerdict(key, bounce) {
   const now = verdicts[key] || null;
   const [mkey, day] = [key.slice(0, 3), +key.slice(4)];
-
   $$(`[data-verdict][data-key="${key}"]`).forEach(b => {
     const on = b.dataset.verdict === now;
     b.setAttribute("aria-pressed", String(on));
-    if (on) FX.rerun([b], { frames: [{ transform: "scale(.86)" }, { transform: "scale(1.06)" }, { transform: "none" }], duration: 420 });
+    if (on && bounce) FX.rerun([b], { frames: [{ transform: "scale(.86)" }, { transform: "scale(1.06)" }, { transform: "none" }], duration: 420 });
   });
-  if (mkey === MONTH.key) {
-    $$(`.card[data-day="${day}"], .glance-cell[data-day="${day}"]`).forEach(el => {
-      el.classList.toggle("v-again", now === "again");
-      el.classList.toggle("v-skip", now === "skip");
-      el.setAttribute("aria-label", el.dataset.label + (VERDICT_SAYS[now] || ""));
-    });
-    const chip = $(".fbtn.keep");
-    if (chip) { const n = keepCount(); chip.hidden = !n; $("b", chip).textContent = n; if (!n && filterKeep) filterKeep = false; }
-    applyFilters();
+  if (mkey !== MONTH.key) return;
+  $$(`.card[data-day="${day}"], .glance-cell[data-day="${day}"]`).forEach(el => {
+    el.classList.toggle("v-again", now === "again");
+    el.classList.toggle("v-skip", now === "skip");
+    el.setAttribute("aria-label", el.dataset.label + (VERDICT_SAYS[now] || ""));
+  });
+}
+
+function paintKeepChip() {
+  const chip = $(".fbtn.keep");
+  if (chip) { const n = keepCount(); chip.hidden = !n; $("b", chip).textContent = n; if (!n && filterKeep) filterKeep = false; }
+  applyFilters();
+}
+
+/* ---------- carrying verdicts to another device ----------
+   Verdicts live in one browser, and on an iPhone the home-screen app
+   keeps its storage apart from Safari's. A link carries them across:
+   #keep= then each month's nights, so "oct5a12s.nov3a" is Oct 5 make
+   again, Oct 12 skip, Nov 3 make again. Opening one asks first, and
+   only ever adds or overwrites the nights it names. */
+const VCODE = { again: "a", skip: "s" }, VFROM = { a: "again", s: "skip" };
+
+function packVerdicts() {
+  return PLAN_MONTHS.map(m => {
+    const nights = m.days.filter(d => VCODE[verdictOf(m.key, d.day)]).map(d => d.day + VCODE[verdictOf(m.key, d.day)]);
+    return nights.length ? m.key + nights.join("") : "";
+  }).filter(Boolean).join(".");
+}
+function unpackVerdicts(code) {
+  const out = {};
+  for (const part of String(code).split(".")) {
+    const m = /^([a-z]{3})((?:\d{1,2}[as])+)$/.exec(part);
+    if (!m || !monthOf(m[1])) continue;
+    for (const [, n, c] of m[2].matchAll(/(\d{1,2})([as])/g)) if (nightOf(m[1], +n)) out[`${m[1]}-${+n}`] = VFROM[c];
   }
+  return out;
+}
+const keepLink = () => `${location.origin}${location.pathname}#keep=${packVerdicts()}`;
+// accepts the whole link, or just what follows #keep=
+const keepCode = (s) => { const m = /(?:^|[#&?])keep=([a-z0-9.]+)/i.exec(String(s).trim()); return m ? m[1].toLowerCase() : String(s).trim().toLowerCase(); };
+
+let incoming = null;    // verdicts from a link, waiting for a yes
+
+function offerVerdicts(code, from) {
+  const got = unpackVerdicts(code);
+  const keys = Object.keys(got);
+  incoming = {
+    got, keys,
+    changes: keys.filter(k => verdicts[k] && verdicts[k] !== got[k]).length,
+    fresh: keys.filter(k => !verdicts[k]).length,
+    same: keys.filter(k => verdicts[k] === got[k]).length
+  };
   renderKeepers();
+  const sec = $("#keepers");
+  if (sec && from !== "paste") sec.scrollIntoView({ behavior: FX.motionOK() ? "smooth" : "auto", block: "start" });
+  $(".kp-offer button")?.focus({ preventScroll: true });
+}
+
+function acceptVerdicts() {
+  if (!incoming) return;
+  const n = incoming.fresh + incoming.changes;
+  Object.assign(verdicts, incoming.got);
+  store.set(VKEY, JSON.stringify(verdicts));
+  incoming.keys.forEach(k => paintVerdict(k, false));
+  paintKeepChip();
+  incoming = { done: n };
+  renderKeepers();
+  $(".kp-offer")?.focus({ preventScroll: true });
+}
+
+async function sendVerdicts(btn) {
+  const url = keepLink();
+  const n = Object.keys(verdicts).length;
+  const flash = (t) => { const old = btn.textContent; btn.textContent = t; btn.classList.add("ok"); setTimeout(() => { btn.textContent = old; btn.classList.remove("ok"); }, 1800); };
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: "My mealplan verdicts", text: `${n} make-again and skip ratings from Megan's Grand Mealplan. Open the link on the other device to bring them in.`, url });
+      return;
+    } catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  try { await navigator.clipboard.writeText(url); flash("Link copied"); }
+  catch (_) { prompt("Copy this link and open it on the other device:", url); }
 }
 
 const monthOf = (key) => PLAN_MONTHS.find(m => m.key === key);
@@ -1268,6 +1345,7 @@ function openNight(ref) {
 }
 
 let catchupAll = false;
+let pasteOpen = false;
 
 function renderKeepers() {
   const host = $("#keepers-body");
@@ -1298,12 +1376,44 @@ function renderKeepers() {
       </span>
     </li>`;
 
-  host.innerHTML = `
+  const any = again.length + skip.length;
+  const offer = !incoming ? "" : incoming.done != null ? `
+    <div class="kp-offer done" tabindex="-1" role="status">
+      <p><b>Done.</b> ${incoming.done ? `${incoming.done} rating${incoming.done === 1 ? "" : "s"} brought in from the other device.` : "Everything in that link was already here."}</p>
+      <button type="button" class="btn-sm" data-offer="close">OK</button>
+    </div>` : !incoming.keys.length ? `
+    <div class="kp-offer" tabindex="-1" role="status">
+      <p>That link has no ratings in it. On the other device, open Keepers and tap <b>Send to another device</b> again.</p>
+      <button type="button" class="btn-sm" data-offer="close">OK</button>
+    </div>` : `
+    <div class="kp-offer" tabindex="-1" role="region" aria-label="Ratings from another device">
+      <p><b>${incoming.keys.length} rating${incoming.keys.length === 1 ? "" : "s"} from another device.</b>
+        ${[incoming.fresh && `${incoming.fresh} new here`, incoming.changes && `${incoming.changes} you rated differently here, which will take the other device's rating`, incoming.same && `${incoming.same} already the same`].filter(Boolean).join(", ")}.
+        Nothing else changes.</p>
+      <span class="kp-offer-btns">
+        <button type="button" class="btn-sm primary" data-offer="yes">Bring them in</button>
+        <button type="button" class="btn-sm" data-offer="close">Not now</button>
+      </span>
+    </div>`;
+
+  host.innerHTML = `${offer}
     <div class="kp-top">
       <span class="kp-count again">${VERDICT_ICON.again}<b>${again.length}</b> make again</span>
       <span class="kp-count pass">${VERDICT_ICON.skip}<b>${skip.length}</b> skip</span>
       <span class="kp-count">${unrated.length ? `<b>${unrated.length}</b> cooked, not yet rated` : "Everything cooked so far is rated"}</span>
-      <button type="button" class="btn-sm" id="copy-verdicts"${again.length || skip.length ? "" : " disabled"}>Copy the list for January</button>
+      <button type="button" class="btn-sm" id="copy-verdicts"${any ? "" : " disabled"}>Copy the list for January</button>
+    </div>
+    <div class="kp-move">
+      <span>Rated on one device, planning on another? Ratings stay in the browser they were made in.</span>
+      <span class="kp-move-btns">
+        <button type="button" class="btn-sm" id="send-verdicts"${any ? "" : " disabled"}>Send to another device</button>
+        <button type="button" class="btn-sm" id="paste-verdicts" aria-expanded="${pasteOpen}" aria-controls="kp-paste">Paste a link</button>
+      </span>
+      <form class="kp-paste" id="kp-paste"${pasteOpen ? "" : " hidden"}>
+        <label for="kp-paste-in" class="sr-only">Link from your other device</label>
+        <input id="kp-paste-in" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste the link here">
+        <button type="submit" class="btn-sm primary">Check it</button>
+      </form>
     </div>
     ${unrated.length ? `
     <div class="kp-catch">
@@ -1332,7 +1442,8 @@ function copyVerdicts(btn) {
   const txt = [
     `Megan's Grand Mealplan: verdicts as of ${(t => `${t.getDate()} ${MONTHS[t.getMonth() + 1]}`)(today())}`, "",
     `MAKE AGAIN (${rows.filter(r => r.v === "again").length})`, ...rows.filter(r => r.v === "again").map(fmt), "",
-    `SKIP (${rows.filter(r => r.v === "skip").length})`, ...rows.filter(r => r.v === "skip").map(fmt)
+    `SKIP (${rows.filter(r => r.v === "skip").length})`, ...rows.filter(r => r.v === "skip").map(fmt), "",
+    `Open on another device: ${keepLink()}`
   ].join("\n");
   navigator.clipboard?.writeText(txt).then(() => {
     const old = btn.textContent;
@@ -1541,6 +1652,15 @@ function initNav() {
   secs.forEach(s => obs.observe(s));
 }
 
+/* a #keep= link: read it, take it out of the address bar, and ask */
+function takeKeepLink() {
+  if (!/^#keep=/.test(location.hash)) return false;
+  const code = keepCode(location.hash);
+  history.replaceState(null, "", location.pathname);
+  offerVerdicts(code, "link");
+  return true;
+}
+
 /* ============================================================
    BOOT
    ============================================================ */
@@ -1574,13 +1694,24 @@ document.addEventListener("DOMContentLoaded", () => {
   addEventListener("resize", placeMonthMarker);
 
   if (deep) openDay(+deep[2], false);
+  takeKeepLink();
 
   // a night's link followed while the site is already open
   addEventListener("hashchange", () => {
+    if (takeKeepLink()) return;
     const m = /^#([a-z]{3})-(\d+)$/.exec(location.hash);
     if (!m || !PLAN_MONTHS.some(x => x.key === m[1])) return;
     if (m[1] !== MONTH.key) switchMonth(m[1]);
     openDay(+m[2]);
+  });
+
+  document.addEventListener("submit", e => {
+    if (e.target.id !== "kp-paste") return;
+    e.preventDefault();
+    const v = $("#kp-paste-in").value;
+    if (!v.trim()) return $("#kp-paste-in").focus();
+    pasteOpen = false;
+    offerVerdicts(keepCode(v), "paste");
   });
 
   document.addEventListener("click", e => {
@@ -1640,6 +1771,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const kp = e.target.closest("[data-open]");
     if (kp) return openNight(kp.dataset.open);
     if (e.target.closest("#copy-verdicts")) return copyVerdicts(e.target.closest("#copy-verdicts"));
+    if (e.target.closest("#send-verdicts")) return sendVerdicts(e.target.closest("#send-verdicts"));
+    if (e.target.closest("#paste-verdicts")) {
+      pasteOpen = !pasteOpen; renderKeepers();
+      if (pasteOpen) $("#kp-paste-in")?.focus(); else $("#paste-verdicts")?.focus();
+      return;
+    }
+    const ob = e.target.closest("[data-offer]");
+    if (ob) {
+      if (ob.dataset.offer === "yes") return acceptVerdicts();
+      incoming = null; renderKeepers(); ($("#send-verdicts:not(:disabled)") || $("#paste-verdicts"))?.focus();
+      return;
+    }
     if (e.target.closest("#catchup-more")) { catchupAll = true; return renderKeepers(); }
 
     const sh = e.target.closest("#share-btn, #foot-share");
