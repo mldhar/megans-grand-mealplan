@@ -2650,7 +2650,7 @@ const OCT_DAYS = [
     "Tomatoes, broth, bay leaves, the bacon and the mushrooms back in. Simmer uncovered 45 to 50 minutes.",
     "Fish out the bay. Bowls, then avocado, red onion, cilantro, lime and hot sauce."
   ],
-  leftovers: "Two portions to the freezer tonight. Between this and Oct 10 the freezer now holds four chili dinners."
+  leftovers: "Two portions to the freezer tonight. Between this and Oct 10 the freezer now holds four chili portions: two dinners."
 },
 {
   day: 21, date: "2026-10-21", dow: "Wednesday", week: 4, protein: "chicken",
@@ -3171,7 +3171,7 @@ const OCT_PREP = [
     "Sunday's barbacoa goes into the slow cooker before you have breakfast and is not touched again for eight hours. Sear the chuck first; it is not in the recipe and it is worth it.",
     "Wednesday's chipotle rub goes on Tuesday night and the thighs sit uncovered in the fridge. Four hours is the useful minimum, twelve is better.",
     "Saturday's steak rub goes on Friday night, same uncovered rack, same reason.",
-    "Between Oct 10 and Oct 20 the freezer gains four chili dinners. Label them, because they look identical."
+    "Between Oct 10 and Oct 20 the freezer gains four chili portions, which is two dinners. Label them, because they look identical."
   ]},
   { w: 5, day: "Saturday Oct 24", items: [
     "Salt Sunday's bird in the morning and leave it uncovered in the fridge all day. Then strip the carcass while it is still warm, because cold chicken shreds instead of lifting off.",
@@ -4040,7 +4040,7 @@ const NOV_DAYS = [
 {
   day: 29, date: "2026-11-29", dow: "Sunday", week: 5, protein: "beef",
   title: "Last Chili of the Year",
-  blurb: "One of the four chili portions you froze in October, or twenty minutes to make a fresh one. Either way this is the night you do not cook.",
+  blurb: "Two of the four chili portions you froze in October, or twenty minutes to make a fresh one. Either way this is the night you do not cook.",
   source: ORIGINAL,
   time: "25 min", active: "10 min", serves: 4, cost: "~$3.10/serving",
   protein_g: { him: 74, her: 48 },
@@ -4349,7 +4349,7 @@ const DEC_DAYS = [
     "Taste the beef. Frozen braises always want more salt and a splash of vinegar than you expect.",
     "Beef over the greens and mushrooms, parsley, lemon, flaky salt, olive oil."
   ],
-  leftovers: "One chili portion and one braise portion left in the freezer. Both are spoken for later this month."
+  leftovers: "That was the only braise portion. October's last two chili portions are still in the freezer, and Dec 28 is theirs."
 },
 {
   day: 2, date: "2026-12-02", dow: "Wednesday", week: 1, protein: "chicken",
@@ -4452,7 +4452,7 @@ const DEC_DAYS = [
   swaps: [
     "Same as October: the teaspoon of brown sugar comes out and nothing else changes.",
     "Tripled from the published pound of beef, as before.",
-    "Freeze three portions this time, not two. Dec 20 to 26 has no room for cooking and Dec 28 takes one."
+    "Freeze two portions, labelled with the date, and keep two for lunches. October's last two are still in the freezer, so Dec 28 and New Year's Day are both covered."
   ],
   ingredients: [
     { g: "Beef", i: ["2¾ lb ground beef (85/15)", "1½ tsp kosher salt", "1½ tsp black pepper", "2 Tbsp avocado oil"] },
@@ -4468,7 +4468,7 @@ const DEC_DAYS = [
     "Simmer uncovered 45 minutes to 1 hour, until a spoon stands up in it.",
     "Bowls, then avocado, red onion, cilantro, lime and hot sauce."
   ],
-  leftovers: "Three portions into the freezer tonight, labelled. Dec 28 takes one and the other two carry you into January."
+  leftovers: "Two portions into the freezer tonight, labelled, and two lunches. October's last two go first, on Dec 28, and these two carry you into January."
 },
 
 /* ========== WEEK 2: SOUP AND STEW ========== */
@@ -5131,7 +5131,7 @@ const DEC_DAYS = [
 {
   day: 28, date: "2026-12-28", dow: "Monday", week: 5, protein: "beef",
   title: "Chili from the Freezer",
-  blurb: "One of the three portions you froze on Dec 5. Fifteen minutes, and the last week of the year does not need you cooking.",
+  blurb: "October's last two portions, oldest in the freezer first. Fifteen minutes, and the last week of the year does not need you cooking.",
   source: ORIGINAL,
   time: "25 min", active: "10 min", serves: 4, cost: "~$3.10/serving",
   protein_g: { him: 74, her: 48 },
@@ -5143,7 +5143,7 @@ const DEC_DAYS = [
     "Two portions still in the freezer after this. They are January's problem, solved."
   ],
   ingredients: [
-    { g: "From the freezer", i: ["2 portions Texas chili from Dec 5", "½ cup beef broth to loosen"] },
+    { g: "From the freezer", i: ["2 portions chili from Oct 10 or Oct 20", "½ cup beef broth to loosen"] },
     { g: "On top", i: ["2 avocados", "½ red onion, finely diced", "1 bunch cilantro", "3 limes", "Hot sauce, no sugar added"] },
     { g: "Alongside", i: ["1 head green cabbage, shredded", "2 bell peppers, sliced", "Olive oil, lime, salt"] }
   ],
@@ -5420,9 +5420,9 @@ const DEC_GROCERIES = [
 
 const DEC_PREP = [
   { w: 1, day: "Monday Nov 30", items: [
-    "Two batch nights this week and they exist for the second half of the month. Thursday makes 54 meatballs and you eat 18; Saturday makes six servings of chili and you eat two.",
+    "Two batch nights this week and they exist for the second half of the month. Thursday makes 54 meatballs and you eat 18; Saturday makes six servings of chili: two for dinner, two for lunches and two for the freezer.",
     "Freeze the meatballs in three bags of twelve, not one bag of thirty-six, and freeze them flat on a tray first so they do not fuse. Dec 16, 22 and 30 each take a bag.",
-    "Freeze three chili portions and label them. Dec 28 takes one and two go into January.",
+    "Label the two chili portions with the date. October's last two go first, on Dec 28, and these two are New Year's Day.",
     "Friday's steak marinates in the morning, not overnight. Lime juice past four hours ruins flank."
   ]},
   { w: 2, day: "Saturday Dec 5", items: [
@@ -5445,7 +5445,7 @@ const DEC_PREP = [
     "Do not reheat any of the leftover beef. Boxing Day is built on it cold and that is the better meal."
   ]},
   { w: 5, day: "Saturday Dec 26", items: [
-    "Move one chili portion to the fridge on Sunday for Monday, and the last bag of meatballs on Tuesday night for Wednesday.",
+    "Move October's two chili portions to the fridge on Sunday for Monday, and the last bag of meatballs on Tuesday night for Wednesday.",
     "Sunday's carcass gets simmered Sunday night. Tuesday's soup is the cheapest night of the whole five months and it depends on it.",
     "New Year's Eve: filets out 30 to 40 minutes ahead, and season the edges as well as the faces. Two minutes a side, one minute basting, then the pan goes straight in the oven.",
     "Freezer at the end of the year: two chili portions and nothing else. That is the right amount to start January with."
@@ -5485,7 +5485,7 @@ const JAN_DAYS = [
 {
   day: 1, date: "2027-01-01", dow: "Friday", week: 1, protein: "beef",
   title: "Chili from the Freezer",
-  blurb: "The last two portions of Dec 5's chili, and New Year's Day asks nothing else of you. Fifteen minutes, most of it the pan warming.",
+  blurb: "The last chili in the freezer, two portions from Dec 5, and New Year's Day asks nothing else of you. Fifteen minutes, most of it the pan warming.",
   source: ORIGINAL,
   time: "25 min", active: "10 min", serves: 4, cost: "~$3.10/serving",
   protein_g: { him: 74, her: 48 },
@@ -6660,7 +6660,7 @@ const DEC_AHEAD = [
   { on: "2026-12-03", night: 4, title: "Freeze the meatballs, marinate the flank in the morning",
     detail: "Tonight: freeze the spare meatballs flat on a tray, then in three bags of twelve for Dec 16, 22 and 30. Tomorrow morning, not tonight: marinate the flank steak for two to four hours. Lime juice past four hours turns it mealy." },
   { on: "2026-12-05", night: 6, title: "Freeze the chili, and tomorrow's stew starts at 3pm",
-    detail: "Tonight: freeze the spare chili in labelled portions; one is Dec 28 and the rest start January. Tomorrow's lamb stew wants two and a half hours and three batches of browning." },
+    detail: "Tonight: two portions of the chili into the freezer, labelled with the date, for New Year's Day, and two into lunch boxes. Tomorrow's lamb stew wants two and a half hours and three batches of browning." },
   { on: "2026-12-11", night: 12, title: "Tomorrow's beef stew starts at 3pm",
     detail: "Two and a half hours and three batches of browning. It makes 40% more than the night needs: two lunches and a freezer portion." },
   { on: "2026-12-12", night: 13, title: "Barbacoa goes in before breakfast",
@@ -6676,7 +6676,7 @@ const DEC_AHEAD = [
   { on: "2026-12-23", night: 25, title: "Christmas prep night",
     detail: "Salt the prime rib all over and leave it uncovered on a rack in the fridge for a full 24 hours. Trim the lamb racks and mix the Dijon herb crust. Steam and mash the cauliflower for both nights in one go." },
   { on: "2026-12-27", night: 28, title: "Chili to the fridge, carcass in the pot",
-    detail: "Move Monday's chili from the freezer to the fridge, and simmer tonight's carcass: Tuesday's soup depends on it." },
+    detail: "Move October's two chili portions from the freezer to the fridge for Monday, and simmer tonight's carcass: Tuesday's soup depends on it." },
   { on: "2026-12-29", night: 30, title: "Last bag of meatballs to the fridge",
     detail: "Out of the freezer tonight, for tomorrow." }
 ];

@@ -465,6 +465,16 @@ function proteinBars(pg) {
    ============================================================ */
 const atDay = (iso) => new Date(iso + "T00:00:00");
 const today = () => { const n = new Date(); n.setHours(0, 0, 0, 0); return n; };
+// the last day a shop line allows ("Fri Jul 31 or Sat Aug 1" is Aug 1), in
+// the year before the month when the shop falls in the December before it
+function shopBy(line, first) {
+  const ms = [...line.matchAll(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})\b/g)];
+  if (!ms.length) return null;
+  const [, mon, dd] = ms[ms.length - 1];
+  const d = new Date(first.getFullYear(), "JanFebMarAprMayJunJulAugSepOctNovDec".indexOf(mon) / 3, +dd);
+  if (d - first > 60 * 86400000) d.setFullYear(d.getFullYear() - 1);
+  return d;
+}
 
 /* tonight's day number, or null if the month on screen is not running */
 function liveDay() {
@@ -580,7 +590,11 @@ function renderStatus() {
   strip.classList.remove("live");
   if (now < first) {
     const days = Math.round((first - now) / 86400000);
-    text.innerHTML = `${esc(MONTH.title)} starts in <b>${days}</b> day${days === 1 ? "" : "s"}. First shop is <b>${esc(MONTH.weeks[0].shop.replace(/^Shop /, ""))}</b>.`;
+    const shop = MONTH.weeks[0].shop.replace(/^Shop /, ""), by = shopBy(shop, first);
+    const when = !by || now < by ? `First shop is <b>${esc(shop)}</b>.`
+      : +now === +by ? `First shop is <b>today</b>.`
+      : `The first shop was <b>${esc(shop)}</b>.`;
+    text.innerHTML = `${esc(MONTH.title)} starts ${days === 1 ? "<b>tomorrow</b>" : `in <b>${days}</b> days`}. ${when}`;
     btn.hidden = true;
   } else if (now > last) {
     text.innerHTML = `${esc(MONTH.title)} is done. Everything below still works as a reference.`;
