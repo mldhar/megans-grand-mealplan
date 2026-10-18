@@ -179,6 +179,15 @@ const exists = (f) => fs.existsSync(path.join(ROOT, f.split(/[?#]/)[0]));
 for (const m of read("index.html").matchAll(/\b(?:src|href)="([^"]+)"/g)) {
   if (local(m[1]) && m[1] !== "./" && !exists(m[1])) fail("index.html", `links to ${m[1]}, which is not in the repository`);
 }
+// the subscribe links name the live site; the file they point at must be here
+for (const m of read("index.html").matchAll(/\bhref="webcal:\/\/([^"]+)"/g)) {
+  const file = m[1].replace(/^mldhar\.github\.io\/megans-grand-mealplan\//, "");
+  if (file === m[1]) fail("index.html", `subscribe link ${m[0]} is not on the live site`);
+  else if (!exists(file)) fail("index.html", `subscribes to ${file}, which is not in the repository`);
+}
+for (const m of read("index.html").matchAll(/\bdata-(?:copy-)?feed="([^"]+)"/g)) {
+  if (!exists(m[1])) fail("index.html", `offers the feed ${m[1]}, which is not in the repository`);
+}
 const core = /const CORE = \[([\s\S]*?)\]/.exec(read("sw.js"));
 if (!core) fail("sw.js", "has no CORE list to check");
 else for (const m of core[1].matchAll(/"([^"]+)"/g)) {

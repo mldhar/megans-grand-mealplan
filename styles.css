@@ -1234,6 +1234,21 @@ svg { flex: none; }
 .cal-cta p { font-size: 14.5px; color: var(--ink-2); max-width: 64ch; }
 .cal-cta p b { color: var(--ink); }
 .cal-cta-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.cal-how { flex: 1 1 100%; border-top: 1px dashed color-mix(in srgb, var(--accent) 26%, var(--line)); padding-top: 14px; }
+.cal-how summary {
+  cursor: pointer; width: fit-content; list-style: none;
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--accent);
+}
+.cal-how summary::-webkit-details-marker { display: none; }
+.cal-how summary::before { content: "+"; display: inline-block; width: 1.2em; transition: transform .3s var(--spring); }
+.cal-how[open] summary::before { transform: rotate(45deg); }
+.cal-how summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.cal-how ul { margin: 12px 0 0; padding-left: 0; list-style: none; display: grid; gap: 9px; max-width: 78ch; }
+.cal-how li { font-size: 14px; line-height: 1.55; color: var(--ink-2); padding-left: 16px; position: relative; }
+.cal-how li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 60%, transparent); }
+.cal-how li b { color: var(--ink); }
+.cal-how a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.cal-how .linkish.ok { color: var(--good); }
 .st-prep { display: block; margin-top: 4px; }
 
 .prep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }

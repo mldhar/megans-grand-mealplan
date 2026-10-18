@@ -122,9 +122,10 @@ title and the detail. After changing them or the days, regenerate the calendar f
 node tools/make-calendar.js --from 2026-10-12   # or omit --from for "from today"
 ```
 
-Every event keeps a stable ID made from its date and night, so a calendar that matches on
-IDs can update rather than duplicate. Not every app does, so after a big change it is safest
-to delete the old events before importing the new file.
+Every event keeps a stable ID made from its date and night, so a subscribed calendar updates
+events in place rather than duplicating them. Commit the regenerated files and every
+subscribed phone picks up the change on its next refresh. A downloaded copy is a snapshot:
+after a big change it is safest to delete those events before importing the new file.
 
 ### Checking a change
 
@@ -194,6 +195,14 @@ night, both are simply omitted.
   `data.js` and reaches you two ways: a "Prep tonight" line in the status strip on that
   evening, and a 7pm alert in Apple Calendar, Google Calendar or Outlook from
   `prep-reminders.ics`. `dinners.ics` puts every dinner in the calendar as well
+- **Calendar subscriptions.** The Prep section's buttons subscribe (`webcal://`) rather
+  than import, so a calendar fetches the files again on its own and a change to the plan
+  reaches the phone without anyone re-adding anything. The files ask for a fresh look every
+  six hours (`REFRESH-INTERVAL` and `X-PUBLISHED-TTL`); Apple Calendar honours its own
+  setting, Google takes a day or more. Subscribed calendars can drop alerts: on an iPhone
+  the subscription's **Remove Alerts** switch must be off, and on a Mac the **Remove:
+  Alerts** box, which comes ticked, must be unticked. The card says so, and also offers the
+  plain `https://` links for Google and Outlook and one-off downloads
 - Deep links: `#sep-14` opens that night's recipe directly. `#nov-26` is Thanksgiving, `#dec-25` is Christmas Day.
   They also work when followed with the site already open
 - Grocery checklists that persist in `localStorage`, kept separate per month, so

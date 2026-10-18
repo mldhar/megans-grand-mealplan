@@ -1675,6 +1675,27 @@ function initNav() {
   secs.forEach(s => obs.observe(s));
 }
 
+/* ---------- calendar subscriptions ----------
+   The page is written with the live site's webcal:// links, so they work
+   before this runs; here they follow whichever copy of the site is open.
+   Google and Outlook want the plain https:// address instead. */
+const siteDir = () => location.host + location.pathname.replace(/[^/]*$/, "");
+const feedUrl = (file, scheme) => `${scheme}://${siteDir()}${file}`;
+
+function initFeeds() {
+  if (!/^https?:$/.test(location.protocol)) return;
+  $$("[data-feed]").forEach(a => { a.href = feedUrl(a.dataset.feed, "webcal"); });
+}
+
+async function copyFeed(btn) {
+  const url = feedUrl(btn.dataset.copyFeed, location.protocol.slice(0, -1));
+  const old = btn.textContent;
+  try { await navigator.clipboard.writeText(url); btn.textContent = "Copied"; }
+  catch (_) { prompt("Copy this link:", url); return; }
+  btn.classList.add("ok");
+  setTimeout(() => { btn.textContent = old; btn.classList.remove("ok"); }, 1600);
+}
+
 /* a #keep= link: read it, take it out of the address bar, and ask */
 function takeKeepLink() {
   if (!/^#keep=/.test(location.hash)) return false;
@@ -1714,6 +1735,7 @@ document.addEventListener("DOMContentLoaded", () => {
   FX.dragTurn($("#stage-plate"));
   document.fonts?.ready.then(placeMonthMarker);
   initOffline();
+  initFeeds();
   addEventListener("resize", placeMonthMarker);
 
   if (deep) openDay(+deep[2], false);
@@ -1795,6 +1817,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (kp) return openNight(kp.dataset.open);
     if (e.target.closest("#copy-verdicts")) return copyVerdicts(e.target.closest("#copy-verdicts"));
     if (e.target.closest("#send-verdicts")) return sendVerdicts(e.target.closest("#send-verdicts"));
+    if (e.target.closest("[data-copy-feed]")) return copyFeed(e.target.closest("[data-copy-feed]"));
     if (e.target.closest("#paste-verdicts")) {
       pasteOpen = !pasteOpen; renderKeepers();
       if (pasteOpen) $("#kp-paste-in")?.focus(); else $("#paste-verdicts")?.focus();
