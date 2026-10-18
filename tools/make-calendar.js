@@ -7,8 +7,9 @@
                          start), at 7pm, with an alert
      dinners.ics         every night's dinner as an all-day event
 
-   Both open in Apple Calendar on an iPhone or a Mac (tap, Add All, pick
-   a calendar), and in Google Calendar or Outlook as an import. Times are
+   Both work two ways. Subscribed to (webcal://), a calendar fetches the
+   file again every few hours, so a change to the plan reaches the phone
+   on its own. Opened once (tap, Add All), they are a snapshot. Times are
    "floating", so 7pm means 7pm wherever the phone is.
 
    Run from the repository root after changing data.js:
@@ -27,6 +28,7 @@ const ROOT = path.join(__dirname, "..");
 const SITE = "https://mldhar.github.io/megans-grand-mealplan/";
 const REMIND_AT = "190000";            // 7pm, local to the phone
 const REMIND_MINUTES = 15;
+const REFRESH = "PT6H";                // how often a subscribed calendar should look again
 
 // load data.js the way the browser does, without a browser
 const ctx = {};
@@ -57,6 +59,8 @@ function calendar(name, events) {
   const lines = [
     "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Megan's Grand Mealplan//Calendar//EN",
     "CALSCALE:GREGORIAN", "METHOD:PUBLISH", `X-WR-CALNAME:${text(name)}`,
+    // RFC 7986's refresh hint, and the older one Apple and Outlook read
+    `REFRESH-INTERVAL;VALUE=DURATION:${REFRESH}`, `X-PUBLISHED-TTL:${REFRESH}`,
     ...events.flat(), "END:VCALENDAR"
   ];
   return lines.map(fold).join("\r\n") + "\r\n";
