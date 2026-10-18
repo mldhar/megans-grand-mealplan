@@ -1516,7 +1516,7 @@ function renderGroceries() {
             <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tp-track" cx="22" cy="22" r="18"/><circle class="tp-fill" cx="22" cy="22" r="18" pathLength="100"/></svg>
             <b></b>
           </span>
-          <button class="btn-sm" data-send="${t.trip}" title="What is still unticked, to Messages, Notes or Reminders">Send list</button>
+          <button class="btn-sm" data-send="${t.trip}" title="What is still unticked, to Messages or Notes">Send list</button>
           <button class="btn-sm" data-print="${t.trip}">Print this list</button>
         </div>
       </header>

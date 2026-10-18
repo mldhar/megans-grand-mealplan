@@ -12,7 +12,7 @@ test("subscribe links follow the site that is open; copy gives the https link", 
   await settle(page.locator(".cal-how summary"));
   await page.locator(".cal-how summary").click();
   await expect(page.locator(".cal-how ul")).toBeVisible();
-  await expect(page.locator(".cal-how")).toContainText("Remove Alerts");
+  await expect(page.locator(".cal-cta")).toContainText("No alerts, no notifications");
   await page.click('[data-copy-feed="prep-reminders.ics"]');
   await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(`${baseURL}prep-reminders.ics`);
   await expect(page.locator('[data-copy-feed="prep-reminders.ics"]')).toHaveText("Copied");
@@ -21,7 +21,7 @@ test("subscribe links follow the site that is open; copy gives the https link", 
   await expect(page.locator('.cal-how a[href="dinners.ics"]')).toHaveCount(1);
 });
 
-for (const [file, name, alarms] of [["prep-reminders.ics", "Mealplan prep", true], ["dinners.ics", "Mealplan dinners", false]]) {
+for (const [file, name, prep] of [["prep-reminders.ics", "Mealplan prep", true], ["dinners.ics", "Mealplan dinners", false]]) {
   test(`${file} is a calendar a phone can subscribe to`, async ({ request }) => {
     const res = await request.get(file);
     expect(res.status()).toBe(200);
@@ -40,7 +40,10 @@ for (const [file, name, alarms] of [["prep-reminders.ics", "Mealplan prep", true
     expect(events.length).toBeGreaterThan(10);
     const uids = events.map(e => /\r\nUID:([^\r]+)/.exec(e)[1]);
     expect(new Set(uids).size, "every event has its own ID").toBe(uids.length);
-    for (const e of events) expect(e.includes("BEGIN:VALARM"), "alerts only on the reminders").toBe(alarms);
-    if (alarms) for (const e of events) expect(e).toMatch(/\r\nDTSTART:\d{8}T190000\r\n/);
+    // no notifications, ever: the events are there when you look
+    expect(body, "no alerts in the calendar").not.toContain("VALARM");
+    expect(body).not.toMatch(/\r\n(TRIGGER|ACTION):/);
+    for (const e of events) expect(e, "does not block the evening as busy").toContain("\r\nTRANSP:TRANSPARENT\r\n");
+    if (prep) for (const e of events) expect(e).toMatch(/\r\nDTSTART:\d{8}T190000\r\n/);
   });
 }

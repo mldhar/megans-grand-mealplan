@@ -4,8 +4,11 @@
 
      prep-reminders.ics  every evening the plan asks for something ahead
                          (a rub, a marinade, a freezer move, an early
-                         start), at 7pm, with an alert
+                         start), as a quiet event at 7pm
      dinners.ics         every night's dinner as an all-day event
+
+   Neither carries an alert (no VALARM): the plan never sends a
+   notification. The events are there when you look at the calendar.
 
    Both work two ways. Subscribed to (webcal://), a calendar fetches the
    file again every few hours, so a change to the plan reaches the phone
@@ -87,7 +90,7 @@ function build(FROM) {
         `SUMMARY:${text(summary)}`,
         `DESCRIPTION:${text(`${a.detail}\n\nFor ${d.dow} ${+d.date.slice(8)} ${m.short}: ${d.title}\n${url}`)}`,
         `URL:${url}`,
-        "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${text(summary)}`, "TRIGGER:PT0S", "END:VALARM",
+        "TRANSP:TRANSPARENT",
         "END:VEVENT"
       ]);
     }
