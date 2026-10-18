@@ -97,7 +97,8 @@ python3 -m http.server 8765
 | `og-image.jpg` | The 1200x630 link preview card. Regenerate with `tools/og-card.html` |
 | `icon.svg`, `apple-touch-icon.png` | Favicon and home-screen icon |
 | `tools/` | Sources for the images above, rendered with headless Chrome; `make-calendar.js`, which writes the calendar files; and `check.js`, which checks the plan. None of it is loaded by the site |
-| `.github/workflows/check.yml` | Runs `tools/check.js` on every push and pull request |
+| `.github/workflows/check.yml` | Runs `tools/check.js` and the browser tests on every push and pull request |
+| `tests/`, `playwright.config.js`, `package.json` | The browser tests and what runs them |
 
 ### Editing
 
@@ -149,6 +150,29 @@ commit red if it fails. It needs nothing but Node. It checks:
 
 It prints each problem with where it is, for example
 `aug-8: "cream" breaks the dairy rule in "1 cup heavy cream"`.
+
+### Browser tests
+
+`tests/` holds Playwright tests that drive the real page in Chromium: every month and
+every recipe, filters and search, the recipe panel and keyboard, timers, the hero,
+theme and print, reduced motion, Keepers and the `#keep=` link, shopping lists and Send
+list, the status strip on the dates it changes, the calendar card and both calendar
+files, and the offline copy. They need Node and Python 3 (for the local server):
+
+```bash
+npm install                        # once
+npx playwright install chromium    # once
+npm test
+```
+
+They serve the repository root on port 8766, pin the page's clock to 6pm on Oct 12 2026
+(UTC) so dates never drift, answer Google Fonts with an empty stylesheet so nothing
+waits on the network, and fail on any error the page logs. GitHub runs them next to
+`tools/check.js` on every push and pull request; when one fails, the run keeps the
+report and a trace of the failing test for two weeks.
+
+The site itself still has no dependencies and no build step: `package.json` exists
+only for the tests.
 
 `protein_g: { him, her }` is optional per day. Where it is present the card shows a
 `74/48g` chip and the modal draws the meter; where it is absent, as on every August

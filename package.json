@@ -1,0 +1,12 @@
+{
+  "name": "megans-grand-mealplan",
+  "private": true,
+  "description": "Tests only. The site itself has no dependencies and no build step.",
+  "scripts": {
+    "check": "node tools/check.js",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
